@@ -1,0 +1,5 @@
+# A sample Gemfile
+source "https://rubygems.org"
+
+gem "itunes_parser", github: "phiggins/itunes_parser"
+gem "pry"

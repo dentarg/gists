@@ -1,0 +1,30 @@
+GIT
+  remote: git://github.com/phiggins/itunes_parser.git
+  revision: efbff5d6a54df203df8ab3d1106012ddc63a6913
+  specs:
+    itunes_parser (0.1.0)
+      nokogiri (~> 1.4)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    coderay (1.1.0)
+    method_source (0.8.2)
+    mini_portile (0.6.2)
+    nokogiri (1.6.6.4)
+      mini_portile (~> 0.6.0)
+    pry (0.10.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    slop (3.6.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  itunes_parser!
+  pry
+
+BUNDLED WITH
+   1.10.6
