@@ -117,6 +117,12 @@ NoMethodError: undefined method `unpack' for nil:NilClass
 `host(1)` in OS X 10.11.2
 
 ```
+$ host 64.4.6.100 8.8.8.8
+;; Truncated, retrying in TCP mode.
+;; communications error to 8.8.8.8#53: end of file
+```
+
+```
 $ host 64.4.6.100
 ;; Truncated, retrying in TCP mode.
 100.6.4.64.in-addr.arpa domain name pointer xboxone.com.sa.
