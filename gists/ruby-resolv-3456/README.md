@@ -26,6 +26,62 @@ NoMethodError: undefined method `unpack' for nil:NilClass
 	from /Users/dentarg/.rubies/ruby-2.2.3/bin/irb:11:in `<main>'
 ```
 
+Ruby 2.3.0-preview2
+
+```ruby
+$ ruby test.rb
+ruby 2.3.0preview2 (2015-12-11 trunk 53028) [x86_64-darwin15]
+/Users/dentarg/.rubies/ruby-2.3.0-preview2/lib/ruby/2.3.0/resolv.rb:873:in `recv_reply': undefined method `unpack' for nil:NilClass (NoMethodError)
+	from /Users/dentarg/.rubies/ruby-2.3.0-preview2/lib/ruby/2.3.0/resolv.rb:697:in `request'
+	from /Users/dentarg/.rubies/ruby-2.3.0-preview2/lib/ruby/2.3.0/resolv.rb:531:in `block in fetch_resource'
+	from /Users/dentarg/.rubies/ruby-2.3.0-preview2/lib/ruby/2.3.0/resolv.rb:1103:in `block (3 levels) in resolv'
+	from /Users/dentarg/.rubies/ruby-2.3.0-preview2/lib/ruby/2.3.0/resolv.rb:1101:in `each'
+	from /Users/dentarg/.rubies/ruby-2.3.0-preview2/lib/ruby/2.3.0/resolv.rb:1101:in `block (2 levels) in resolv'
+	from /Users/dentarg/.rubies/ruby-2.3.0-preview2/lib/ruby/2.3.0/resolv.rb:1100:in `each'
+	from /Users/dentarg/.rubies/ruby-2.3.0-preview2/lib/ruby/2.3.0/resolv.rb:1100:in `block in resolv'
+	from /Users/dentarg/.rubies/ruby-2.3.0-preview2/lib/ruby/2.3.0/resolv.rb:1098:in `each'
+	from /Users/dentarg/.rubies/ruby-2.3.0-preview2/lib/ruby/2.3.0/resolv.rb:1098:in `resolv'
+	from /Users/dentarg/.rubies/ruby-2.3.0-preview2/lib/ruby/2.3.0/resolv.rb:522:in `fetch_resource'
+	from /Users/dentarg/.rubies/ruby-2.3.0-preview2/lib/ruby/2.3.0/resolv.rb:512:in `each_resource'
+	from /Users/dentarg/.rubies/ruby-2.3.0-preview2/lib/ruby/2.3.0/resolv.rb:466:in `each_name'
+	from /Users/dentarg/.rubies/ruby-2.3.0-preview2/lib/ruby/2.3.0/resolv.rb:432:in `getname'
+	from test.rb:6:in `<main>'
+
+```
+
+Rubinius 2.5.8
+
+```ruby
+$ ruby test.rb
+rubinius 2.5.8 (2.1.0 bef51ae3 2015-12-11 3.5.1 JI) [x86_64-darwin15.2.0]
+An exception occurred running test.rb
+
+undefined method `unpack' on nil:NilClass. (NoMethodError)
+
+Backtrace:
+
+                     Kernel(NilClass)#unpack (method_missing) at kernel/delta/kernel.rb:78
+                       Resolv::DNS::Requester::TCP#recv_reply at /Users/dentarg/.rubies/rbx-2.5.8/gems/gems/rubysl-resolv-2.1.2/lib/rubysl/resolv/resolv.rb:866
+  Resolv::DNS::Requester(Resolv::DNS::Requester::TCP)#request at /Users/dentarg/.rubies/rbx-2.5.8/gems/gems/rubysl-resolv-2.1.2/lib/rubysl/resolv/resolv.rb:690
+                            { } in Resolv::DNS#fetch_resource at /Users/dentarg/.rubies/rbx-2.5.8/gems/gems/rubysl-resolv-2.1.2/lib/rubysl/resolv/resolv.rb:528
+                            { } in Resolv::DNS::Config#resolv at /Users/dentarg/.rubies/rbx-2.5.8/gems/gems/rubysl-resolv-2.1.2/lib/rubysl/resolv/resolv.rb:1096
+                                                   Array#each at kernel/bootstrap/array.rb:76
+                            { } in Resolv::DNS::Config#resolv at /Users/dentarg/.rubies/rbx-2.5.8/gems/gems/rubysl-resolv-2.1.2/lib/rubysl/resolv/resolv.rb:1094
+                                                   Array#each at kernel/bootstrap/array.rb:76
+                            { } in Resolv::DNS::Config#resolv at /Users/dentarg/.rubies/rbx-2.5.8/gems/gems/rubysl-resolv-2.1.2/lib/rubysl/resolv/resolv.rb:1093
+                                                   Array#each at kernel/bootstrap/array.rb:76
+                                   Resolv::DNS::Config#resolv at /Users/dentarg/.rubies/rbx-2.5.8/gems/gems/rubysl-resolv-2.1.2/lib/rubysl/resolv/resolv.rb:1091
+                                   Resolv::DNS#fetch_resource at /Users/dentarg/.rubies/rbx-2.5.8/gems/gems/rubysl-resolv-2.1.2/lib/rubysl/resolv/resolv.rb:519
+                                    Resolv::DNS#each_resource at /Users/dentarg/.rubies/rbx-2.5.8/gems/gems/rubysl-resolv-2.1.2/lib/rubysl/resolv/resolv.rb:509
+                                        Resolv::DNS#each_name at /Users/dentarg/.rubies/rbx-2.5.8/gems/gems/rubysl-resolv-2.1.2/lib/rubysl/resolv/resolv.rb:463
+                                          Resolv::DNS#getname at /Users/dentarg/.rubies/rbx-2.5.8/gems/gems/rubysl-resolv-2.1.2/lib/rubysl/resolv/resolv.rb:429
+                                            Object#__script__ at test.rb:6
+                             Rubinius::CodeLoader#load_script at kernel/delta/code_loader.rb:66
+                             Rubinius::CodeLoader.load_script at kernel/delta/code_loader.rb:152
+                                      Rubinius::Loader#script at kernel/loader.rb:656
+                                        Rubinius::Loader#main at kernel/loader.rb:842
+```
+
 JRuby 9.0.4.0
 
 ```ruby
