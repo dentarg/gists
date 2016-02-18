@@ -10,6 +10,13 @@
 
 >I do think that one of the consequences of moving to Skia will be that the UI looks too thin / fragile for many users not on a retina display. It's not the best solution, but I'm not against it. We already set fonts/UI to look "good" for the user, they were just dependent on how OS X rendered the font. I agree we're definitely losing the purity / some native look feel here. However, the user won't care we didn't fiddle with the fonts because we render them differently, they'll care that the UI is harder to read. I think this bug should be to just make it easier for the user here. But I'm not a UI designer, so I would be very happy to be wrong here :).
 
+[Bug 1247714: Comment 17](https://bugzilla.mozilla.org/show_bug.cgi?id=1247714#c17)
+
+>Unfortunately, there's no real "fixing" Skia. Skia directly uses CoreGraphics via public APIs to render the actual glyph. Then it adjusts it so it can do pre-multiplied alpha. It also seems to use this gamma correction table on Windows as well, which fonts also look slightly different than Edge / IE (due to lots of other issues as well such as subpixel AA). It seems that Chrome specifically made these decisions, which creates a relatively consistent font across platforms. To really get Skia to look like Safari all the time would involve lots of rewriting of Skia and to disable their glyph cache and soley rely on CoreGraphics and render all text through CoreGraphics directly.
+
+>Doing such a task would inversely impact what we're trying to do wi th Skia. We're specifically looking to delete our CoreGraphics backend due to the maintenance cost of having another backend. We spend a disproportionate amount of engineering time on a platform only 2.4% of our users are on. [[1]](https://people.mozilla.org/~danderson/moz-gfx-telemetry/www/)
+
+
 ## Examples
 
 ![](skia-vs-cg.png)
