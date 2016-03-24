@@ -1,0 +1,14 @@
+---
+- hosts: osx
+  tasks:
+    - name: change timezone to utc
+      lineinfile: >
+        backup=yes
+        dest=/usr/local/var/postgres/postgresql.conf
+        regexp="^timezone = 'Europe/Stockholm'$"
+        line="timezone = 'UTC'"
+      notify: reload postgres
+
+  handlers:
+    - name: reload postgres
+      shell: pg_ctl reload
