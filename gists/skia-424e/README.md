@@ -2,6 +2,12 @@
 
 [Jump to the bug reports](#bug-reports)
 
+# So close
+
+From left to right: Chrome 51.0.2694.1 canary, Safari 9.0.3 (11601.4.4), Chrome 49.0.2623.87
+
+![](51.0.2694.1_canary_-_Safari_9.0.3_11601.4.4_-_49.0.2623.87.png)
+
 # Soon to be solved 🎉
 
 Version 49.0.2623.87 (64-bit)
