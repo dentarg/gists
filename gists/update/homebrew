@@ -1,0 +1,23 @@
+#!/bin/sh
+
+set -e
+
+echo "$ brew update"
+brew update
+echo ""
+
+echo "$ brew outdated"
+brew outdated
+echo ""
+
+echo "$ brew upgrade"
+brew upgrade
+echo ""
+
+echo "$ brew cleanup"
+brew cleanup
+echo ""
+
+echo "$ brew cask cleanup"
+brew cask cleanup
+echo ""
