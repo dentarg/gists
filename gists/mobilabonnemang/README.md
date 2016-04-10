@@ -7,6 +7,8 @@
 * Telenor
  * 79 kr/dygn, 500 MB [Kostnadskoll](http://www.telenor.se/foretag/produkter-och-tjanster/tjanster/utlandstjanster/kostnadskoll.html) (företag)
  * 149 kr/7 dagar, 1 GB [Respass](http://www.telenor.se/privat/kundservice/utomlands/tjanster/telenor-respass.html)
+* Telia
+* 199 kr/7 dagar, 1 GB [Semestervecka](https://www.telia.se/privat/telefoni/tjanster/produkt/semestervecka)
 
 ## [Telia Mobil Komplett](http://www.telia.se/privat/telefoni/abonnemang-kontantkort/produkt/mobilabonnemang)
 
