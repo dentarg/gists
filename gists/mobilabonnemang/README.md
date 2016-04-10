@@ -6,6 +6,7 @@
  * 199 kr/mån, 750 MB [PDF med priserna för datapaket i utlandet](http://www.tele2.se/globalassets/pdf-er/tres0229_001_v1_datapaket_prislista_utland.pdf)
 * Telenor
  * 79 kr/dygn, 500 MB [Kostnadskoll](http://www.telenor.se/foretag/produkter-och-tjanster/tjanster/utlandstjanster/kostnadskoll.html) (företag)
+ * 149 kr/7 dagar, 1 GB [Respass](http://www.telenor.se/privat/kundservice/utomlands/tjanster/telenor-respass.html)
 
 ## Täckningskartor
 
