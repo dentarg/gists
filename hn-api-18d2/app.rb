@@ -31,3 +31,11 @@ loop do
     sleep seconds
   end
 end
+
+# getting item 11531197... (2016-04-20 01:08:13 +0200)
+# /Users/dentarg/.rubies/ruby-2.3.0/lib/ruby/2.3.0/json/common.rb:156:in `parse': 822: unexpected token at '' (JSON::ParserError)
+#   from /Users/dentarg/.rubies/ruby-2.3.0/lib/ruby/2.3.0/json/common.rb:156:in `parse'
+#   from /Users/dentarg/.gem/ruby/2.3.0/gems/firebase-0.2.6/lib/firebase/response.rb:10:in `body'
+#   from app.rb:11:in `block in <main>'
+#   from app.rb:10:in `loop'
+#   from app.rb:10:in `<main>'
