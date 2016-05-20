@@ -10,6 +10,14 @@
 * Telia
  * 199 kr/7 dagar, 1 GB [Semestervecka](https://www.telia.se/privat/telefoni/tjanster/produkt/semestervecka)
 
+## Tele2
+
+Från http://www.tele2.se/upptack/erbjudanden/data/
+
+> Kan jag dela ett datapaketet mellan flera enheter?
+
+> För att dela ditt datapaket med andra enheter kan du använda din mobiltelefon eller surfplatta som en WiFi-hotspot.
+
 ## [Telia Mobil Komplett](http://www.telia.se/privat/telefoni/abonnemang-kontantkort/produkt/mobilabonnemang)
 
 > * Ingen bindningstid!
