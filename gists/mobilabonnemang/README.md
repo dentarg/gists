@@ -12,6 +12,24 @@
 
 ## [Tele2](http://www.tele2.se/)
 
+http://www.tele2.se/abonnemang/abonnemang-utan-telefon
+
+> * **Fast pris. Samtal, SMS & MMS ingår**
+> * Du ringer och skickar meddelanden till ett fast pris. Ingen bindningstid.
+> * 149 kr/mån
+
+> * **Rörligt pris, ingen fast månadsavgift**
+> * Betala bara för det du använder. 0,69 kr/min & SMS. Ingen bindningstid.
+> * 0 kr/mån
+
+GB  | kr/mån
+----|-------
+0.5 |  49
+5   |  99
+20  | 149
+50  | 249
+100 | 399
+
 Från http://www.tele2.se/upptack/erbjudanden/data/
 
 > Kan jag dela ett datapaketet mellan flera enheter?
