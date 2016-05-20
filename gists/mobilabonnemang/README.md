@@ -10,13 +10,17 @@
 * Telia
  * 199 kr/7 dagar, 1 GB [Semestervecka](https://www.telia.se/privat/telefoni/tjanster/produkt/semestervecka)
 
-## Tele2
+## [Tele2](http://www.tele2.se/)
 
 Från http://www.tele2.se/upptack/erbjudanden/data/
 
 > Kan jag dela ett datapaketet mellan flera enheter?
 
 > För att dela ditt datapaket med andra enheter kan du använda din mobiltelefon eller surfplatta som en WiFi-hotspot.
+
+Från http://www.tele2.se/upptack/produkter/data-on-demand/
+
+> Är du redan Tele2-kund? Då kan du kostnadsfritt få ett extra SIM-kort som du kan fylla på med data till din surfplatta. Det kan liknas med ett tvillingkort men vi kallar det Data On-Demand. Du tankar SIM-kortet med så mycket data du vill och sen använder du det tills det tar slut, oavsett om det tar tre dagar eller ett år. När datan tar slut kan du enkelt fylla på med mer. Kostnaden för datan dras på din faktura när du köper datamängden. Denna produkt får endast köpas av kunder som redan har någon av våra mobila produkter; mobilabonnemang, mobilt bredband 4G eller hemtelefoni via mobilnätet.
 
 ## [Telia Mobil Komplett](http://www.telia.se/privat/telefoni/abonnemang-kontantkort/produkt/mobilabonnemang)
 
