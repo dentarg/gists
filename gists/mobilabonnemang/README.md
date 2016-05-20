@@ -44,6 +44,18 @@ Från http://www.tele2.se/upptack/produkter/data-on-demand/
 
 ## [Telia Mobil Komplett](http://www.telia.se/privat/telefoni/abonnemang-kontantkort/produkt/mobilabonnemang)
 
+> * Väljer du 0,5 – 40 GB surf/mån så ingår obegränsat med samtal och sms/mms.
+> * Väljer du 0,2 GB surf/mån så ingår fria sms/mms men du betalar för dina samtal, 99 öre/minut och 99 öre i öppningsavgift.
+
+GB  | kr/mån
+----|-------
+0.2 | 99
+0.5 | 229
+4   | 309
+12  | 409
+24  | 509
+40  | 609
+
 > * Ingen bindningstid!
 > * [uppsägningstid 1 månad](https://www.telia.se/docs/prislista/mobilt/Prislista_Telia_Mobil_Komplett_TSP-3799-4-1310.pdf)
 > * Väljer du minst 4 GB surf i ditt abonnemang får du tillgång till obegränsad surf i [Telia Wifi](http://www.telia.se/privat/bredband/tjanster/produkt/homerun-wireless-zones).
