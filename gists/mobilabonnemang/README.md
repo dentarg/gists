@@ -18,6 +18,8 @@ http://www.tele2.se/abonnemang/abonnemang-utan-telefon
 > * Du ringer och skickar meddelanden till ett fast pris. Ingen bindningstid.
 > * 149 kr/mån
 
+<!-- --- -->
+
 > * **Rörligt pris, ingen fast månadsavgift**
 > * Betala bara för det du använder. 0,69 kr/min & SMS. Ingen bindningstid.
 > * 0 kr/mån
