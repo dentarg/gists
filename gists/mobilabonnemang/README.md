@@ -9,10 +9,26 @@ Spreadsheet: https://burd.se/datatrafik
  * 99 kr/mån, 250 MB [EU-paketet](http://www.tele2.se/upptack/utlandspriser/eu-paketet/)
  * 199 kr/mån, 750 MB [PDF med priserna för datapaket i utlandet](http://www.tele2.se/globalassets/pdf-er/tres0229_001_v1_datapaket_prislista_utland.pdf)
 * Telenor
+ * 29 kr/dygn, 100 MB [Dagspass EU](http://www.telenor.se/privat/kundservice/utomlands/tjanster/dagspass-eu.html) 
  * 79 kr/dygn, 500 MB [Kostnadskoll](http://www.telenor.se/foretag/produkter-och-tjanster/tjanster/utlandstjanster/kostnadskoll.html) (företag)
  * 149 kr/7 dagar, 1 GB [Respass](http://www.telenor.se/privat/kundservice/utomlands/tjanster/telenor-respass.html)
 * Telia
  * 199 kr/7 dagar, 1 GB [Semestervecka](https://www.telia.se/privat/telefoni/tjanster/produkt/semestervecka)
+
+## [Telenor](http://www.telenor.se/privat/mobil-telefoni/abonnemang/index.html)
+
+http://www.telenor.se/privat/mobil-telefoni/abonnemang/index.html
+
+> Med våra abonnemang kan du använda surfmängden även när du reser i Norge och Danmark. Du betalar alltså inget extra för att surfa i dessa länder. 
+
+http://www.telenor.se/privat/kundservice/utomlands/index.html
+
+> Surfa, ring och sms:a inom EU för 29 kr/dygn.
+
+http://www.telenor.se/privat/kundservice/utomlands/tjanster/dagspass-eu.html
+
+> Surf och utgående samtal triggar en dagstaxa. Att ta emot samtal, skicka och ta emot sms/mms ingår. Vid dygnsskifte svensk tid återställs surfvolymen för Dagspass EU. Om surfen tar slut får du ett sms med möjligheten att köpa mer surf (29 kr/100 MB). Om du inte köper mer surf, sänks din surfhastighet till 48 kbit/s.
+
 
 ## [Tele2](http://www.tele2.se/)
 
