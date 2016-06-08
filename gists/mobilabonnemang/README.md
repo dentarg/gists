@@ -31,6 +31,10 @@ http://www.telenor.se/privat/kundservice/utomlands/tjanster/dagspass-eu.html
 
 > Surf och utgående samtal triggar en dagstaxa. Att ta emot samtal, skicka och ta emot sms/mms ingår. Vid dygnsskifte svensk tid återställs surfvolymen för Dagspass EU. Om surfen tar slut får du ett sms med möjligheten att köpa mer surf (29 kr/100 MB). Om du inte köper mer surf, sänks din surfhastighet till 48 kbit/s.
 
+http://www.telenor.se/privat/kundservice/sim-kort-och-koder/extra-sim.html
+
+> Extra-sim är ett simkort med ett eget mobilnummer med fria samtal, sms och mms. Du delar på surfen från ditt befintliga abonnemang och priset är 129 kr/mån. Vi har även en hemmalösning med bara surf för 29 kr/mån. Du kan lägga till upp till sju Extra-sim om du har något av abonnemangen Mobil 12, Mobil 24 och Mobil 50 GB eller den äldre abonnemangsformen Familjeflex. Extra-sim Surf kan även användas på Mobil 0,5 GB och Mobil 2 GB. Allt kommer på en och samma faktura. 
+
 
 ## [Tele2](http://www.tele2.se/)
 
