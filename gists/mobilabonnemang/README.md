@@ -17,6 +17,8 @@ Spreadsheet: https://burd.se/datatrafik
  * 199 kr/7 dagar, 1 GB [Semestervecka Europa](https://www.telia.se/privat/telefoni/tjanster/produkt/semestervecka)
  * 299 kr/7 dagar, 1 GB [Semestervecka Världen](https://www.telia.se/privat/telefoni/tjanster/produkt/semestervecka)
 
+## [Tre](https://www.tre.se/privat/handla/mobiltelefoni/abonnemang/)
+
 ## [Telenor](http://www.telenor.se/privat/mobil-telefoni/abonnemang/index.html)
 
 http://www.telenor.se/privat/mobil-telefoni/abonnemang/index.html
