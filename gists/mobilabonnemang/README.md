@@ -7,9 +7,7 @@ Spreadsheet: https://burd.se/datatrafik
 * Tele2
  * [När du är på semester utomlands](http://www.tele2.se/support/mobiltelefoni/anvandande/utomlands/)
  * 89 kr/mån, 200 MB [Surf Europa](http://www.tele2.se/globalassets/pdf-er/tres0425_002_01_datapaket_prislista_utland3.pdf)
- * 99 kr/mån, 250 MB [EU-paketet](http://www.tele2.se/upptack/utlandspriser/eu-paketet/)
  * 179 kr/mån, 1 GB [Surf Europa](http://www.tele2.se/globalassets/pdf-er/tres0425_002_01_datapaket_prislista_utland3.pdf)
- * 199 kr/mån, 750 MB [PDF med priserna för datapaket i utlandet](http://www.tele2.se/globalassets/pdf-er/tres0229_001_v1_datapaket_prislista_utland.pdf)
 * Telenor
  * 29 kr/dygn, 100 MB [Dagspass EU](http://www.telenor.se/privat/kundservice/utomlands/tjanster/dagspass-eu.html) 
  * 79 kr/dygn, 500 MB [Kostnadskoll](http://www.telenor.se/foretag/produkter-och-tjanster/tjanster/utlandstjanster/kostnadskoll.html) (företag)
