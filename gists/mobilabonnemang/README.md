@@ -125,6 +125,13 @@ http://www.telia.se/privat/telefoni/abonnemang-kontantkort/produkt/telia-mobil-k
 > SURFA I 4G MED ALLA DINA MOBILA PRYLAR
 >Om du har ett Mobil Komplett-abonnemang med 0,5GB surf/mån eller mer kan du beställa Surfanslutningar. En Surfanslutning är ett ytterligare sim-kort du kan använda i t ex din surfplatta eller dator. Surfen delas med huvudabonnemanget. På alla platser runt i Sverige där Telia Wifi finns har du kostnadsfri tillgång till internet.
 
+## [Halebop](https://shop.halebop.se/mobilabonnemang)
+
+https://www.halebop.se/dms/halebop/docs/prislistor/Abonnemang-Halebop-Rubbet.pdf
+
+> Dela din surf: Med ett extra Surf-SIM-kort kan du dela surfen som du har på ditt abonnemang. Du kan använda upp till två extra
+SIM-kort i t ex surfplatta eller mobilt wifi .
+
 ## Täckningskartor
 
 * [Telia](https://www.telia.se/privat/support/tackningskartor) (och [Halebop](https://www.halebop.se/support/tackningskarta))
