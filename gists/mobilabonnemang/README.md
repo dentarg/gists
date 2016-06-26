@@ -10,6 +10,7 @@ Spreadsheet: https://burd.se/datatrafik
  * 179 kr/mån, 1 GB [Surf Europa](http://www.tele2.se/globalassets/pdf-er/tres0425_002_01_datapaket_prislista_utland3.pdf)
  * 245 kr/mån, 500 GB [Surf USA](http://www.tele2.se/globalassets/pdf-er/tres0425_002_01_datapaket_prislista_utland3.pdf)
 * Telenor
+ * 0 kr [Telenor Frihet](http://www.telenor.se/teman/frihet/)
  * 29 kr/dygn, 100 MB [Dagspass EU](http://www.telenor.se/privat/kundservice/utomlands/tjanster/dagspass-eu.html) 
  * 79 kr/dygn, 500 MB [Kostnadskoll](http://www.telenor.se/foretag/produkter-och-tjanster/tjanster/utlandstjanster/kostnadskoll.html) (företag)
  * 149 kr/7 dagar, 1 GB [Respass](http://www.telenor.se/privat/kundservice/utomlands/tjanster/telenor-respass.html)
@@ -31,6 +32,24 @@ Spreadsheet: https://burd.se/datatrafik
 ## [Tre](https://www.tre.se/privat/handla/mobiltelefoni/abonnemang/)
 
 ## [Telenor](http://www.telenor.se/privat/mobil-telefoni/abonnemang/index.html)
+
+http://www.telenor.se/abonnemang/
+
+> Därför lanserar vi Telenor Frihet, helt nya abonnemang där du kan använda all din mobilsurf när du reser i EU – utan extra kostnad. Telenor Frihet gäller även samtal, sms och mms. 
+
+<!-- -->
+
+> Surfa i EU utan extra kostnad.
+> Använd all din mobilsurf när du reser i EU – utan extra kostnad. Telenor Frihet gäller även tjänsterna samtal, sms och mms.
+
+<!-- -->
+
+> Samla familjen.
+> Genom att enkelt koppla Extra-sim till ditt abonnemang kan du dela det med din familj. 
+
+Det finstilta: 
+
+> Våra abonnemang Telenor Frihet gäller för privatkunder och inkluderar samtal och meddelanden från annat EU/EES-land till svenska telefonnummer samt lokala nummer inom besökt EU/EES-land, samt användande av inkluderad surfmängd. Gäller ej samtal från Sverige till utlandet, samt samtal med särskild taxa. För övriga samtal se prislista. Surfhastighet upp till 1 Mbit/s utanför Skandinavien. Önskar du ta bort hastighetsbegränsningen kan du byta till löpande debitering, 0,58 kr/MB.
 
 http://www.telenor.se/privat/mobil-telefoni/abonnemang/index.html
 
