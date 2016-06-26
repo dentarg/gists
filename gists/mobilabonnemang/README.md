@@ -16,6 +16,17 @@ Spreadsheet: https://burd.se/datatrafik
 * Telia
  * 199 kr/7 dagar, 1 GB [Semestervecka Europa](https://www.telia.se/privat/telefoni/tjanster/produkt/semestervecka)
  * 299 kr/7 dagar, 1 GB [Semestervecka Världen](https://www.telia.se/privat/telefoni/tjanster/produkt/semestervecka)
+* Vimla
+ * 29 kr för 100 MB/svenskt dygn (Europa)
+ * 49 kr för 50 MB/svenskt dygn (USA)
+
+## [Vimla](https://vimla.se/priser)
+
+> Oanvänd surf, samtal & mess sparas tills du använt upp det.
+
+<!-- -->
+
+> Som max kan du spara 100 Gb data, 1000 samtal och 10,000 sms/mms.
 
 ## [Tre](https://www.tre.se/privat/handla/mobiltelefoni/abonnemang/)
 
