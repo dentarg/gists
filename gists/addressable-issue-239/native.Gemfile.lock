@@ -1,0 +1,20 @@
+GIT
+  remote: git://github.com/sporkmonger/addressable.git
+  revision: a15b7045a09911bcc47b106200554809c879a5f6
+  specs:
+    addressable (2.4.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    idn-ruby (0.1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  addressable!
+  idn-ruby
+
+BUNDLED WITH
+   1.12.5
