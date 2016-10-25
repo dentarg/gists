@@ -1,0 +1,108 @@
+# Defaults
+PREFIX='/usr/local'
+
+# OS specific local paths
+for i in ${PREFIX}; do
+    PATH=${i}/bin:${i}/sbin:${i}/libexec:$PATH
+    manpath+=(${i}/man)
+done
+
+path+=(
+    .
+    ~/bin
+    ~/local_bin
+    ~/local/bin
+    /bin
+    /sbin
+    /usr/bin
+    /usr/sbin
+    /usr/X11R6/bin
+)
+
+manpath=(
+    /usr/man
+    /usr/share/man
+    /usr/X11R6/man
+    /opt/local/share/man/
+    ~/local/man
+)
+
+# Unique entries
+typeset -U path manpath
+
+# Nice colors in terminal
+export LSCOLORS='gxfxexdxbxegedabagacad'
+
+# Magically quote urls
+autoload -U url-quote-magic
+zle -N self-insert url-quote-magic
+
+# History
+export HISTFILE=~/.zsh_history
+export HISTSIZE=9000000
+export SAVEHIST=9000000
+
+# Language
+UTF8=en_US.UTF-8
+export LANG=$UTF8
+export LC_ALL=$UTF8
+export LC_LANG=$UTF8
+export LC_CTYPE=$UTF8
+export LANGUAGE=$UTF8
+
+# By default, zsh considers many characters part of a word (e.g., _ and -).
+# Narrow that down to allow easier skipping through words via M-f and M-b.
+export WORDCHARS='*?[]~&;!$%^<>'
+
+# Disable "You have new mail."
+unset MAILCHECK
+
+# Options
+setopt \
+    autocd \
+    hash_dirs \
+    no_beep \
+    no_check_jobs \
+
+# zcalc > bc
+autoload -U zcalc
+
+## Completion
+autoload -U compinit
+compinit
+
+# Color tab completions
+# http://www.reddit.com/r/zsh/comments/msps0/color_partial_tab_completions_in_zsh/
+zstyle ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==34=00}:${(s.:.)LS_COLORS}")';
+
+# Messages
+zstyle ':completion:*:descriptions' format '%B%d%b'
+
+# Completers to use
+zstyle ':completion:*' completer _complete _prefix
+zstyle ':completion::prefix-1:*' completer _complete
+zstyle ':completion:incremental:*' completer _complete _correct
+zstyle ':completion:predict:*' completer _complete
+
+# Indexes before parameters in subscripts
+zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
+
+# Match uppercase from lowercase
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# Completion caching
+zstyle ':completion::complete:*' use-cache 1
+zstyle ':completion::complete:*' cache-path ~/.zsh/cache/$HOST
+
+# Emacs mode
+set -o emacs
+
+# Magic
+bindkey "^?" backward-delete-char
+bindkey "^[[3~" delete-char
+bindkey "[C" forward-word
+bindkey "[D" backward-word
+
+# Prompt
+PROMPT='%(#.#.$) '
+RPROMPT='%n@%m %~'
