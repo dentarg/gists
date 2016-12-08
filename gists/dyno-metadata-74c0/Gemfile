@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+source "https://rubygems.org"
+
+# gem "dyno_metadata", path: "/Users/dentarg/code/projects/dyno-metadata"
+gem "dyno_metadata"
