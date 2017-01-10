@@ -1,0 +1,21 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    power_assert (0.4.1)
+    rack (2.0.1)
+    rack-test (0.6.3)
+      rack (>= 1.0)
+    rack-timeout (0.4.2)
+    test-unit (3.2.3)
+      power_assert
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  rack-test
+  rack-timeout
+  test-unit
+
+BUNDLED WITH
+   1.13.7
