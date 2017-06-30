@@ -5,22 +5,22 @@ Spreadsheet: https://burd.se/datatrafik
 ## Utland
 
 * Tele2
- * [När du är på semester utomlands](http://www.tele2.se/support/mobiltelefoni/anvandande/utomlands/)
- * 89 kr/mån, 200 MB, `EU200`, [Surf Europa](http://www.tele2.se/globalassets/pdf-er/tele2_datapaket_prislista_utland.pdf)
- * 179 kr/mån, 1 GB, `EU1000`, [Surf Europa](http://www.tele2.se/globalassets/pdf-er/tele2_datapaket_prislista_utland.pdf)
- * 139 kr/mån, 200 MB, `A200`, [Surf USA](http://www.tele2.se/globalassets/pdf-er/tele2_datapaket_prislista_utland.pdf)
- * 279 kr/mån, 1 GB MB, `A1000`, [Surf USA](http://www.tele2.se/globalassets/pdf-er/tele2_datapaket_prislista_utland.pdf)
+  * [När du är på semester utomlands](http://www.tele2.se/support/mobiltelefoni/anvandande/utomlands/)
+  * 89 kr/mån, 200 MB, `EU200`, [Surf Europa](http://www.tele2.se/globalassets/pdf-er/tele2_datapaket_prislista_utland.pdf)
+  * 179 kr/mån, 1 GB, `EU1000`, [Surf Europa](http://www.tele2.se/globalassets/pdf-er/tele2_datapaket_prislista_utland.pdf)
+  * 139 kr/mån, 200 MB, `A200`, [Surf USA](http://www.tele2.se/globalassets/pdf-er/tele2_datapaket_prislista_utland.pdf)
+  * 279 kr/mån, 1 GB MB, `A1000`, [Surf USA](http://www.tele2.se/globalassets/pdf-er/tele2_datapaket_prislista_utland.pdf)
 * Telenor
- * 0 kr [Telenor Frihet](http://www.telenor.se/teman/frihet/) (EU)
- * 29 kr/dygn, 100 MB [Dagspass EU](http://www.telenor.se/privat/kundservice/utomlands/tjanster/dagspass-eu.html) 
- * 79 kr/dygn, 500 MB [Kostnadskoll](http://www.telenor.se/foretag/produkter-och-tjanster/tjanster/utlandstjanster/kostnadskoll.html) (företag)
- * 149 kr/7 dagar, 1 GB [Respass](http://www.telenor.se/privat/kundservice/utomlands/tjanster/telenor-respass.html)
+  * 0 kr [Telenor Frihet](http://www.telenor.se/teman/frihet/) (EU)
+  * 29 kr/dygn, 100 MB [Dagspass EU](http://www.telenor.se/privat/kundservice/utomlands/tjanster/dagspass-eu.html) 
+  * 79 kr/dygn, 500 MB [Kostnadskoll](http://www.telenor.se/foretag/produkter-och-tjanster/tjanster/utlandstjanster/kostnadskoll.html) (företag)
+  * 149 kr/7 dagar, 1 GB [Respass](http://www.telenor.se/privat/kundservice/utomlands/tjanster/telenor-respass.html)
 * Telia
- * 199 kr/7 dagar, 1 GB [Semestervecka Europa](https://www.telia.se/privat/telefoni/tjanster/produkt/semestervecka)
- * 299 kr/7 dagar, 1 GB [Semestervecka Världen](https://www.telia.se/privat/telefoni/tjanster/produkt/semestervecka)
+  * 199 kr/7 dagar, 1 GB [Semestervecka Europa](https://www.telia.se/privat/telefoni/tjanster/produkt/semestervecka)
+  * 299 kr/7 dagar, 1 GB [Semestervecka Världen](https://www.telia.se/privat/telefoni/tjanster/produkt/semestervecka)
 * Vimla
- * 29 kr för 100 MB/svenskt dygn (Europa)
- * 49 kr för 50 MB/svenskt dygn (USA)
+  * 29 kr för 100 MB/svenskt dygn (Europa)
+  * 49 kr för 50 MB/svenskt dygn (USA)
 
 ## [Vimla](https://vimla.se/priser)
 
