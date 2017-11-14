@@ -4,4 +4,4 @@ My homegrown remote for spotify, from 2013. I started the ruby application om my
 
     bundle
 
-    foreman start
+    puma
