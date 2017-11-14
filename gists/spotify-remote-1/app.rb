@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'sinatra/multi_route'
 require 'sinatra/reloader' if development?
 
 #get '/' do
@@ -21,13 +22,14 @@ def set_volume(volume)
   `osascript -e "set volume output volume #{volume}"`
 end
 
-get '/' do
-  head = '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+helpers do
+  def ui(route: '')
+    %(<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
           <script type="text/javascript">
             $(document).ready(function() {
               $("a").click(function(e) {
                 e.preventDefault();
-                $.get($(this).attr("data"));
+                $.get('#{route}' + $(this).attr("data"));
                 if ($(this).attr("data") == "pause") {
                   $(this).attr("data", "play");
                   $(this).text(">");
@@ -37,17 +39,32 @@ get '/' do
                 }
               });
             });
-          </script>'
-  body = '<div style="font-size: 400%; text-decoration: none">
-  <a href="#" data="prev">&lt;&lt;</a> -
-  <a href="#" data="pause">||</a> -
-  <a href="#" data="next">&gt;&gt;</a>
-  <p>
-  volume up <a href="#" data="volume_up">+</a> <br/>
-  volume down <a href="#" data="volume_down">-</a></div>'
+          </script>
 
+    <div style="font-size: 400%; text-decoration: none">
+    <h1>#{route.empty? ? 'Spotify' : route}</h1>
+    <a href="#" data="prev">&lt;&lt;</a> -
+    <a href="#" data="pause">||</a> -
+    <a href="#" data="next">&gt;&gt;</a>
+    <p>
+    volume up <a href="#" data="volume_up">+</a> <br/>
+    volume down <a href="#" data="volume_down">-</a></div>)
+  end
+end
+
+get '/safari' do
+  `osascript -e 'tell application "Safari" to activate'`
+
+  body ui(route: '/safari/')
+end
+
+get '/safari/play', '/safari/pause' do
+  `osascript -e 'tell application "System Events" to keystroke Space'`
+end
+
+get '/' do
   `osascript -e 'tell application "Spotify" to activate'`
-  return head + body
+  body ui
 end
 
 get '/next' do
@@ -66,10 +83,10 @@ get '/pause' do
   `osascript -e 'tell application "Spotify" to pause'`
 end
 
-get '/volume_up' do
+get '/volume_up', '/safari/volume_up' do
   increase_volume
 end
 
-get '/volume_down' do
+get '/volume_down', '/safari/volume_down' do
   decrease_volume
 end
