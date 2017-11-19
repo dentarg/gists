@@ -32,23 +32,28 @@ helpers do
                 $.get('#{route}' + $(this).attr("data"));
                 if ($(this).attr("data") == "pause") {
                   $(this).attr("data", "play");
-                  $(this).text(">");
+                  $(this).text("⏯");
                 } else if ($(this).attr("data") == "play") {
                   $(this).attr("data", "pause");
-                  $(this).text("||");
+                  $(this).text("⏯");
                 }
               });
             });
           </script>
 
-    <div style="font-size: 400%; text-decoration: none">
-    <h1>#{route.empty? ? 'Spotify' : route}</h1>
-    <a href="#" data="prev">&lt;&lt;</a> -
-    <a href="#" data="pause">||</a> -
-    <a href="#" data="next">&gt;&gt;</a>
+    <div style="font-size: 600%;">
+    <h1>#{route.empty? ? 'Spotify' : route[1..-2].capitalize}</h1>
+    <a style="text-decoration: none;" href="#" data="prev">⏮</a> &nbsp;
+    <a style="text-decoration: none;" href="#" data="pause">⏯</a> &nbsp;
+    <a style="text-decoration: none;" href="#" data="next">⏭</a>
     <p>
-    volume up <a href="#" data="volume_up">+</a> <br/>
-    volume down <a href="#" data="volume_down">-</a></div>)
+    <code>
+    <a style="text-decoration: none;" href="#" data="volume_up">volume up &nbsp;➕</a>
+    <br/>
+    <a style="text-decoration: none;" href="#" data="volume_down">volume down➖</a>
+    </code>
+    </p>
+    </div>)
   end
 end
 
