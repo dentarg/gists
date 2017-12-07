@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+set -x
+
+vagrant box list | awk '{ print $1 }' | while read box
+do
+  vagrant box update --box $box
+done

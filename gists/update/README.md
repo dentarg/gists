@@ -7,4 +7,6 @@ Atom / APM
 
 Vagrant boxes
 
-    vagrant box list | awk '{ print $1 }' | while read box; do ; vagrant box update --box $box ; done
+    ./box-update
+
+    ./box-clean

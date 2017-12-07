@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+# vagrant box list
+# vagrant box remove <box name> --box-version <box version>
+
+raw_boxes = `vagrant box list`.split("\n")
+regex     = /\A(?<name>.+\s{0})\s+\(.+, (?<version>.+)\)$/
+default   = Hash.new { |hash, key| hash[key] = [] }
+
+boxes = raw_boxes.each_with_object(default) do |box_str, memo|
+  box_match = box_str.match(regex)
+  name      = box_match[:name].strip
+
+  memo[name] << box_match[:version]
+end
+
+boxes_to_clean     = boxes.select { |name, versions| versions.size > 1 }
+versions_to_remove = boxes_to_clean.map { |name, versions| { name => versions.sort.first } }
+
+puts raw_boxes
+puts
+
+versions_to_remove.each do |box|
+  box.each do |name, version|
+    args = ["vagrant", "box", "remove", "#{name}", "--box-version", "#{version}"]
+    puts "#{args.join(' ')}"
+    system(*args)
+  end
+end
+
+puts
+puts `vagrant box list`
