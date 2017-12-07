@@ -1,0 +1,32 @@
+GIT
+  remote: https://github.com/rack-test/rack-test.git
+  revision: 3a69fc240d3920bcd4cbfea5ba3b9dee2d24efd9
+  specs:
+    rack-test (0.6.3)
+      rack (>= 1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    power_assert (1.0.1)
+    rack (1.6.5)
+    rack-protection (1.5.3)
+      rack
+    sinatra (1.4.8)
+      rack (~> 1.5)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
+    test-unit (3.2.3)
+      power_assert
+    tilt (2.0.7)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  rack-test!
+  sinatra
+  test-unit
+
+BUNDLED WITH
+   1.14.2

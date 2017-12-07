@@ -1,0 +1,6 @@
+# frozen_string_literal: true
+source "https://rubygems.org"
+
+gem "test-unit"
+gem "rack-test", git: "https://github.com/rack-test/rack-test.git"
+gem "sinatra"
