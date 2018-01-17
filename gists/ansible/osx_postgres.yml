@@ -1,10 +1,12 @@
 ---
 - hosts: osx
+  vars:
+    pgdata: "{{ lookup('env','PGDATA') }}"
   tasks:
     - name: change timezone to utc
       lineinfile: >
         backup=yes
-        dest=/usr/local/var/postgres/postgresql.conf
+        dest="{{ pgdata }}/postgresql.conf"
         regexp="^timezone = 'Europe/Stockholm'$"
         line="timezone = 'UTC'"
       notify: reload postgres
