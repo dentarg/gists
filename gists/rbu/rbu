@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+if STDIN.tty?
+  if ARGV.empty? || ARGV.first =~ /-h|--help/
+    abort <<~USAGE
+      Usage:
+
+        #{File.basename(__FILE__)} [code point] - get Unicode character
+        echo ... | #{File.basename(__FILE__)}   - get Unicode code point
+
+        Examples:
+
+          $ #{File.basename(__FILE__)} 26A1
+          \u26a1
+
+          $ echo \u26a1 | #{File.basename(__FILE__)}
+          U+26A1
+    USAGE
+  else
+    puts [ARGV.first.to_i(16)].pack("U")
+  end
+else
+  puts STDIN.read.unpack1("U").to_s(16).upcase
+end
