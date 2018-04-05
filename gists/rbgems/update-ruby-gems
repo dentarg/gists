@@ -1,0 +1,38 @@
+#!/bin/sh
+
+set -e
+set -u
+set -o pipefail
+
+RUBY_V=${1:-}
+
+if [ $# -eq 0 ]; then
+  RUBY_V=$(ruby -v | cut -d ' ' -f 1-2)
+fi
+
+log() {
+  echo "[$RUBY_V] $1"
+}
+
+log_and_gem_install() {
+  log "gem install $1"
+
+  gem install $1 >/dev/null
+}
+
+log "RubyGems version: $(gem -v)"
+log "gem update --system"
+gem update --system >/dev/null
+
+log_and_gem_install bundler
+log_and_gem_install foreman
+log_and_gem_install rerun
+log_and_gem_install pry
+log_and_gem_install dotenv
+log_and_gem_install racksh
+log_and_gem_install travis
+log_and_gem_install benchmark-ips
+log_and_gem_install github_changelog_generator
+log_and_gem_install bundler-audit
+log_and_gem_install keycutter
+log_and_gem_install papertrail
