@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -e
+set -u
+
+MACHINE_INDEX=~/.vagrant.d/data/machine-index/index
+
+if [ $# -eq 0 ]; then
+  vagrant global-status
+  jq '.machines|keys' < $MACHINE_INDEX
+  echo
+  echo "Usage: $0 KEY"
+  exit 0
+fi
+
+MACHINE_KEY=$1
+JSON=$(cat $MACHINE_INDEX | jq "del(.machines.\"${MACHINE_KEY}\")")
+
+echo $JSON > $MACHINE_INDEX
+
+vagrant global-status

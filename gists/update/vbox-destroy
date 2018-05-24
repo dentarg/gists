@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -e
+set -u
+
+# one argument
+if [ $# -eq 0 ]; then
+    echo 1>&2 Usage: $0 UUID
+    exit 127
+fi
+
+UUID=$1
+
+set -x
+
+VBoxManage controlvm $UUID poweroff
+VBoxManage unregistervm --delete $UUID
