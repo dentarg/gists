@@ -11,6 +11,7 @@ fi
 
 UUID=$1
 
+set +e # allow commands to fail (e.g. the machine is already off)
 set -x
 
 VBoxManage controlvm $UUID poweroff
