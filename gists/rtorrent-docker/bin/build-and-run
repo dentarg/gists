@@ -4,6 +4,7 @@ set -u
 set -e
 
 DIR=$1
+TAG=my-rtorrent
 
-docker build -t rtorrent .
-docker run -it --rm -v ${DIR}:/downloads rtorrent
+docker build -t $TAG .
+docker run -it --rm -v ${DIR}:/downloads $TAG
