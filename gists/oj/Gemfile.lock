@@ -1,0 +1,19 @@
+GIT
+  remote: git@github.com:ohler55/oj.git
+  revision: acca4831ff2bbaad5d5dae34f387864f30c05d71
+  branch: error-path
+  specs:
+    oj (3.6.11a1)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  oj!
+
+BUNDLED WITH
+   1.16.1
