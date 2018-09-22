@@ -1,0 +1,13 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    oj (3.6.10)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  oj
+
+BUNDLED WITH
+   1.16.1
