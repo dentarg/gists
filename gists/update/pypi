@@ -1,3 +1,14 @@
 #!/bin/sh
 
-pip list --outdated | cut -d ' ' -f1 | xargs -n1 pip install -U
+set -x
+set -e
+
+pip2 install --upgrade pip
+pip2 list --outdated
+pip2 list --outdated --format freeze | cut -d '=' -f1 | xargs -n1 pip2 install --upgrade
+
+if [ -x "$(command -v pip3)" ]; then
+  pip3 install --upgrade pip
+  pip3 list --outdated
+  pip3 list --outdated --format freeze | cut -d '=' -f1 | xargs -n1 pip3 install --upgrade
+fi
