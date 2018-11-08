@@ -5,12 +5,13 @@ set -u
 set -o pipefail
 
 if [ $# -eq 0 ]; then
-  echo "Usage: $0 HOSTNAME"
+  echo "Usage: $0 HOSTNAME [PORT]"
   exit 1
 fi
 
 HOSTNAME=$1
-COMMAND="openssl s_client -showcerts -servername $HOSTNAME -connect $HOSTNAME:443"
+PORT=${2:-443}
+COMMAND="openssl s_client -showcerts -servername $HOSTNAME -connect $HOSTNAME:$PORT"
 
 set +e
 
