@@ -17,7 +17,3 @@ echo ""
 echo "$ brew cleanup"
 brew cleanup
 echo ""
-
-echo "$ brew cask cleanup"
-brew cask cleanup
-echo ""
