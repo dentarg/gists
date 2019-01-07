@@ -1,5 +1,7 @@
 # ruby bug 15499
 
+https://bugs.ruby-lang.org/issues/15499
+
     $ ruby -v
     ruby 2.6.0p0 (2018-12-25 revision 66547) [x86_64-darwin18]
 
