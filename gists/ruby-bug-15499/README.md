@@ -3,6 +3,55 @@
 https://bugs.ruby-lang.org/issues/15499
 
     $ ruby -v
+    ruby 2.7.0dev (2019-01-05 trunk 66716) [x86_64-darwin18]
+
+    $ ruby test_minimal.rb
+    RUBY_VERSION: 2.7.0
+    bundle exec puma -C config/puma.rb
+    Process started with PID: 21725
+    Process detached
+    Sleeping 3 seconds... (1)
+    [21725] Puma starting in cluster mode...
+    [21725] * Version 3.12.0 (ruby 2.7.0-p-1), codename: Llamas in Pajamas
+    [21725] * Min threads: 16, max threads: 16
+    [21725] * Environment: development
+    [21725] * Process workers: 2
+    [21725] * Preloading application
+    [21725] * Listening on tcp://0.0.0.0:3000
+    [21725] Use Ctrl-C to stop
+    [21725] - Worker 0 (pid: 21726) booted, phase: 0
+    [21725] - Worker 1 (pid: 21727) booted, phase: 0
+    Sending TERM signal
+    Sleeping 3 seconds... (2)
+    [21725] - Gracefully shutting down workers...
+    Waiting...
+    ^CTraceback (most recent call last):
+        1: from test_minimal.rb:23:in `<main>'
+    test_minimal.rb:23:in `wait': Interrupt
+
+
+    $ ps aux | grep -e ruby -e puma
+    dentarg          21725 100.0  0.1  4347228  29752 s025  R     6:36PM   0:29.02 puma 3.12.0 (tcp://0.0.0.0:3000) [ruby-bug-15499]
+    dentarg          21726   0.0  0.0        0      0 s025  Z     6:36PM   0:00.00 (ruby)
+    dentarg          21727   0.0  0.0        0      0 s025  Z     6:36PM   0:00.00 (ruby)
+    dentarg          21824   0.0  0.0  4270068    500 s025  R+    6:37PM   0:00.00 grep --color=auto -e ruby -e puma
+
+    $ kill -3 21725
+
+    $ ps aux | grep -e ruby -e puma
+    dentarg          21725  98.8  0.1  4347228  29752 s025  R     6:36PM   0:43.74 puma 3.12.0 (tcp://0.0.0.0:3000) [ruby-bug-15499]
+    dentarg          21726   0.0  0.0        0      0 s025  Z     6:36PM   0:00.00 (ruby)
+    dentarg          21727   0.0  0.0        0      0 s025  Z     6:36PM   0:00.00 (ruby)
+    dentarg          21874   0.0  0.0  4295668    828 s025  S+    6:37PM   0:00.00 grep --color=auto -e ruby -e puma
+
+    $ kill -6 21725
+
+    $ ps aux | grep -e ruby -e puma
+    dentarg          21897   0.0  0.0  4268020    780 s025  S+    6:37PM   0:00.00 grep --color=auto -e ruby -e puma
+
+<!-- -->
+
+    $ ruby -v
     ruby 2.6.0p0 (2018-12-25 revision 66547) [x86_64-darwin18]
 
     $ ruby test_minimal.rb
