@@ -125,3 +125,44 @@ https://bugs.ruby-lang.org/issues/15499
 
     $ uname -a
     Darwin pimac 18.2.0 Darwin Kernel Version 18.2.0: Mon Nov 12 20:24:46 PST 2018; root:xnu-4903.231.4~2/RELEASE_X86_64 x86_64
+
+
+---
+
+`Thread.new { sleep }` workaround
+
+    $ ruby test_minimal_w_workaround.rb
+    RUBY_VERSION: 2.7.0
+    bundle exec puma -C config/puma.rb
+    Process started with PID: 24844
+    Process detached
+    Sleeping 3 seconds... (1)
+    [24844] Puma starting in cluster mode...
+    [24844] * Version 3.12.0 (ruby 2.7.0-p-1), codename: Llamas in Pajamas
+    [24844] * Min threads: 16, max threads: 16
+    [24844] * Environment: development
+    [24844] * Process workers: 2
+    [24844] * Preloading application
+    [24844] * Listening on tcp://0.0.0.0:3000
+    [24844] Use Ctrl-C to stop
+    [24844] - Worker 0 (pid: 24845) booted, phase: 0
+    [24844] - Worker 1 (pid: 24846) booted, phase: 0
+    Sending TERM signal
+    Sleeping 3 seconds... (2)
+    [24844] - Gracefully shutting down workers...
+    Waiting...
+    ^CTraceback (most recent call last):
+        1: from test_minimal_w_workaround.rb:25:in `<main>'
+    test_minimal_w_workaround.rb:25:in `wait': Interrupt
+
+
+    $ ps aux | grep -e ruby -e puma
+    dentarg          24844  99.5  0.1  4347228  29616 s025  R     6:50PM   0:16.11 puma 3.12.0 (tcp://0.0.0.0:3000) [ruby-bug-15499]
+    dentarg          24845   0.0  0.0        0      0 s025  Z     6:50PM   0:00.00 (ruby)
+    dentarg          24846   0.0  0.0        0      0 s025  Z     6:50PM   0:00.00 (ruby)
+    dentarg          24908   0.0  0.0  4258736    196 s025  U+    6:50PM   0:00.00 grep --color=auto -e ruby -e puma
+
+    $ kill -6 24844
+
+    $ ps aux | grep -e ruby -e puma
+    dentarg          24934   0.0  0.0  4277236    792 s025  S+    6:51PM   0:00.00 grep --color=auto -e ruby -e puma
