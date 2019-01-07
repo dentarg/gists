@@ -1,0 +1,353 @@
+Sampling process 13594 for 3 seconds with 1 millisecond of run time between samples
+Sampling completed, processing symbols...
+Analysis of sampling ruby (pid 13594) every 1 millisecond
+Process:         ruby [13594]
+Path:            /Users/dentarg/.rubies/ruby-2.6.0/bin/ruby
+Load Address:    0x1016ec000
+Identifier:      ruby
+Version:         0
+Code Type:       X86-64
+Parent Process:  ruby [13593]
+
+Date/Time:       2019-01-07 18:05:36.646 +0100
+Launch Time:     2019-01-07 18:04:51.388 +0100
+OS Version:      Mac OS X 10.14.2 (18C54)
+Report Version:  7
+Analysis Tool:   /usr/bin/sample
+
+Physical footprint:         22.2M
+Physical footprint (peak):  22.2M
+----
+
+Call graph:
+    2643 Thread_25388117   DispatchQueue_1: com.apple.main-thread  (serial)
+    + 2643 start  (in libdyld.dylib) + 1  [0x7fff76fb6ed9]
+    +   2643 main  (in ruby) + 93  [0x1016ecc8d]  main.c:42
+    +     2643 ruby_run_node  (in ruby) + 73  [0x10177c779]  eval.c:317
+    +       2643 ruby_exec_internal  (in ruby) + 232  [0x10177c908]  eval.c:261
+    +         2643 rb_vm_exec  (in ruby) + 2670  [0x101911f2e]  vm.c:0
+    +           2643 vm_exec_core  (in ruby) + 12943  [0x1018fdc7f]  insns.def:763
+    +             2643 vm_call_cfunc  (in ruby) + 353  [0x1019174b1]  vm_insnhelper.c:1908
+    +               2643 rb_f_load  (in ruby) + 181  [0x1017d07c5]  load.c:644
+    +                 2643 rb_load_internal0  (in ruby) + 402  [0x1017cf622]  load.c:613
+    +                   2643 rb_vm_exec  (in ruby) + 2670  [0x101911f2e]  vm.c:0
+    +                     2643 vm_exec_core  (in ruby) + 12943  [0x1018fdc7f]  insns.def:763
+    +                       2643 vm_call_cfunc  (in ruby) + 353  [0x1019174b1]  vm_insnhelper.c:1908
+    +                         2643 rb_f_load  (in ruby) + 181  [0x1017d07c5]  load.c:644
+    +                           2643 rb_load_internal0  (in ruby) + 402  [0x1017cf622]  load.c:613
+    +                             2643 rb_vm_exec  (in ruby) + 2670  [0x101911f2e]  vm.c:0
+    +                               2643 vm_exec_core  (in ruby) + 12943  [0x1018fdc7f]  insns.def:763
+    +                                 2643 vm_call_cfunc  (in ruby) + 353  [0x1019174b1]  vm_insnhelper.c:1908
+    +                                   2643 rb_f_load  (in ruby) + 181  [0x1017d07c5]  load.c:644
+    +                                     2643 rb_load_internal0  (in ruby) + 402  [0x1017cf622]  load.c:613
+    +                                       2643 rb_vm_exec  (in ruby) + 2670  [0x101911f2e]  vm.c:0
+    +                                         2643 vm_exec_core  (in ruby) + 12943  [0x1018fdc7f]  insns.def:763
+    +                                           2643 vm_call_cfunc  (in ruby) + 353  [0x1019174b1]  vm_insnhelper.c:1908
+    +                                             2643 rb_f_select  (in ruby) + 210  [0x1017b1cb2]  io.c:9512
+    +                                               2643 rb_ensure  (in ruby) + 249  [0x10177d459]  eval.c:1075
+    +                                                 2643 select_call  (in ruby) + 1430  [0x1017bec86]  io.c:9093
+    +                                                   2643 rb_thread_fd_select  (in ruby) + 1297  [0x1018c8eb1]  thread.c:4046
+    +                                                     2643 rb_ensure  (in ruby) + 249  [0x10177d459]  eval.c:1075
+    +                                                       2643 do_select  (in ruby) + 1465  [0x1018c96e9]  thread.c:205
+    +                                                         2643 rb_threadptr_execute_interrupts  (in ruby) + 1146  [0x1018c77aa]  thread.c:2186
+    +                                                           2643 signal_exec  (in ruby) + 228  [0x101887914]  signal.c:1080
+    +                                                             2643 rb_eval_cmd  (in ruby) + 401  [0x10190c4f1]  vm_eval.c:1520
+    +                                                               2643 rb_funcallv  (in ruby) + 624  [0x1019068e0]  vm_eval.c:308
+    +                                                                 2643 vm_call0_body  (in ruby) + 3401  [0x101908f59]  vm.c:1092
+    +                                                                   2643 rb_vm_exec  (in ruby) + 2670  [0x101911f2e]  vm.c:0
+    +                                                                     2643 vm_exec_core  (in ruby) + 12255  [0x1018fd9cf]  insns.def:748
+    +                                                                       2643 vm_call_cfunc  (in ruby) + 353  [0x1019174b1]  vm_insnhelper.c:1908
+    +                                                                         2643 rb_ary_each  (in ruby) + 57  [0x1016f01e9]  array.c:2086
+    +                                                                           2643 rb_yield  (in ruby) + 158  [0x10190b16e]  vm.c:1155
+    +                                                                             2643 rb_vm_exec  (in ruby) + 2670  [0x101911f2e]  vm.c:0
+    +                                                                               2643 vm_exec_core  (in ruby) + 12943  [0x1018fdc7f]  insns.def:763
+    +                                                                                 2643 vm_call_cfunc  (in ruby) + 353  [0x1019174b1]  vm_insnhelper.c:1908
+    +                                                                                   2643 proc_wait  (in ruby) + 130  [0x101839b42]  process.c:1298
+    +                                                                                     2643 rb_waitpid  (in ruby) + 259  [0x1018336a3]  process.c:1161
+    +                                                                                       2643 rb_ensure  (in ruby) + 249  [0x10177d459]  eval.c:1075
+    +                                                                                         2631 waitpid_sleep  (in ruby) + 21  [0x10183c055]  process.c:1102
+    +                                                                                         ! 2603 rb_thread_sleep_interruptible  (in ruby) + 45  [0x1018c632d]  thread.c:1307
+    +                                                                                         ! : 2578 native_sleep  (in ruby) + 450  [0x1018c59c2]  thread_pthread.c:2170
+    +                                                                                         ! : | 1568 native_ppoll_sleep  (in ruby) + 620  [0x1018ce32c]  thread_pthread.c:2024
+    +                                                                                         ! : | + 1568 poll  (in libsystem_kernel.dylib) + 10,20,...  [0x7fff770f82ee,0x7fff770f82f8,...]
+    +                                                                                         ! : | 395 setjmp  (in libsystem_platform.dylib) + 48  [0x7fff771a1210]
+    +                                                                                         ! : | + 395 __sigaltstack  (in libsystem_kernel.dylib) + 10,0,...  [0x7fff770f6226,0x7fff770f621c,...]
+    +                                                                                         ! : | 387 setjmp  (in libsystem_platform.dylib) + 21  [0x7fff771a11f5]
+    +                                                                                         ! : | + 387 sigprocmask  (in libsystem_kernel.dylib) + 10,0,...  [0x7fff770f620e,0x7fff770f6204,...]
+    +                                                                                         ! : | 50 setjmp  (in libsystem_platform.dylib) + 48,21,...  [0x7fff771a1210,0x7fff771a11f5,...]
+    +                                                                                         ! : | 37 native_ppoll_sleep  (in ruby) + 288  [0x1018ce1e0]  thread_pthread.c:2142
+    +                                                                                         ! : | + 37 pthread_mutex_lock  (in libsystem_pthread.dylib) + 7,0,...  [0x7fff771a8122,0x7fff771a811b,...]
+    +                                                                                         ! : | 29 native_ppoll_sleep  (in ruby) + 116  [0x1018ce134]  thread_pthread.c:2122
+    +                                                                                         ! : | + 29 _setjmp  (in libsystem_platform.dylib) + 70,15,...  [0x7fff771a1aa2,0x7fff771a1a6b,...]
+    +                                                                                         ! : | 28 native_ppoll_sleep  (in ruby) + 142  [0x1018ce14e]  thread_pthread.c:2122
+    +                                                                                         ! : | + 28 pthread_mutex_lock  (in libsystem_pthread.dylib) + 7,0,...  [0x7fff771a8122,0x7fff771a811b,...]
+    +                                                                                         ! : | 19 native_ppoll_sleep  (in ruby) + 358  [0x1018ce226]  thread_pthread.c:2143
+    +                                                                                         ! : | + 17 gvl_acquire_common  (in ruby) + 33,1,...  [0x1018cf331,0x1018cf311,...]  thread_pthread.c:242
+    +                                                                                         ! : | + 1 gvl_acquire_common  (in ruby) + 37  [0x1018cf335]  thread_pthread.c:243
+    +                                                                                         ! : | + 1 gvl_acquire_common  (in ruby) + 835  [0x1018cf653]  thread_pthread.c:272
+    +                                                                                         ! : | 17 native_ppoll_sleep  (in ruby) + 628  [0x1018ce334]  thread_pthread.c:2132
+    +                                                                                         ! : | 10 native_ppoll_sleep  (in ruby) + 620  [0x1018ce32c]  thread_pthread.c:2131
+    +                                                                                         ! : | 7 native_ppoll_sleep  (in ruby) + 315  [0x1018ce1fb]  thread_pthread.c:2142
+    +                                                                                         ! : | + 7 pthread_mutex_unlock  (in libsystem_pthread.dylib) + 49,89,...  [0x7fff771a8519,0x7fff771a8541,...]
+    +                                                                                         ! : | 6 native_ppoll_sleep  (in ruby) + 120,107,...  [0x1018ce138,0x1018ce12b,...]  thread_pthread.c:2122
+    +                                                                                         ! : | 5 native_ppoll_sleep  (in ruby) + 339  [0x1018ce213]  thread_pthread.c:2143
+    +                                                                                         ! : | + 5 pthread_mutex_lock  (in libsystem_pthread.dylib) + 99,55  [0x7fff771a817e,0x7fff771a8152]
+    +                                                                                         ! : | 4 native_ppoll_sleep  (in ruby) + 409,358,...  [0x1018ce259,0x1018ce226,...]  thread_pthread.c:2143
+    +                                                                                         ! : | 4 native_ppoll_sleep  (in ruby) + 86  [0x1018ce116]  thread_pthread.c:413
+    +                                                                                         ! : | + 4 pthread_mutex_unlock  (in libsystem_pthread.dylib) + 49,89  [0x7fff771a8519,0x7fff771a8541]
+    +                                                                                         ! : | 2 native_ppoll_sleep  (in ruby) + 227  [0x1018ce1a3]  thread_pthread.c:2122
+    +                                                                                         ! : | + 2 pthread_mutex_unlock  (in libsystem_pthread.dylib) + 49,65  [0x7fff771a8519,0x7fff771a8529]
+    +                                                                                         ! : | 2 native_ppoll_sleep  (in ruby) + 52  [0x1018ce0f4]  thread_pthread.c:403
+    +                                                                                         ! : | + 2 pthread_mutex_lock  (in libsystem_pthread.dylib) + 14,99  [0x7fff771a8129,0x7fff771a817e]
+    +                                                                                         ! : | 2 native_ppoll_sleep  (in ruby) + 86  [0x1018ce116]  thread_pthread.c:413
+    +                                                                                         ! : | 1 DYLD-STUB$$sigprocmask  (in libsystem_platform.dylib) + 0  [0x7fff771a466c]
+    +                                                                                         ! : | 1 native_ppoll_sleep  (in ruby) + 604  [0x1018ce31c]  thread_pthread.c:0
+    +                                                                                         ! : | 1 native_ppoll_sleep  (in ruby) + 266  [0x1018ce1ca]  thread_pthread.c:2124
+    +                                                                                         ! : | 1 native_ppoll_sleep  (in ruby) + 475  [0x1018ce29b]  thread_pthread.c:2130
+    +                                                                                         ! : | 1 native_ppoll_sleep  (in ruby) + 315  [0x1018ce1fb]  thread_pthread.c:2142
+    +                                                                                         ! : | 1 native_ppoll_sleep  (in ruby) + 366  [0x1018ce22e]  thread_pthread.c:2143
+    +                                                                                         ! : |   1 pthread_mutex_unlock  (in libsystem_pthread.dylib) + 80  [0x7fff771a8538]
+    +                                                                                         ! : 13 native_sleep  (in ruby) + 57,41,...  [0x1018c5839,0x1018c5829,...]  thread_pthread.c:2149
+    +                                                                                         ! : 11 native_sleep  (in ruby) + 840,844,...  [0x1018c5b48,0x1018c5b4c,...]  thread_pthread.c:2175
+    +                                                                                         ! : 1 native_sleep  (in ruby) + 13  [0x1018c580d]  thread_pthread.c:2148
+    +                                                                                         ! 16 rb_thread_sleep_interruptible  (in ruby) + 49,45  [0x1018c6331,0x1018c632d]  thread.c:1308
+    +                                                                                         ! 6 rb_thread_sleep_interruptible  (in ruby) + 63,60  [0x1018c633f,0x1018c633c]  ruby.h:2132
+    +                                                                                         ! 2 rb_thread_sleep_interruptible  (in ruby) + 83  [0x1018c6353]  ruby.h:2133
+    +                                                                                         ! 1 rb_thread_sleep_interruptible  (in ruby) + 35  [0x1018c6323]  thread.c:1307
+    +                                                                                         ! 1 rb_thread_sleep_interruptible  (in ruby) + 111  [0x1018c636f]  thread.c:1309
+    +                                                                                         ! 1 rb_thread_sleep_interruptible  (in ruby) + 120  [0x1018c6378]  thread.c:1310
+    +                                                                                         ! 1 rb_thread_sleep_interruptible  (in ruby) + 98  [0x1018c6362]  thread.c:199
+    +                                                                                         12 waitpid_sleep  (in ruby) + 25  [0x10183c059]  process.c:1101
+    2643 Thread_25388133
+      2643 thread_start  (in libsystem_pthread.dylib) + 13  [0x7fff771a9415]
+        2643 _pthread_start  (in libsystem_pthread.dylib) + 70  [0x7fff771ad26f]
+          2643 _pthread_body  (in libsystem_pthread.dylib) + 126  [0x7fff771aa305]
+            2643 timer_pthread_fn  (in ruby) + 112  [0x1018cf800]  thread_pthread.c:2190
+              2643 poll  (in libsystem_kernel.dylib) + 10  [0x7fff770f82ee]
+
+Total number in stack (recursive counted multiple, when >=5):
+        6       rb_vm_exec  (in ruby) + 2670  [0x101911f2e]  vm.c:0
+        6       vm_call_cfunc  (in ruby) + 353  [0x1019174b1]  vm_insnhelper.c:1908
+        5       vm_exec_core  (in ruby) + 12943  [0x1018fdc7f]  insns.def:763
+
+Sort by top of stack, same collapsed (when >= 5):
+        poll  (in libsystem_kernel.dylib)        4211
+        __sigaltstack  (in libsystem_kernel.dylib)        395
+        sigprocmask  (in libsystem_kernel.dylib)        387
+        pthread_mutex_lock  (in libsystem_pthread.dylib)        72
+        setjmp  (in libsystem_platform.dylib)        50
+        native_ppoll_sleep  (in ruby)        43
+        _setjmp  (in libsystem_platform.dylib)        29
+        rb_thread_sleep_interruptible  (in ruby)        28
+        native_sleep  (in ruby)        25
+        gvl_acquire_common  (in ruby)        19
+        pthread_mutex_unlock  (in libsystem_pthread.dylib)        14
+        waitpid_sleep  (in ruby)        12
+
+Binary Images:
+       0x1016ec000 -        0x1019c3ff3 +ruby (0) <69AA7D70-8581-398E-A8FC-81F3A52CBBCD> /Users/dentarg/.rubies/ruby-2.6.0/bin/ruby
+       0x101aac000 -        0x101b08fcf +libgmp.10.dylib (0) <1F35B13B-6E77-3E0F-8F93-237C2F60E95B> /usr/local/opt/gmp/lib/libgmp.10.dylib
+       0x101c21000 -        0x101c22ffb +encdb.bundle (0) <1611E3BD-5F68-385D-B744-903AF329BC61> /Users/dentarg/.rubies/ruby-2.6.0/lib/ruby/2.6.0/x86_64-darwin18/enc/encdb.bundle
+       0x103c28000 -        0x103c29fff +transdb.bundle (0) <330F0985-F456-3045-A697-FF1E5BFF2F96> /Users/dentarg/.rubies/ruby-2.6.0/lib/ruby/2.6.0/x86_64-darwin18/enc/trans/transdb.bundle
+       0x103c65000 -        0x103c6aff3 +stringio.bundle (0) <EAD7FC0A-1970-3958-BEE5-58D24C1261FF> /Users/dentarg/.rubies/ruby-2.6.0/lib/ruby/2.6.0/x86_64-darwin18/stringio.bundle
+       0x103d09000 -        0x103d0cffb +etc.bundle (0) <BD07063C-63EE-3A6B-8083-37B67ABF92D4> /Users/dentarg/.rubies/ruby-2.6.0/lib/ruby/2.6.0/x86_64-darwin18/etc.bundle
+       0x103d11000 -        0x103d16fff +pathname.bundle (0) <2DDC6F85-231D-333C-82EF-EE2FC05DC828> /Users/dentarg/.rubies/ruby-2.6.0/lib/ruby/2.6.0/x86_64-darwin18/pathname.bundle
+       0x103d1d000 -        0x103d1efff +escape.bundle (0) <7B38F29A-D930-3B3C-8608-D2434F9769E1> /Users/dentarg/.rubies/ruby-2.6.0/lib/ruby/2.6.0/x86_64-darwin18/cgi/escape.bundle
+       0x103d21000 -        0x103d24ff7 +readline.bundle (0) <B80641A4-EDB5-3F5C-8791-BC819DC506F5> /Users/dentarg/.rubies/ruby-2.6.0/lib/ruby/2.6.0/x86_64-darwin18/readline.bundle
+       0x103d2c000 -        0x103d4effb +libreadline.7.dylib (0) <1EB057DA-6343-32A6-B0EB-524CFBE69543> /usr/local/opt/readline/lib/libreadline.7.dylib
+       0x103d9f000 -        0x103dbffff +socket.bundle (0) <B183C80A-F218-33D5-8AF1-C1FBF7056BA4> /Users/dentarg/.rubies/ruby-2.6.0/lib/ruby/2.6.0/x86_64-darwin18/socket.bundle
+       0x103dd0000 -        0x103dd0ffb +wait.bundle (0) <880CC604-0D16-389B-91A6-707316E719AF> /Users/dentarg/.rubies/ruby-2.6.0/lib/ruby/2.6.0/x86_64-darwin18/io/wait.bundle
+       0x103e13000 -        0x103e57fff +date_core.bundle (0) <4271541C-F263-32C6-9BF1-31771AF0EEB4> /Users/dentarg/.rubies/ruby-2.6.0/lib/ruby/2.6.0/x86_64-darwin18/date_core.bundle
+       0x103f37000 -        0x103f6dfff +openssl.bundle (0) <5C170AD0-006D-3CE5-BC0C-7A1A340BE190> /Users/dentarg/.rubies/ruby-2.6.0/lib/ruby/2.6.0/x86_64-darwin18/openssl.bundle
+       0x103fa0000 -        0x103fe0ff7 +libssl.1.0.0.dylib (0) <0939E9FE-CAF8-3E1B-8635-15C0FD7D13CD> /usr/local/opt/openssl/lib/libssl.1.0.0.dylib
+       0x103fff000 -        0x104152e97 +libcrypto.1.0.0.dylib (0) <A6F555BF-9F61-3BC9-9488-4E267E29E718> /usr/local/opt/openssl/lib/libcrypto.1.0.0.dylib
+       0x1041cb000 -        0x1041ccffb +digest.bundle (0) <833BE091-DE93-3F20-9C1F-603BDFB17103> /Users/dentarg/.rubies/ruby-2.6.0/lib/ruby/2.6.0/x86_64-darwin18/digest.bundle
+       0x1041d0000 -        0x1041d0ffb +nonblock.bundle (0) <D604E890-E114-3F0D-80DA-F92FC4B4F902> /Users/dentarg/.rubies/ruby-2.6.0/lib/ruby/2.6.0/x86_64-darwin18/io/nonblock.bundle
+       0x1041d3000 -        0x1041d7ffb +puma_http11.bundle (0) <4C4B8DE5-DC0B-3537-80F0-43E7F71CEA36> /Users/dentarg/.gem/ruby/2.6.0/gems/puma-3.12.0/lib/puma/puma_http11.bundle
+       0x105cab000 -        0x105d29a67  dyld (640.2) <289AB27E-F09F-3384-A14A-100431139559> /usr/lib/dyld
+    0x7fff45ddb000 -     0x7fff45ddbfff  com.apple.Accelerate (1.11 - Accelerate 1.11) <FC9BE0AB-2371-3ACB-9FD8-A1D439CC4C49> /System/Library/Frameworks/Accelerate.framework/Versions/A/Accelerate
+    0x7fff45df3000 -     0x7fff466e7fcf  com.apple.vImage (8.1 - ???) <D6FBBB13-4760-3811-AF3E-F2B6626B70F6> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vImage.framework/Versions/A/vImage
+    0x7fff466e8000 -     0x7fff46893fcf  libBLAS.dylib (1243.200.4) <432DB967-86BB-3645-8838-CE91CBF51CFA> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
+    0x7fff46894000 -     0x7fff468d9fff  libBNNS.dylib (38.200.5) <FE0872E1-B992-369F-BD01-2EABBDD318F1> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBNNS.dylib
+    0x7fff468da000 -     0x7fff46c93fff  libLAPACK.dylib (1243.200.4) <670B40E4-AE2F-3311-8ACC-E355F9A36769> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libLAPACK.dylib
+    0x7fff46c94000 -     0x7fff46ca9ffb  libLinearAlgebra.dylib (1243.200.4) <4F53BB84-19EB-3B37-ADD7-553077851007> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libLinearAlgebra.dylib
+    0x7fff46caa000 -     0x7fff46cafff3  libQuadrature.dylib (3.200.2) <4FBCAC0A-81A4-3C53-8458-27F3569C809D> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libQuadrature.dylib
+    0x7fff46cb0000 -     0x7fff46d2dffb  libSparse.dylib (79.200.5) <2D650C50-E87E-3F24-9BFA-C8EB6DE1A6E9> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libSparse.dylib
+    0x7fff46d2e000 -     0x7fff46d40ffb  libSparseBLAS.dylib (1243.200.4) <16E0C963-955E-3197-9EE0-256A61DB9D57> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libSparseBLAS.dylib
+    0x7fff46d41000 -     0x7fff46edffdb  libvDSP.dylib (671.220.1) <95AA3236-5D63-35AF-9305-FDC361365110> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvDSP.dylib
+    0x7fff46ee0000 -     0x7fff47057ff3  libvMisc.dylib (671.220.1) <6F0164E4-3812-3F1D-AEBC-AF3AFF207FB6> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvMisc.dylib
+    0x7fff47058000 -     0x7fff47058fff  com.apple.Accelerate.vecLib (3.11 - vecLib 3.11) <0AB4E69A-8159-3BA5-984D-002B5ACB175C> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/vecLib
+    0x7fff4807c000 -     0x7fff4807cfff  com.apple.ApplicationServices (50.1 - 50.1) <50496459-FFDD-3A78-8D3D-A252BD9B9DA2> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/ApplicationServices
+    0x7fff4807d000 -     0x7fff480e8ff7  com.apple.ApplicationServices.ATS (377 - 453.11) <4080F8BE-F2A2-3707-8754-436FBDB1DAF1> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/ATS
+    0x7fff48181000 -     0x7fff482a0fff  libFontParser.dylib (228.6) <BBCBEE2C-5B55-3278-B81D-22D72466753E> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/Resources/libFontParser.dylib
+    0x7fff482a1000 -     0x7fff482ecfff  libFontRegistry.dylib (228.12) <1CC4D486-74F8-3459-BBA1-F68A36C5CAF8> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/Resources/libFontRegistry.dylib
+    0x7fff483e8000 -     0x7fff483ecff3  com.apple.ColorSyncLegacy (4.13.0 - 1) <4B1238CC-9B77-3AA5-8329-EE3C736F07EA> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ColorSyncLegacy.framework/Versions/A/ColorSyncLegacy
+    0x7fff48489000 -     0x7fff484dbff3  com.apple.HIServices (1.22 - 627.14.2) <1F851BF9-AD29-3558-9EA5-AAD9BAAAC823> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/HIServices.framework/Versions/A/HIServices
+    0x7fff484dc000 -     0x7fff484eaff3  com.apple.LangAnalysis (1.7.0 - 1.7.0) <5654723A-7B3B-391F-B9F7-0DE4D5940185> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/LangAnalysis.framework/Versions/A/LangAnalysis
+    0x7fff484eb000 -     0x7fff48537fff  com.apple.print.framework.PrintCore (14.2 - 503.8) <F1246C9A-2216-3390-8DF1-89304F47CE5D> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/PrintCore.framework/Versions/A/PrintCore
+    0x7fff48538000 -     0x7fff48573ff7  com.apple.QD (3.12 - 407.2) <F6B648DA-DA39-3EB4-B593-1B7E316661CD> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/QD.framework/Versions/A/QD
+    0x7fff48574000 -     0x7fff48580ff7  com.apple.speech.synthesis.framework (8.1.0 - 8.1.0) <CF19C8B6-AAD5-3DCF-ABD0-3BABB44D119C> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/SpeechSynthesis.framework/Versions/A/SpeechSynthesis
+    0x7fff48581000 -     0x7fff4881efff  com.apple.audio.toolbox.AudioToolbox (1.14 - 1.14) <5D484151-F269-3D98-B507-0544A6B950AC> /System/Library/Frameworks/AudioToolbox.framework/Versions/A/AudioToolbox
+    0x7fff48b84000 -     0x7fff48f45fff  com.apple.CFNetwork (976 - 976) <10F464AD-6687-3012-A2AA-0453629CA968> /System/Library/Frameworks/CFNetwork.framework/Versions/A/CFNetwork
+    0x7fff49483000 -     0x7fff4954ffff  com.apple.ColorSync (4.13.0 - 3340) <2F45EB01-0C51-3D25-9836-18F99222E1C7> /System/Library/Frameworks/ColorSync.framework/Versions/A/ColorSync
+    0x7fff496ea000 -     0x7fff4977afff  com.apple.audio.CoreAudio (4.3.0 - 4.3.0) <1E7EF105-B843-370D-884E-0A43E1A5800B> /System/Library/Frameworks/CoreAudio.framework/Versions/A/CoreAudio
+    0x7fff4980c000 -     0x7fff49bbafff  com.apple.CoreData (120 - 866.1) <FD7900C2-5A00-3560-9F37-6EED4DDFE873> /System/Library/Frameworks/CoreData.framework/Versions/A/CoreData
+    0x7fff49bbb000 -     0x7fff49ca4ff7  com.apple.CoreDisplay (101.3 - 106.2) <EE0D334B-8B71-3A70-9F90-677171D6762F> /System/Library/Frameworks/CoreDisplay.framework/Versions/A/CoreDisplay
+    0x7fff49ca5000 -     0x7fff4a0f3ff7  com.apple.CoreFoundation (6.9 - 1561) <11315B67-F976-35E3-92E0-67DCD59B4DB4> /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation
+    0x7fff4a0f5000 -     0x7fff4a79fff7  com.apple.CoreGraphics (2.0 - 1249.2) <0693AE89-63FC-3AC2-8550-1D9FB612C77E> /System/Library/Frameworks/CoreGraphics.framework/Versions/A/CoreGraphics
+    0x7fff4a7a1000 -     0x7fff4aacafff  com.apple.CoreImage (14.2.0 - 720.0.130) <8C8BC619-7084-3F58-BBFC-4A97BD330787> /System/Library/Frameworks/CoreImage.framework/Versions/A/CoreImage
+    0x7fff4af80000 -     0x7fff4af80fff  com.apple.CoreServices (941 - 941) <950D3EAF-C98E-3BCB-8FD9-43EEA0E48988> /System/Library/Frameworks/CoreServices.framework/Versions/A/CoreServices
+    0x7fff4af81000 -     0x7fff4afffffb  com.apple.AE (771 - 771) <4B009524-699E-3891-98DD-E3B6BB433C8F> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/AE.framework/Versions/A/AE
+    0x7fff4b000000 -     0x7fff4b2d8ff7  com.apple.CoreServices.CarbonCore (1178.16 - 1178.16) <17FC2B9E-EB6C-3768-A2D0-6E086F2563D9> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/CarbonCore
+    0x7fff4b2d9000 -     0x7fff4b323ff7  com.apple.DictionaryServices (1.2 - 284.16.3) <1DAC9153-FB5A-3798-8797-CBFEFF227F71> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/DictionaryServices.framework/Versions/A/DictionaryServices
+    0x7fff4b324000 -     0x7fff4b32cffb  com.apple.CoreServices.FSEvents (1239.200.12 - 1239.200.12) <8E1507EA-F0A8-3845-B32D-4FBC1381E89C> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/FSEvents
+    0x7fff4b32d000 -     0x7fff4b4f8fff  com.apple.LaunchServices (941 - 941) <98B7E20E-5D0A-3A71-A019-346A145A1A5E> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/LaunchServices
+    0x7fff4b4f9000 -     0x7fff4b59bfff  com.apple.Metadata (10.7.0 - 1191.53) <E4C1B7AB-677B-32B2-918C-CD445A0D0D91> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Metadata
+    0x7fff4b59c000 -     0x7fff4b5e7ff7  com.apple.CoreServices.OSServices (941 - 941) <DFA21754-BFE4-367C-9303-739F5D3E9DDE> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/OSServices.framework/Versions/A/OSServices
+    0x7fff4b5e8000 -     0x7fff4b656ff7  com.apple.SearchKit (1.4.0 - 1.4.0) <CEC29BB5-D28E-3424-84FE-70756E521F3B> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/SearchKit.framework/Versions/A/SearchKit
+    0x7fff4b657000 -     0x7fff4b67bffb  com.apple.coreservices.SharedFileList (71.27 - 71.27) <6389B59D-DDAC-3C97-A982-137B9B1FB734> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/SharedFileList.framework/Versions/A/SharedFileList
+    0x7fff4b9c3000 -     0x7fff4bb28ffb  com.apple.CoreText (352.0 - 584.26) <5F61037C-825D-37A4-9091-0047413CC213> /System/Library/Frameworks/CoreText.framework/Versions/A/CoreText
+    0x7fff4bb29000 -     0x7fff4bb66fff  com.apple.CoreVideo (1.8 - 0.0) <34EC73F1-F0ED-32F5-B96E-7683B1F9A7A2> /System/Library/Frameworks/CoreVideo.framework/Versions/A/CoreVideo
+    0x7fff4be7a000 -     0x7fff4be7ffff  com.apple.DiskArbitration (2.7 - 2.7) <97707A79-30E7-3D99-AA20-B992B0900BC4> /System/Library/Frameworks/DiskArbitration.framework/Versions/A/DiskArbitration
+    0x7fff4c048000 -     0x7fff4c416fff  com.apple.Foundation (6.9 - 1561) <27FD022F-F0E3-3053-BADA-DF9BF856CA85> /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation
+    0x7fff4c487000 -     0x7fff4c4b7ff3  com.apple.GSS (4.0 - 2.0) <86D07291-5DFC-30C2-9A18-5FCEDB0BE621> /System/Library/Frameworks/GSS.framework/Versions/A/GSS
+    0x7fff4c73d000 -     0x7fff4c7cfff7  com.apple.framework.IOKit (2.0.2 - 1483.230.1) <AAAF13D1-80E5-3079-98C1-FA3C3FC47B40> /System/Library/Frameworks/IOKit.framework/Versions/A/IOKit
+    0x7fff4c7d1000 -     0x7fff4c7dbff7  com.apple.IOSurface (255.1 - 255.1) <58826B1A-38E8-3C76-8FFC-76C9282DA893> /System/Library/Frameworks/IOSurface.framework/Versions/A/IOSurface
+    0x7fff4c832000 -     0x7fff4c9d3ff7  com.apple.ImageIO.framework (3.3.0 - 1822.1) <1451559D-4224-3F53-A976-16CF186DDE80> /System/Library/Frameworks/ImageIO.framework/Versions/A/ImageIO
+    0x7fff4c9d4000 -     0x7fff4c9d8ffb  libGIF.dylib (1822.1) <9084A1A9-0AB3-314E-B76F-6642EAFD367A> /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libGIF.dylib
+    0x7fff4c9d9000 -     0x7fff4cabeff7  libJP2.dylib (1822.1) <8138A169-983C-3ACF-B05C-81317D8A3792> /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libJP2.dylib
+    0x7fff4cabf000 -     0x7fff4cae4ffb  libJPEG.dylib (1822.1) <54E1BA95-B7C7-3078-921D-909B8EB33A84> /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libJPEG.dylib
+    0x7fff4cdb8000 -     0x7fff4cddeff3  libPng.dylib (1822.1) <5AFB0813-562F-3DB9-A4AD-A6FCABA63A2D> /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libPng.dylib
+    0x7fff4cddf000 -     0x7fff4cde1ff7  libRadiance.dylib (1822.1) <8CAA370A-A46C-3EA1-8338-F42AD183C19C> /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libRadiance.dylib
+    0x7fff4cde2000 -     0x7fff4ce2fffb  libTIFF.dylib (1822.1) <4748924B-8F25-30A9-95BF-0A106E908B36> /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libTIFF.dylib
+    0x7fff4ded9000 -     0x7fff4def2fff  com.apple.Kerberos (3.0 - 1) <5D1B0593-3C0E-32D5-AAE5-ABC22A98B639> /System/Library/Frameworks/Kerberos.framework/Versions/A/Kerberos
+    0x7fff4e914000 -     0x7fff4e9a7fff  com.apple.Metal (158.5 - 158.5) <219312CC-0DE5-3E8D-9F62-393D0C35B0FD> /System/Library/Frameworks/Metal.framework/Versions/A/Metal
+    0x7fff4e9c4000 -     0x7fff4e9e4ff7  com.apple.MetalPerformanceShaders.MPSCore (1.0 - 1) <18281B14-0C6A-38F8-AB80-2D4BB0743C88> /System/Library/Frameworks/MetalPerformanceShaders.framework/Frameworks/MPSCore.framework/Versions/A/MPSCore
+    0x7fff4e9e5000 -     0x7fff4ea63ff7  com.apple.MetalPerformanceShaders.MPSImage (1.0 - 1) <BEAF764B-362B-3C45-86F5-2AFBA5FA0F47> /System/Library/Frameworks/MetalPerformanceShaders.framework/Frameworks/MPSImage.framework/Versions/A/MPSImage
+    0x7fff4ea64000 -     0x7fff4ea8cfff  com.apple.MetalPerformanceShaders.MPSMatrix (1.0 - 1) <116D6C1A-2FD7-3743-95A0-CDDA3D459529> /System/Library/Frameworks/MetalPerformanceShaders.framework/Frameworks/MPSMatrix.framework/Versions/A/MPSMatrix
+    0x7fff4ea8d000 -     0x7fff4ebbfff7  com.apple.MetalPerformanceShaders.MPSNeuralNetwork (1.0 - 1) <88E80BEE-3D2B-328B-80D4-F4717BDB2E9F> /System/Library/Frameworks/MetalPerformanceShaders.framework/Frameworks/MPSNeuralNetwork.framework/Versions/A/MPSNeuralNetwork
+    0x7fff4ebc0000 -     0x7fff4ebdbff7  com.apple.MetalPerformanceShaders.MPSRayIntersector (1.0 - 1) <E0E652B0-1624-3435-AD60-83A9C4B59852> /System/Library/Frameworks/MetalPerformanceShaders.framework/Frameworks/MPSRayIntersector.framework/Versions/A/MPSRayIntersector
+    0x7fff4ebdc000 -     0x7fff4ebdcff7  com.apple.MetalPerformanceShaders.MetalPerformanceShaders (1.0 - 1) <1BBA8BC8-49C6-3C9B-B985-7CE4373E3553> /System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/MetalPerformanceShaders
+    0x7fff4fdd9000 -     0x7fff4fde5ffb  com.apple.NetFS (6.0 - 4.0) <918DF6CD-2DB0-36A8-B869-5EF637A06C0D> /System/Library/Frameworks/NetFS.framework/Versions/A/NetFS
+    0x7fff528a5000 -     0x7fff528fdfff  com.apple.opencl (2.15.1 - 2.15.1) <E628D178-3846-373A-9482-CF680BD1E240> /System/Library/Frameworks/OpenCL.framework/Versions/A/OpenCL
+    0x7fff528fe000 -     0x7fff5291aff7  com.apple.CFOpenDirectory (10.14 - 207.200.4) <2CB1F122-2FA0-347C-8454-9CE0FA150832> /System/Library/Frameworks/OpenDirectory.framework/Versions/A/Frameworks/CFOpenDirectory.framework/Versions/A/CFOpenDirectory
+    0x7fff5291b000 -     0x7fff52927ffb  com.apple.OpenDirectory (10.14 - 207.200.4) <A3FB0F0C-57F4-3F89-A4B1-63DA1F7C9E8E> /System/Library/Frameworks/OpenDirectory.framework/Versions/A/OpenDirectory
+    0x7fff5328a000 -     0x7fff5328cfff  libCVMSPluginSupport.dylib (17.3.1) <4D6061EC-CFCD-3C0E-90E4-51644DC5F76A> /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libCVMSPluginSupport.dylib
+    0x7fff5328d000 -     0x7fff53292ff3  libCoreFSCache.dylib (163.20) <566DB80E-F1D6-3AEC-AF06-08955507AFEE> /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libCoreFSCache.dylib
+    0x7fff53293000 -     0x7fff53297fff  libCoreVMClient.dylib (163.20) <B9A89373-BDCD-3003-9A82-6D73B930A122> /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libCoreVMClient.dylib
+    0x7fff53298000 -     0x7fff532a0ffb  libGFXShared.dylib (17.3.1) <902F535E-E411-3C3B-B980-0A7DB40EA5B7> /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGFXShared.dylib
+    0x7fff532a1000 -     0x7fff532acfff  libGL.dylib (17.3.1) <87F8CCDB-2D7D-3B01-AA6F-6C7A4B1CA11E> /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib
+    0x7fff532ad000 -     0x7fff532e7fef  libGLImage.dylib (17.3.1) <B5464F1A-B936-3BEE-97CF-3806AD1A9E68> /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLImage.dylib
+    0x7fff5345b000 -     0x7fff53498fff  libGLU.dylib (17.3.1) <C46D4335-4CE2-3FFB-930D-E48D7A3B5B4F> /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLU.dylib
+    0x7fff53e48000 -     0x7fff53e57ff3  com.apple.opengl (17.3.1 - 17.3.1) <78BDC7C4-87AD-33CA-BFAC-A9CC5F605B5D> /System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL
+    0x7fff54cb3000 -     0x7fff54f0cfff  com.apple.QuartzCore (1.11 - 695.4) <6692906D-9EF7-3EA0-96D3-3766567AE7F2> /System/Library/Frameworks/QuartzCore.framework/Versions/A/QuartzCore
+    0x7fff55760000 -     0x7fff55a88fff  com.apple.security (7.0 - 58286.230.21) <5ADE179E-87D5-3B90-9172-D183D4665037> /System/Library/Frameworks/Security.framework/Versions/A/Security
+    0x7fff55a89000 -     0x7fff55b18fff  com.apple.securityfoundation (6.0 - 55185.200.14) <A57F481C-73B9-33C4-9093-9A06DBBFEDE5> /System/Library/Frameworks/SecurityFoundation.framework/Versions/A/SecurityFoundation
+    0x7fff55b4a000 -     0x7fff55b4eff3  com.apple.xpc.ServiceManagement (1.0 - 1) <16FA4DAF-A0BE-34C0-B5F1-5C30BE3DCD2D> /System/Library/Frameworks/ServiceManagement.framework/Versions/A/ServiceManagement
+    0x7fff55f0b000 -     0x7fff55f7bff3  com.apple.SystemConfiguration (1.17 - 1.17) <A8FD596E-C858-397F-836C-978038B97AC0> /System/Library/Frameworks/SystemConfiguration.framework/Versions/A/SystemConfiguration
+    0x7fff591e6000 -     0x7fff5928bff7  com.apple.APFS (1.0 - 1) <5CA4B73F-3F5D-3289-9145-520FFDFD6813> /System/Library/PrivateFrameworks/APFS.framework/Versions/A/APFS
+    0x7fff59cd5000 -     0x7fff59cd6ff3  com.apple.AggregateDictionary (1.0 - 1) <EBA6443E-6CF0-34F6-B77A-3FCEC57F8F80> /System/Library/PrivateFrameworks/AggregateDictionary.framework/Versions/A/AggregateDictionary
+    0x7fff5a5db000 -     0x7fff5a5eafcf  com.apple.AppleFSCompression (96.200.3 - 1.0) <78D538DD-1D24-34FC-AFB3-10411494870D> /System/Library/PrivateFrameworks/AppleFSCompression.framework/Versions/A/AppleFSCompression
+    0x7fff5a734000 -     0x7fff5a77dff3  com.apple.AppleJPEG (1.0 - 1) <EC4C49F1-C060-3C0F-910F-3620985D4F12> /System/Library/PrivateFrameworks/AppleJPEG.framework/Versions/A/AppleJPEG
+    0x7fff5a9d0000 -     0x7fff5a9f8ff7  com.apple.applesauce (1.0 - ???) <58654BC0-9243-39D1-BC43-B7F2E37A3A44> /System/Library/PrivateFrameworks/AppleSauce.framework/Versions/A/AppleSauce
+    0x7fff5ab5e000 -     0x7fff5ab74ffb  com.apple.AssertionServices (1.0 - 1) <3F767D20-FE14-35CF-A089-E0445375ECFB> /System/Library/PrivateFrameworks/AssertionServices.framework/Versions/A/AssertionServices
+    0x7fff5b324000 -     0x7fff5b32dff3  com.apple.coreservices.BackgroundTaskManagement (1.0 - 57.1) <05CF66F0-9650-3F75-9857-F8D186043866> /System/Library/PrivateFrameworks/BackgroundTaskManagement.framework/Versions/A/BackgroundTaskManagement
+    0x7fff5b3d1000 -     0x7fff5b442ffb  com.apple.BaseBoard (360.24 - 360.24) <04AF4372-C5D3-3F0A-A688-68D888D6D138> /System/Library/PrivateFrameworks/BaseBoard.framework/Versions/A/BaseBoard
+    0x7fff5cff6000 -     0x7fff5cffffff  com.apple.CommonAuth (4.0 - 2.0) <090893E5-BB65-39DA-A174-EAB2C7191EFE> /System/Library/PrivateFrameworks/CommonAuth.framework/Versions/A/CommonAuth
+    0x7fff5dd0f000 -     0x7fff5dd23fff  com.apple.CoreEmoji (1.0 - 69.19.8) <26BC0F82-08C1-3EBD-9299-D3CC5091C467> /System/Library/PrivateFrameworks/CoreEmoji.framework/Versions/A/CoreEmoji
+    0x7fff5e2f9000 -     0x7fff5e36bff7  com.apple.CoreNLP (1.0 - 130.15.22) <D0A3E880-CDEA-360A-9838-220D76BAECC6> /System/Library/PrivateFrameworks/CoreNLP.framework/Versions/A/CoreNLP
+    0x7fff5f100000 -     0x7fff5f104ff7  com.apple.DSExternalDisplay (3.1 - 380) <76449D22-BA27-3FB1-AD25-A290936E6DEA> /System/Library/PrivateFrameworks/DSExternalDisplay.framework/Versions/A/DSExternalDisplay
+    0x7fff60429000 -     0x7fff60851fff  com.apple.vision.FaceCore (3.3.4 - 3.3.4) <41218EB7-19C9-3813-A793-B0623387CADF> /System/Library/PrivateFrameworks/FaceCore.framework/Versions/A/FaceCore
+    0x7fff6581e000 -     0x7fff65823ff7  com.apple.GPUWrangler (3.28.4 - 3.28.4) <14D6FE7D-38D7-3F6C-9BCE-A228D6697A08> /System/Library/PrivateFrameworks/GPUWrangler.framework/Versions/A/GPUWrangler
+    0x7fff6668d000 -     0x7fff6669cfff  com.apple.GraphVisualizer (1.0 - 5) <CAFE626E-9738-3C14-88AA-B6A9182F2C39> /System/Library/PrivateFrameworks/GraphVisualizer.framework/Versions/A/GraphVisualizer
+    0x7fff667ed000 -     0x7fff66862fff  com.apple.Heimdal (4.0 - 2.0) <D99FF31F-6310-3D80-8AE3-64934385AC11> /System/Library/PrivateFrameworks/Heimdal.framework/Versions/A/Heimdal
+    0x7fff67c52000 -     0x7fff67c59ffb  com.apple.IOAccelerator (404.2.2 - 404.2.2) <7421825E-13D4-3C74-932D-34E8A605C281> /System/Library/PrivateFrameworks/IOAccelerator.framework/Versions/A/IOAccelerator
+    0x7fff67c5d000 -     0x7fff67c76fff  com.apple.IOPresentment (1.0 - 42.6) <87D19032-52DB-34A5-A554-23B3464EFC82> /System/Library/PrivateFrameworks/IOPresentment.framework/Versions/A/IOPresentment
+    0x7fff68388000 -     0x7fff6847ffff  com.apple.LanguageModeling (1.0 - 159.15.15) <34609F31-4DA1-3881-8947-85BEA7AFC938> /System/Library/PrivateFrameworks/LanguageModeling.framework/Versions/A/LanguageModeling
+    0x7fff68480000 -     0x7fff684c1ff7  com.apple.Lexicon-framework (1.0 - 33.15.10) <07E008F3-E823-333B-8B41-A46024AB0561> /System/Library/PrivateFrameworks/Lexicon.framework/Versions/A/Lexicon
+    0x7fff684c8000 -     0x7fff684ceff7  com.apple.LinguisticData (1.0 - 238.23.4) <37948616-56E6-3758-BEFE-28586FF99E12> /System/Library/PrivateFrameworks/LinguisticData.framework/Versions/A/LinguisticData
+    0x7fff6922b000 -     0x7fff69253ffb  com.apple.spotlight.metadata.utilities (1.0 - 1191.53) <09C6DCF6-F87D-3D03-8BD5-FD1DCF90949F> /System/Library/PrivateFrameworks/MetadataUtilities.framework/Versions/A/MetadataUtilities
+    0x7fff69254000 -     0x7fff692e6fff  com.apple.gpusw.MetalTools (1.0 - 1) <B77258A5-909F-37F7-8F1A-2085F7916DD4> /System/Library/PrivateFrameworks/MetalTools.framework/Versions/A/MetalTools
+    0x7fff6953a000 -     0x7fff69564ff7  com.apple.MultitouchSupport.framework (2410.5 - 2410.5) <3A712911-F672-3BB3-B62B-A2A7BADF3578> /System/Library/PrivateFrameworks/MultitouchSupport.framework/Versions/A/MultitouchSupport
+    0x7fff697d7000 -     0x7fff697e1fff  com.apple.NetAuth (6.2 - 6.2) <E191D736-A442-31BA-B823-EE75DC316D22> /System/Library/PrivateFrameworks/NetAuth.framework/Versions/A/NetAuth
+    0x7fff6a0ae000 -     0x7fff6a104fff  com.apple.OTSVG (1.0 - ???) <F020144A-D840-390D-A87F-29E8095C78AF> /System/Library/PrivateFrameworks/OTSVG.framework/Versions/A/OTSVG
+    0x7fff6fdf2000 -     0x7fff700a4ff3  com.apple.SkyLight (1.600.0 - 337.5) <52BC8AB1-3518-3E4C-B1B1-0A8A8067574F> /System/Library/PrivateFrameworks/SkyLight.framework/Versions/A/SkyLight
+    0x7fff71c79000 -     0x7fff71c86ffb  com.apple.TCC (1.0 - 1) <81F88B91-49C1-36E7-8A39-C4BD654EE942> /System/Library/PrivateFrameworks/TCC.framework/Versions/A/TCC
+    0x7fff73c6d000 -     0x7fff73c6fff3  com.apple.loginsupport (1.0 - 1) <67BC49D6-320F-33ED-912E-16E5A342F385> /System/Library/PrivateFrameworks/login.framework/Versions/A/Frameworks/loginsupport.framework/Versions/A/loginsupport
+    0x7fff73f2a000 -     0x7fff73f62fff  libCRFSuite.dylib (41.15.4) <92752A96-D1CF-3CA1-837A-1E075AE4C642> /usr/lib/libCRFSuite.dylib
+    0x7fff73f65000 -     0x7fff73f70ff7  libChineseTokenizer.dylib (28.15.3) <55572692-4918-3C54-AD35-726E03EC47D5> /usr/lib/libChineseTokenizer.dylib
+    0x7fff74001000 -     0x7fff74002ff7  libDiagnosticMessagesClient.dylib (107) <15210AC0-61F9-3F9D-A159-A009F62EB537> /usr/lib/libDiagnosticMessagesClient.dylib
+    0x7fff74039000 -     0x7fff741fcff7  libFosl_dynamic.dylib (18.3.2) <D67B74E9-EB95-38BC-995C-5F4CC044C3F7> /usr/lib/libFosl_dynamic.dylib
+    0x7fff74252000 -     0x7fff74271ff7  libMobileGestalt.dylib (645.220.9) <C2C55511-993B-34D2-9040-902BFDA38141> /usr/lib/libMobileGestalt.dylib
+    0x7fff74272000 -     0x7fff74272fff  libOpenScriptingUtil.dylib (179) <441A2E60-5D5C-3567-9B00-AA22E6EE5358> /usr/lib/libOpenScriptingUtil.dylib
+    0x7fff743b3000 -     0x7fff743b4ffb  libSystem.B.dylib (1252.200.5) <25F4A1F5-6551-312F-B397-C8D45ACC530A> /usr/lib/libSystem.B.dylib
+    0x7fff7443e000 -     0x7fff7443ffff  libThaiTokenizer.dylib (2.15.1) <F09EB0BB-1E8A-3391-BEF5-7D91F0715A62> /usr/lib/libThaiTokenizer.dylib
+    0x7fff74452000 -     0x7fff74468ffb  libapple_nghttp2.dylib (1.24.1) <71C126C5-D869-3E67-9778-058FA7F3CA74> /usr/lib/libapple_nghttp2.dylib
+    0x7fff74469000 -     0x7fff74492ffb  libarchive.2.dylib (54.200.3) <32B8634D-E465-3F6D-B254-A20D44504508> /usr/lib/libarchive.2.dylib
+    0x7fff74596000 -     0x7fff74596ff3  libauto.dylib (187) <003DEF68-0C59-3AFB-A7B7-A1B5ED301AF2> /usr/lib/libauto.dylib
+    0x7fff7466d000 -     0x7fff7467dff3  libbsm.0.dylib (39.200.18) <58A9ACEC-BF46-3A4E-86F5-3DD9AD7095B4> /usr/lib/libbsm.0.dylib
+    0x7fff7467e000 -     0x7fff7468cfff  libbz2.1.0.dylib (38.200.3) <4DEC3797-087F-3C8D-815B-48E895813251> /usr/lib/libbz2.1.0.dylib
+    0x7fff7468d000 -     0x7fff746e4ff7  libc++.1.dylib (400.9.4) <B260AC33-EB9A-30C6-8746-D011B3B02B08> /usr/lib/libc++.1.dylib
+    0x7fff746e5000 -     0x7fff746fafff  libc++abi.dylib (400.17) <446F4748-8A89-3D2E-AE1C-27EEBE93A8AB> /usr/lib/libc++abi.dylib
+    0x7fff746fb000 -     0x7fff746fbff3  libcharset.1.dylib (51.200.6) <43F7E100-F5D1-36AB-A26E-CF94196A19C0> /usr/lib/libcharset.1.dylib
+    0x7fff746fc000 -     0x7fff7470cffb  libcmph.dylib (6.15.1) <CEDA6538-C071-3B5A-948E-DF61E2878983> /usr/lib/libcmph.dylib
+    0x7fff7470d000 -     0x7fff74725fdb  libcompression.dylib (52.200.13) <6298529A-0120-3360-891C-84436972EA8D> /usr/lib/libcompression.dylib
+    0x7fff749d0000 -     0x7fff749e6fff  libcoretls.dylib (155.220.1) <1229F9EA-C070-3D03-9DC6-F548C59F9FD5> /usr/lib/libcoretls.dylib
+    0x7fff749e7000 -     0x7fff749e8ff3  libcoretls_cfhelpers.dylib (155.220.1) <33661841-3C3B-3608-86AC-C88D1CD6FE98> /usr/lib/libcoretls_cfhelpers.dylib
+    0x7fff7505f000 -     0x7fff750b6ffb  libcups.2.dylib (462.10) <29B6D106-A5F2-321D-8916-90F595545D88> /usr/lib/libcups.2.dylib
+    0x7fff751ee000 -     0x7fff751eefff  libenergytrace.dylib (17.200.1) <F5BA8134-16F9-31CD-90E1-D1EBEBADA4AE> /usr/lib/libenergytrace.dylib
+    0x7fff75220000 -     0x7fff75225ff7  libgermantok.dylib (17.15.2) <9381B152-5CFD-3D23-A5A7-4D64EE55B85E> /usr/lib/libgermantok.dylib
+    0x7fff75226000 -     0x7fff7522bff7  libheimdal-asn1.dylib (520.220.2) <D851A47D-E162-35F8-B8D4-6ABEA7FFDAD7> /usr/lib/libheimdal-asn1.dylib
+    0x7fff75257000 -     0x7fff75348ff7  libiconv.2.dylib (51.200.6) <9FB95807-7C62-32B7-A19F-946D7FB7CCA6> /usr/lib/libiconv.2.dylib
+    0x7fff75349000 -     0x7fff755acffb  libicucore.A.dylib (62109.0.1) <FEB89BD3-79C4-3208-A754-7E6BC4D38548> /usr/lib/libicucore.A.dylib
+    0x7fff755f9000 -     0x7fff755fafff  liblangid.dylib (128.15.1) <663D0A24-7260-31D1-9BFE-74D67B6F72F6> /usr/lib/liblangid.dylib
+    0x7fff755fb000 -     0x7fff75613fff  liblzma.5.dylib (10.200.3) <9A52A949-0CB1-39B6-9244-D079FB609559> /usr/lib/liblzma.5.dylib
+    0x7fff7562b000 -     0x7fff756dbfff  libmecab.1.0.0.dylib (779.24.1) <590BC39C-2A3E-368B-9499-C808B84C4955> /usr/lib/libmecab.1.0.0.dylib
+    0x7fff756dc000 -     0x7fff75919ff7  libmecabra.dylib (779.24.1) <22BFD5A8-EA42-3DC3-8910-F27DCFB1B631> /usr/lib/libmecabra.dylib
+    0x7fff7591e000 -     0x7fff7594eff7  libncurses.5.4.dylib (53.200.3) <2B715386-F391-3835-909F-A6DD86DCB4E3> /usr/lib/libncurses.5.4.dylib
+    0x7fff75af1000 -     0x7fff75e49ffb  libnetwork.dylib (1229.230.4) <B76F8990-85CD-382D-BDF4-58C4AD4CE6C4> /usr/lib/libnetwork.dylib
+    0x7fff75eda000 -     0x7fff76663fd7  libobjc.A.dylib (750.1) <4D6C889C-60F4-3028-9B13-DD3DFE6A2A44> /usr/lib/libobjc.A.dylib
+    0x7fff76676000 -     0x7fff7667affb  libpam.2.dylib (22.200.1) <85253002-89F2-3872-9C8A-1801303A2EBB> /usr/lib/libpam.2.dylib
+    0x7fff7667d000 -     0x7fff766b3ff7  libpcap.A.dylib (79.200.4) <6D25197A-2F7C-3147-A45A-F6F13E55909F> /usr/lib/libpcap.A.dylib
+    0x7fff767cd000 -     0x7fff767e5ffb  libresolv.9.dylib (65.200.2) <A1A77B4E-1AF0-3039-9945-D05440494E00> /usr/lib/libresolv.9.dylib
+    0x7fff76839000 -     0x7fff76a05ff7  libsqlite3.dylib (274.20) <42C5E16B-AA3C-3C6A-BD35-6AD3EE525DB8> /usr/lib/libsqlite3.dylib
+    0x7fff76c92000 -     0x7fff76c95ffb  libutil.dylib (51.200.4) <10C5E165-0939-363A-9D13-7076F3B513EC> /usr/lib/libutil.dylib
+    0x7fff76c96000 -     0x7fff76ca3fff  libxar.1.dylib (404) <16E875B3-CF89-3059-87BB-36D301B32E7B> /usr/lib/libxar.1.dylib
+    0x7fff76ca8000 -     0x7fff76d8bfff  libxml2.2.dylib (32.8) <3E7875AC-3195-3800-AC48-8AA3B7BE51E4> /usr/lib/libxml2.2.dylib
+    0x7fff76d8c000 -     0x7fff76db4ff3  libxslt.1.dylib (16.1) <D6EBFEBB-F88E-398F-B1B5-66F413C2CD32> /usr/lib/libxslt.1.dylib
+    0x7fff76db5000 -     0x7fff76dc7ffb  libz.1.dylib (70.200.4) <15F7B40A-424C-33BB-BF2C-7E8195128B78> /usr/lib/libz.1.dylib
+    0x7fff76e38000 -     0x7fff76e3cff3  libcache.dylib (81) <704331AC-E43D-343A-8C24-39201142AF27> /usr/lib/system/libcache.dylib
+    0x7fff76e3d000 -     0x7fff76e47ff3  libcommonCrypto.dylib (60118.220.1) <9C865644-EE9A-3662-AB77-7C8A5E561784> /usr/lib/system/libcommonCrypto.dylib
+    0x7fff76e48000 -     0x7fff76e4ffff  libcompiler_rt.dylib (63.4) <817772E3-E836-3FFD-A39B-BDCD1C357221> /usr/lib/system/libcompiler_rt.dylib
+    0x7fff76e50000 -     0x7fff76e59ff3  libcopyfile.dylib (146.200.3) <5C5C4F35-DAB7-3CF1-940F-F47192AB8289> /usr/lib/system/libcopyfile.dylib
+    0x7fff76e5a000 -     0x7fff76edefdf  libcorecrypto.dylib (602.230.1) <C78D1A87-5543-3561-BEB4-3B480BA94ECB> /usr/lib/system/libcorecrypto.dylib
+    0x7fff76f65000 -     0x7fff76f9fff7  libdispatch.dylib (1008.220.2) <2FDB1401-5119-3DF0-91F5-F4E105F00CD7> /usr/lib/system/libdispatch.dylib
+    0x7fff76fa0000 -     0x7fff76fcfff3  libdyld.dylib (640.2) <376E3F3A-6942-3B0E-AD5E-4B97E8255CF5> /usr/lib/system/libdyld.dylib
+    0x7fff76fd0000 -     0x7fff76fd0ffb  libkeymgr.dylib (30) <A4EFD9A4-2EF3-3E18-B325-F527E3821939> /usr/lib/system/libkeymgr.dylib
+    0x7fff76fd1000 -     0x7fff76fddff7  libkxld.dylib (4903.231.4) <7275D7AD-54CE-30BF-9459-18EA77E28ACC> /usr/lib/system/libkxld.dylib
+    0x7fff76fde000 -     0x7fff76fdeff7  liblaunch.dylib (1336.220.5) <8563299C-2493-3DBD-8E88-3FC673DB47DD> /usr/lib/system/liblaunch.dylib
+    0x7fff76fdf000 -     0x7fff76fe4fff  libmacho.dylib (921) <6ADB99F3-D142-3A0A-B3CE-031354766ACC> /usr/lib/system/libmacho.dylib
+    0x7fff76fe5000 -     0x7fff76fe7ffb  libquarantine.dylib (86.220.1) <58524FD7-63C5-38E0-9D90-845A79551C14> /usr/lib/system/libquarantine.dylib
+    0x7fff76fe8000 -     0x7fff76fe9ff3  libremovefile.dylib (45.200.2) <BA53CA8A-9974-3A43-9265-B110B1AE470F> /usr/lib/system/libremovefile.dylib
+    0x7fff76fea000 -     0x7fff77001ff3  libsystem_asl.dylib (356.200.4) <33C62769-1242-3BC1-9459-13CBCDECC7FE> /usr/lib/system/libsystem_asl.dylib
+    0x7fff77002000 -     0x7fff77002fff  libsystem_blocks.dylib (73) <152EDADF-7D94-35F2-89B7-E66DCD945BBA> /usr/lib/system/libsystem_blocks.dylib
+    0x7fff77003000 -     0x7fff7708bfff  libsystem_c.dylib (1272.200.26) <D6C701A2-9F17-308D-B6AC-9E17EF31B7DF> /usr/lib/system/libsystem_c.dylib
+    0x7fff7708c000 -     0x7fff7708fff7  libsystem_configuration.dylib (963.200.27) <94898525-ECC8-3CC9-B312-CBEAAC305E32> /usr/lib/system/libsystem_configuration.dylib
+    0x7fff77090000 -     0x7fff77093ff7  libsystem_coreservices.dylib (66) <10818C17-70E1-328E-A3E3-C3EB81AEC590> /usr/lib/system/libsystem_coreservices.dylib
+    0x7fff77094000 -     0x7fff7709affb  libsystem_darwin.dylib (1272.200.26) <07468CF7-982F-37C4-83D0-D5E602A683AA> /usr/lib/system/libsystem_darwin.dylib
+    0x7fff7709b000 -     0x7fff770a1ff7  libsystem_dnssd.dylib (878.230.2) <FF9D5025-F060-334B-B6D8-C5D0BB6A55E3> /usr/lib/system/libsystem_dnssd.dylib
+    0x7fff770a2000 -     0x7fff770eeff3  libsystem_info.dylib (517.200.9) <54B65F21-2E93-3579-9B72-6637A03245D9> /usr/lib/system/libsystem_info.dylib
+    0x7fff770ef000 -     0x7fff77117ff7  libsystem_kernel.dylib (4903.231.4) <ABDAABCA-C22A-3960-AA4E-E91A9FF34929> /usr/lib/system/libsystem_kernel.dylib
+    0x7fff77118000 -     0x7fff77163ff7  libsystem_m.dylib (3158.200.7) <AF25F8E8-194C-314F-A2D3-A424853EE796> /usr/lib/system/libsystem_m.dylib
+    0x7fff77164000 -     0x7fff77188ff7  libsystem_malloc.dylib (166.220.1) <4777DC06-F9C6-356E-82AB-86A1C6D62F3A> /usr/lib/system/libsystem_malloc.dylib
+    0x7fff77189000 -     0x7fff77194ff3  libsystem_networkextension.dylib (767.220.1) <74818C3D-9B68-3823-A737-6A4B782618F2> /usr/lib/system/libsystem_networkextension.dylib
+    0x7fff77195000 -     0x7fff7719cfff  libsystem_notify.dylib (172.200.21) <65B3061D-41D7-3485-B217-A861E05AD50B> /usr/lib/system/libsystem_notify.dylib
+    0x7fff7719d000 -     0x7fff771a6fef  libsystem_platform.dylib (177.200.16) <83DED753-51EC-3B8C-A98D-883A5184086B> /usr/lib/system/libsystem_platform.dylib
+    0x7fff771a7000 -     0x7fff771b1fff  libsystem_pthread.dylib (330.230.1) <BA382BFC-6A17-3940-B417-D090EF2AF4F4> /usr/lib/system/libsystem_pthread.dylib
+    0x7fff771b2000 -     0x7fff771b5ff7  libsystem_sandbox.dylib (851.230.3) <4D0CB1CA-160C-3C29-BE5D-131D68D43B1B> /usr/lib/system/libsystem_sandbox.dylib
+    0x7fff771b6000 -     0x7fff771b8ff3  libsystem_secinit.dylib (30.220.1) <5964B6D2-19D4-3CF9-BDBC-4EB1D42348F1> /usr/lib/system/libsystem_secinit.dylib
+    0x7fff771b9000 -     0x7fff771c0ff7  libsystem_symptoms.dylib (820.237.2) <487E1794-4C6E-3B1B-9C55-95B1A5FF9B90> /usr/lib/system/libsystem_symptoms.dylib
+    0x7fff771c1000 -     0x7fff771d6ff7  libsystem_trace.dylib (906.220.1) <4D4BA88A-FA32-379D-8860-33838723B35F> /usr/lib/system/libsystem_trace.dylib
+    0x7fff771d8000 -     0x7fff771ddffb  libunwind.dylib (35.4) <EF1A77FD-A86B-39F5-ABEA-6100AB23583A> /usr/lib/system/libunwind.dylib
+    0x7fff771de000 -     0x7fff7720efff  libxpc.dylib (1336.220.5) <DC50F33E-C47D-3256-BFE0-F8E9B5AEBE17> /usr/lib/system/libxpc.dylib
+Sample analysis of process 13594 written to file /dev/stdout
