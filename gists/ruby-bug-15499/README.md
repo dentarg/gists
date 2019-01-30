@@ -2,6 +2,8 @@
 
 https://bugs.ruby-lang.org/issues/15499
 
+## 2.6.1
+
     $ ruby -v
     ruby 2.6.1p33 (2019-01-30 revision 66950) [x86_64-darwin18]
 
@@ -42,7 +44,7 @@ https://bugs.ruby-lang.org/issues/15499
     $ ps aux | grep -e ruby -e puma
     dentarg          28920   0.0  0.0  4268020    772 s027  S+    4:52PM   0:00.00 grep --color=auto -e ruby -e puma
 
-<!-- -->
+## 2.7.0dev (2019-01-05 trunk 66716)
 
     $ ruby -v
     ruby 2.7.0dev (2019-01-05 trunk 66716) [x86_64-darwin18]
@@ -91,7 +93,7 @@ https://bugs.ruby-lang.org/issues/15499
     $ ps aux | grep -e ruby -e puma
     dentarg          21897   0.0  0.0  4268020    780 s025  S+    6:37PM   0:00.00 grep --color=auto -e ruby -e puma
 
-<!-- -->
+## 2.6.0
 
     $ ruby -v
     ruby 2.6.0p0 (2018-12-25 revision 66547) [x86_64-darwin18]
@@ -131,7 +133,9 @@ https://bugs.ruby-lang.org/issues/15499
     $ ps aux | grep -e ruby -e puma
     dentarg          14766   0.0  0.0  4277236    804 s025  S+    6:09PM   0:00.00 grep --color=auto -e ruby -e puma
 
-<!-- -->
+## 2.5.3
+
+How it should work?
 
     $ ruby -v
     ruby 2.5.3p105 (2018-10-18 revision 65156) [x86_64-darwin17]
@@ -171,7 +175,7 @@ https://bugs.ruby-lang.org/issues/15499
 
 ---
 
-`Thread.new { sleep }` workaround
+## 2.7.0dev (same as above) `Thread.new { sleep }` workaround
 
     $ ruby test_minimal_w_workaround.rb
     RUBY_VERSION: 2.7.0
