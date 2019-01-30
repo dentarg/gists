@@ -3,6 +3,48 @@
 https://bugs.ruby-lang.org/issues/15499
 
     $ ruby -v
+    ruby 2.6.1p33 (2019-01-30 revision 66950) [x86_64-darwin18]
+
+    $ ruby test_minimal.rb
+    RUBY_VERSION: 2.6.1
+    bundle exec puma -C config/puma.rb
+    Process started with PID: 28284
+    Process detached
+    Sleeping 3 seconds... (1)
+    [28284] Puma starting in cluster mode...
+    [28284] * Version 3.12.0 (ruby 2.6.1-p33), codename: Llamas in Pajamas
+    [28284] * Min threads: 16, max threads: 16
+    [28284] * Environment: development
+    [28284] * Process workers: 2
+    [28284] * Preloading application
+    [28284] * Listening on tcp://0.0.0.0:3000
+    [28284] Use Ctrl-C to stop
+    [28284] - Worker 0 (pid: 28291) booted, phase: 0
+    [28284] - Worker 1 (pid: 28292) booted, phase: 0
+    Sending TERM signal
+    Sleeping 3 seconds... (2)
+    [28284] - Gracefully shutting down workers...
+    Waiting...
+    ^CTraceback (most recent call last):
+        1: from test_minimal.rb:23:in `<main>'
+    test_minimal.rb:23:in `wait': Interrupt
+
+    # waited 2m 28s above
+
+    $ ps aux | grep -e ruby -e puma
+    dentarg          28284  99.9  0.1  4348640  29316 s027  R     4:49PM   2:26.08 puma 3.12.0 (tcp://0.0.0.0:3000) [ruby-bug-15499]
+    dentarg          28291   0.0  0.0        0      0 s027  Z     4:49PM   0:00.00 (ruby)
+    dentarg          28810   0.0  0.0  4279284    800 s027  R+    4:51PM   0:00.00 grep --color=auto -e ruby -e puma
+    dentarg          28292   0.0  0.0        0      0 s027  Z     4:49PM   0:00.00 (ruby)
+
+    $ kill -6 28284
+
+    $ ps aux | grep -e ruby -e puma
+    dentarg          28920   0.0  0.0  4268020    772 s027  S+    4:52PM   0:00.00 grep --color=auto -e ruby -e puma
+
+<!-- -->
+
+    $ ruby -v
     ruby 2.7.0dev (2019-01-05 trunk 66716) [x86_64-darwin18]
 
     $ ruby test_minimal.rb
