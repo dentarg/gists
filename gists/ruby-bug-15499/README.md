@@ -2,6 +2,41 @@
 
 https://bugs.ruby-lang.org/issues/15499
 
+## 2.6.1 + https://github.com/puma/puma/pull/1741
+
+    $ bundle exec --gemfile=Gemfile_1741 ruby test_minimal.rb
+    RUBY_VERSION: 2.6.1
+    bundle exec puma -C config/puma.rb
+    Process started with PID: 88315
+    Process detached
+    Sleeping 3 seconds... (1)
+    [88315] Puma starting in cluster mode...
+    [88315] * Version 3.12.0 (ruby 2.6.1-p33), codename: Llamas in Pajamas
+    [88315] * Min threads: 16, max threads: 16
+    [88315] * Environment: development
+    [88315] * Process workers: 2
+    [88315] * Preloading application
+    [88315] * Listening on tcp://0.0.0.0:3000
+    [88315] Use Ctrl-C to stop
+    [88315] - Worker 0 (pid: 88316) booted, phase: 0
+    [88315] - Worker 1 (pid: 88317) booted, phase: 0
+    Sending TERM signal
+    Sleeping 3 seconds... (2)
+    [88315] - Gracefully shutting down workers...
+    [88315]     worker status: pid 88316 exit 0
+    [88315]     worker status: pid 88317 exit 0
+    [88315]     worker shutdown time:   0.50
+    Waiting...
+    Traceback (most recent call last):
+        1: from test_minimal.rb:23:in `<main>'
+    test_minimal.rb:23:in `wait': No child processes (Errno::ECHILD)
+
+<!-- -->
+
+    $ ps aux | grep -e ruby -e puma
+    dentarg          88417   0.0  0.0  4278260    824 s022  S+    1:36PM   0:00.01 grep --color=auto -e ruby -e puma
+
+
 ## 2.6.1
 
     $ ruby -v

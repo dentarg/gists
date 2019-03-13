@@ -1,0 +1,19 @@
+GIT
+  remote: https://github.com/MSP-Greg/puma
+  revision: 77ee459b40289e721d7e57302993974f8a1cbcc5
+  branch: wait-issue
+  specs:
+    puma (3.12.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  puma!
+
+BUNDLED WITH
+   1.17.3
