@@ -2,6 +2,40 @@
 
 https://bugs.ruby-lang.org/issues/15499
 
+## 2.6.2
+
+    $ ruby test_minimal.rb
+    RUBY_VERSION: 2.6.2
+    bundle exec puma -C config/puma.rb
+    Process started with PID: 65977
+    Process detached
+    Sleeping 3 seconds... (1)
+    [65977] Puma starting in cluster mode...
+    [65977] * Version 3.12.0 (ruby 2.6.2-p47), codename: Llamas in Pajamas
+    [65977] * Min threads: 16, max threads: 16
+    [65977] * Environment: development
+    [65977] * Process workers: 2
+    [65977] * Preloading application
+    [65977] * Listening on tcp://0.0.0.0:3000
+    [65977] Use Ctrl-C to stop
+    [65977] - Worker 0 (pid: 65978) booted, phase: 0
+    [65977] - Worker 1 (pid: 65979) booted, phase: 0
+    Sending TERM signal
+    Sleeping 3 seconds... (2)
+    [65977] - Gracefully shutting down workers...
+    Waiting...
+    ^CTraceback (most recent call last):
+        1: from test_minimal.rb:23:in `<main>'
+    test_minimal.rb:23:in `wait': Interrupt
+
+waited 1m 9s above before pressing ^C
+
+    $ ps aux | grep -e ruby -e puma
+    dentarg          65977 100.0  0.1  4376312  29768 s011  R     9:20AM   1:09.02 puma 3.12.0 (tcp://0.0.0.0:3000) [ruby-bug-15499]
+    dentarg          65979   0.0  0.0        0      0 s011  Z     9:20AM   0:00.00 (ruby)
+    dentarg          65978   0.0  0.0        0      0 s011  Z     9:20AM   0:00.00 (ruby)
+    dentarg          66014   0.0  0.0  4287492    852 s011  S+    9:21AM   0:00.00 grep --color=auto -e ruby -e puma
+
 ## 2.6.1 + https://github.com/puma/puma/pull/1741
 
     $ bundle exec --gemfile=Gemfile_1741 ruby test_minimal.rb
