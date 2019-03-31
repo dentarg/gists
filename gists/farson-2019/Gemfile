@@ -1,0 +1,24 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+
+# Capybara driver for Chrome using CDP
+# https://github.com/twalpole/apparition
+gem "apparition"
+
+# Like webmock or VCR, but for your browser
+gem "puffing-billy"
+
+# Billy works with RSpec
+gem "rspec"
+
+# Be able to start pry session anywhere with binding.pry
+# https://github.com/deivid-rodriguez/pry-byebug
+gem "pry-byebug"
+
+# App deps
+gem "nokogiri"
+gem "terminal-table"
+
