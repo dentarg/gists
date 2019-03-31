@@ -12,10 +12,14 @@ Install
 
 Run
 
-    bundle exec rspec scrape.rb
+    ./run
+
+Run for last year
+
+    YEAR=2018 ./run
 
 Run and see the logs from [puffing-billy]
 
-    LOG=1 bundle exec rspec scrape.rb
+    LOG=1 ./run
 
 [puffing-billy]: https://github.com/oesmith/puffing-billy
