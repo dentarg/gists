@@ -12,6 +12,40 @@ Links
 * Puma PR workaround https://github.com/puma/puma/pull/1741
   * comments by evanphx from https://github.com/puma/puma/pull/1741#issuecomment-474128019
 
+## ruby 2.7.0dev (2019-04-02 trunk 67413) [x86_64-darwin18]
+
+    $ ruby test_minimal.rb
+    RUBY_VERSION: 2.7.0
+    bundle exec puma -C config/puma.rb
+    Process started with PID: 3209
+    Process detached
+    Sleeping 3 seconds... (1)
+    [3209] Puma starting in cluster mode...
+    [3209] * Version 3.12.0 (ruby 2.7.0-p-1), codename: Llamas in Pajamas
+    [3209] * Min threads: 16, max threads: 16
+    [3209] * Environment: development
+    [3209] * Process workers: 2
+    [3209] * Preloading application
+    [3209] * Listening on tcp://0.0.0.0:3000
+    [3209] Use Ctrl-C to stop
+    [3209] - Worker 0 (pid: 3210) booted, phase: 0
+    [3209] - Worker 1 (pid: 3211) booted, phase: 0
+    Sending TERM signal
+    Sleeping 3 seconds... (2)
+    [3209] - Gracefully shutting down workers...
+    Waiting...
+    ^CTraceback (most recent call last):
+        1: from test_minimal.rb:23:in `<main>'
+    test_minimal.rb:23:in `wait': Interrupt
+
+waited 1m 14s above before pressing `^C`
+
+    $ ps aux | grep -e ruby -e puma
+    dentarg           3209  95.6  0.1  4347968  29176 s009  R     5:09PM   1:15.62 puma 3.12.0 (tcp://0.0.0.0:3000) [ruby-bug-15499]
+    dentarg           3210   0.0  0.0        0      0 s009  Z     5:09PM   0:00.00 (ruby)
+    dentarg           3487   0.0  0.0  4258648    208 s009  R+    5:10PM   0:00.00 grep --color=auto -e ruby -e puma
+    dentarg           3211   0.0  0.0        0      0 s009  Z     5:09PM   0:00.00 (ruby)
+
 ## 2.6.2
 
     $ ruby test_minimal.rb
