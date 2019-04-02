@@ -210,6 +210,39 @@ waited 1m 9s above before pressing ^C
     $ ps aux | grep -e ruby -e puma
     dentarg          14766   0.0  0.0  4277236    804 s025  S+    6:09PM   0:00.00 grep --color=auto -e ruby -e puma
 
+## 2.5.5
+
+Still good
+
+    $ ruby test_minimal.rb
+    RUBY_VERSION: 2.5.5
+    bundle exec puma -C config/puma.rb
+    Process started with PID: 71261
+    Process detached
+    Sleeping 3 seconds... (1)
+    [71261] Puma starting in cluster mode...
+    [71261] * Version 3.12.0 (ruby 2.5.5-p157), codename: Llamas in Pajamas
+    [71261] * Min threads: 16, max threads: 16
+    [71261] * Environment: development
+    [71261] * Process workers: 2
+    [71261] * Preloading application
+    [71261] * Listening on tcp://0.0.0.0:3000
+    [71261] Use Ctrl-C to stop
+    [71261] - Worker 0 (pid: 71262) booted, phase: 0
+    [71261] - Worker 1 (pid: 71263) booted, phase: 0
+    Sending TERM signal
+    Sleeping 3 seconds... (2)
+    [71261] - Gracefully shutting down workers...
+    Waiting...
+    Traceback (most recent call last):
+        1: from test_minimal.rb:23:in `<main>'
+    test_minimal.rb:23:in `wait': No child processes (Errno::ECHILD)
+
+<!-- -->
+
+    $ ps aux | grep -e ruby -e puma
+    dentarg          71502   0.0  0.0  4278280    816 s003  S+   10:46AM   0:00.00 grep --color=auto -e ruby -e puma
+
 ## 2.5.3
 
 How it should work?
@@ -249,6 +282,37 @@ How it should work?
     $ uname -a
     Darwin pimac 18.2.0 Darwin Kernel Version 18.2.0: Mon Nov 12 20:24:46 PST 2018; root:xnu-4903.231.4~2/RELEASE_X86_64 x86_64
 
+## 2.4.6
+
+Also good
+
+    $ ruby test_minimal.rb
+    RUBY_VERSION: 2.4.6
+    bundle exec puma -C config/puma.rb
+    Process started with PID: 71975
+    Process detached
+    Sleeping 3 seconds... (1)
+    [71975] Puma starting in cluster mode...
+    [71975] * Version 3.12.0 (ruby 2.4.6-p354), codename: Llamas in Pajamas
+    [71975] * Min threads: 16, max threads: 16
+    [71975] * Environment: development
+    [71975] * Process workers: 2
+    [71975] * Preloading application
+    [71975] * Listening on tcp://0.0.0.0:3000
+    [71975] Use Ctrl-C to stop
+    [71975] - Worker 0 (pid: 71978) booted, phase: 0
+    [71975] - Worker 1 (pid: 71979) booted, phase: 0
+    Sending TERM signal
+    Sleeping 3 seconds... (2)
+    [71975] - Gracefully shutting down workers...
+    Waiting...
+    test_minimal.rb:23:in `wait': No child processes (Errno::ECHILD)
+        from test_minimal.rb:23:in `<main>'
+
+<!-- -->
+
+    $ ps aux | grep -e ruby -e puma
+    dentarg          72038   0.0  0.0  4279196    644 s003  R+   10:47AM   0:00.00 grep --color=auto -e ruby -e puma
 
 ---
 
