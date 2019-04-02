@@ -6,6 +6,8 @@ Links
   * my comments from https://bugs.ruby-lang.org/issues/15499#note-9
 * Puma bug reports
   * https://github.com/puma/puma/issues/1674
+  * https://github.com/puma/puma/issues/1730
+    * another evanphx comment https://github.com/puma/puma/issues/1730#issuecomment-474678949
   * https://github.com/puma/puma/issues/1755
 * Puma PR workaround https://github.com/puma/puma/pull/1741
   * comments by evanphx from https://github.com/puma/puma/pull/1741#issuecomment-474128019
