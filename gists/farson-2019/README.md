@@ -10,9 +10,13 @@ Install
 
     bundle
 
-Run
+Run with the cache in current directory
 
     ./run
+
+Run with cache in system temp directory:
+
+    TMP=1 ./run
 
 Run for last year
 

@@ -9,6 +9,7 @@ require "pry-byebug"
 require "terminal-table"
 require "bigdecimal"
 require "fileutils"
+require "tmpdir"
 
 URLS = {
   "2018" => {
@@ -25,7 +26,8 @@ URLS = {
 YEAR  = ENV.fetch("YEAR", "2019")
 URL   = URLS[YEAR][:url]
 TABLE = URLS[YEAR][:table]
-CACHE = FileUtils.mkdir_p(File.join(__dir__, "billy_cache", YEAR, "/")).first
+root  = ENV.fetch("TMP", false) ? Dir.mktmpdir("farson-2019") : __dir__
+CACHE = FileUtils.mkdir_p(File.join(root, "billy_cache", YEAR, "/")).first
 
 RSpec.configure do |config|
   config.include Capybara::DSL
