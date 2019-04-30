@@ -2,6 +2,9 @@
 
 Links
 
+* From https://github.com/jruby/jruby/issues/5576
+  * > rb_waitpid reimplemented on Unix-like platforms to maintain compatibility with processes created for JIT [Bug #14867](https://bugs.ruby-lang.org/issues/14867)
+    * Last comment links to https://bugs.ruby-lang.org/issues/14968
 * Related(?) ruby bug https://bugs.ruby-lang.org/issues/15499
   * my comments from https://bugs.ruby-lang.org/issues/15499#note-9
 * Puma bug reports
