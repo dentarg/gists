@@ -7,13 +7,16 @@ Links
     * Last comment links to https://bugs.ruby-lang.org/issues/14968
 * Related(?) ruby bug https://bugs.ruby-lang.org/issues/15499
   * my comments from https://bugs.ruby-lang.org/issues/15499#note-9
-* Puma bug reports
-  * https://github.com/puma/puma/issues/1674
-  * https://github.com/puma/puma/issues/1730
-    * another evanphx comment https://github.com/puma/puma/issues/1730#issuecomment-474678949
-  * https://github.com/puma/puma/issues/1755
-* Puma PR workaround https://github.com/puma/puma/pull/1741
-  * comments by evanphx from https://github.com/puma/puma/pull/1741#issuecomment-474128019
+* Puma issues / pull requests
+  * https://github.com/puma/puma/issues/1674 "Puma hangs on shutting down workers when received SIGINT"
+  * https://github.com/puma/puma/issues/1720 "TestIntegration#test_term_signal_exit_code_in_clustered_mode fails"
+  * https://github.com/puma/puma/pull/1738 "Use Process::WNOHANG flag when stoping child workers processes."
+  * https://github.com/puma/puma/issues/1730 "Slow restarts"
+  * https://github.com/puma/puma/pull/1741 "cluster - worker shutdown - use WNOHANG with nil return tests" (merged)
+  * https://github.com/puma/puma/issues/1755 "Hang on SIGTERM with ruby 2.6 in clustered mode"
+* comments by evanphx
+  * https://github.com/puma/puma/pull/1741#issuecomment-474128019
+  * https://github.com/puma/puma/issues/1730#issuecomment-474678949
 
 ## ruby 2.7.0dev (2019-04-02 trunk 67413) [x86_64-darwin18]
 
