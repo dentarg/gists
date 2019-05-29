@@ -2,6 +2,8 @@
 
 ## Problem with `tags: never` and role with tags
 
+_This is apparently by design: https://github.com/ansible/ansible/issues/40400#issuecomment-391006854_
+
 Role is tagged with`localhost`, and when used, `never` isn't working:
 
 ```
