@@ -1,0 +1,6 @@
+---
+- debug: msg="[main.yml] task with no tags"
+- debug: msg="[main.yml] task with tag never and debug"
+  tags: [ never, debug ]
+
+- include: included_tasks.yml

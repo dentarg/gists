@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tags: always
+  tasks:
+    - debug: msg="[tags_test.yml] task with always"
+
+- hosts: localhost
+  tags: localhost
+  gather_facts: no
+  roles:
+    - tags_test
