@@ -1,0 +1,2 @@
+---
+- debug: msg="[standard main.yml] task with no tags"

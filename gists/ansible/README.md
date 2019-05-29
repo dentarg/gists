@@ -4,6 +4,8 @@
 
 _This is apparently by design: https://github.com/ansible/ansible/issues/40400#issuecomment-391006854_
 
+To test this, use [`1ceb5de`](https://github.com/dentarg/gists/tree/1ceb5de4ca8a395af44f96ec65f7d85a95583ce6/gists/ansible).
+
 Role is tagged with`localhost`, and when used, `never` isn't working:
 
 ```

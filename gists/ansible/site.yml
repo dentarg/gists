@@ -1,0 +1,25 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tags: always
+  tasks:
+    - debug: msg="[site.yml] task with always"
+
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - debug: msg="[site.yml] task with no tags"
+
+- hosts: localhost
+  gather_facts: no
+  tags: standard
+  roles:
+    - standard
+
+- hosts: localhost
+  gather_facts: no
+  tags: [ never, extra ]
+  roles:
+    - extra
+    # - role: extra
+    #   tags: [ never, extra ]
