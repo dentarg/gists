@@ -1,4 +1,7 @@
 ---
 - debug: msg="[included_tasks.yml] task with no tags"
 - debug: msg="[included_tasks.yml] task with tag never and debug"
-  tags: [ never, debug ]
+  tags:
+  - never
+  - debug
+  # tags: [ never, debug ]
