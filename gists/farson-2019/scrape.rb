@@ -58,10 +58,11 @@ end
 
 Capybara.default_driver = :apparition_with_puffing_billy
 
-Player = Struct.new(:player_hash) do
+class Player
   attr_reader :nr, :team_name, :full_name, :last_name, :club, :hcp
 
   def initialize(player_hash)
+    @player_hash = player_hash
     @nr          = player_hash.fetch("Nr.")
     @team_name   = player_hash.fetch("Namn").split(" - ").first
     @full_name   = player_hash.fetch("Namn").split(" - ").last
@@ -71,7 +72,7 @@ Player = Struct.new(:player_hash) do
   end
 
   def to_s
-    format("% 5.1f %s (%s)", hcp.to_f, full_name, club)
+    format("% 5.1f - %s. %s (%s)", hcp.to_f, nr, full_name, club)
   end
 
   def inspect
@@ -139,15 +140,24 @@ RSpec.describe do
     end
 
     teams = []
-    players.each_slice(2) do |player1, player2|
-      teams << Team.new(player1, player2)
+
+    players.group_by { |p| p.team_name }.each do |_, players|
+      if players.size == 2
+        teams << Team.new(*players)
+      end
+
+      if players.size > 2
+        players.each_slice(2) { |p1, p2| teams << Team.new(p1, p2) }
+      end
     end
+
+    # binding.pry
 
     headers = ["", "Hcp", "Lag", "Spelare"]
     tt_rows = []
-    teams.uniq.sort_by(&:hcp).each_with_index do |team, idx|
-      tt_rows << :separator unless idx == 0
-      tt_rows << [idx + 1, *team.to_a]
+    teams.uniq.sort_by(&:hcp).each_with_index do |team, index|
+      tt_rows << :separator unless index == 0
+      tt_rows << [index + 1, *team.to_a]
     end
 
     puts Terminal::Table.new(headings: headers, rows: tt_rows)
