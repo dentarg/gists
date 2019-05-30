@@ -6,7 +6,7 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 # Capybara driver for Chrome using CDP
 # https://github.com/twalpole/apparition
-gem "apparition"
+gem "apparition", github: "dentarg/apparition", branch: "timeout-fix"
 
 # Like webmock or VCR, but for your browser
 gem "puffing-billy"

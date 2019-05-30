@@ -58,29 +58,47 @@ end
 
 Capybara.default_driver = :apparition_with_puffing_billy
 
-Player = Struct.new(:team, :name, :club, :hcp) do
-  def first_name
-    name.split(" ").first
+Player = Struct.new(:player_hash) do
+  attr_reader :nr, :team_name, :full_name, :last_name, :club, :hcp
+
+  def initialize(player_hash)
+    @nr          = player_hash.fetch("Nr.")
+    @team_name   = player_hash.fetch("Namn").split(" - ").first
+    @full_name   = player_hash.fetch("Namn").split(" - ").last
+    @last_name   = full_name.split(" ", 2).last
+    @club        = player_hash.fetch("Klubb")
+    @hcp         = BigDecimal(player_hash.fetch("HCP").sub(",", "."))
   end
 
   def to_s
-    sprintf "% 5.1f %s (%s)", hcp.to_f, first_name, club
+    format("% 5.1f %s (%s)", hcp.to_f, full_name, club)
+  end
+
+  def inspect
+    format %w[
+      #<Player:0x%x
+      @nr=%s
+      @team_name="%s"
+      @full_name="%s"
+      @last_name="%s"
+      @club="%s"
+      @hcp=%g>].join(" "),
+      object_id,
+      nr,
+      team_name,
+      full_name,
+      last_name,
+      club,
+      hcp.to_f
   end
 end
 
 class Team
   attr_reader :name, :hcp
 
-  def initialize(team_players)
-    @players = team_players.map do |hsh|
-      name = hsh.fetch("Namn").split(" - ").last
-      club = hsh.fetch("Klubb")
-      hcp  = BigDecimal(hsh.fetch("HCP").sub(",", "."))
-
-      Player.new(self, name, club, hcp)
-    end
-
-    @name = team_players.first.fetch("Namn").split(" - ").first
+  def initialize(player1, player2)
+    @players = [player1, player2]
+    @name = player1.team_name
     @hcp  = @players.map(&:hcp).inject(:+)
   end
 
@@ -112,14 +130,17 @@ RSpec.describe do
     table   = doc.css(".#{TABLE}").first
     rows    = table.css("tr")
     columns = rows.flat_map { |row| row.css('th').map(&:text) }
-    players = rows
+    player_hashes = rows
                 .map { |row| row.css('td').map(&:text) }
                 .reject(&:empty?)
                 .map { |row| columns.zip(row).to_h }
+    players = player_hashes.map do |player_hash|
+      Player.new(player_hash)
+    end
 
     teams = []
-    players.each_slice(2) do |team_players|
-      teams << Team.new(team_players)
+    players.each_slice(2) do |player1, player2|
+      teams << Team.new(player1, player2)
     end
 
     headers = ["", "Hcp", "Lag", "Spelare"]
