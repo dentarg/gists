@@ -20,6 +20,5 @@
   gather_facts: no
   tags: [ never, extra ]
   roles:
-    - extra
-    # - role: extra
-    #   tags: [ never, extra ]
+    - role: extra
+      tags: [ never, extra ]

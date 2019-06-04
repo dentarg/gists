@@ -1,2 +1,29 @@
 ---
-- debug: msg="[standard main.yml] task with no tags"
+- debug: msg="[standard/tasks/main.yml] task with no tags"
+
+- debug:
+    msg: "[standard/tasks/main.yml] ansible_check_mode => {{ ansible_check_mode }}"
+  tags: doit
+
+- set_fact:
+    ifdoit: "{{ ansible_check_mode or 'doit' not in ansible_run_tags }}"
+  tags: always
+
+- debug: var={{ ifdoit }}
+
+- debug:
+    msg: "[standard/tasks/main.yml] ansible_check_mode or 'doit' not in ansible_run_tags => {{ ifdoit }}"
+  tags: doit
+
+- name: "Task with check_mode:"
+  command: echo "I did it"
+  # yes => force into check mode even when --check not used
+  #  site.yml
+  #  site.yml --check
+  #  site.yml --check --tags=doit
+  #    ansible_check_mode or 'doit' not in ansible_run_tags
+  # no  => run even when --check used
+  #  site.yml --tags=doit
+  #    not ansible_check_mode and 'doit' in ansible_run_tags
+  check_mode: "{{ ifdoit }}"
+  tags: doit
