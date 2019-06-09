@@ -18,7 +18,7 @@
 
 - hosts: localhost
   gather_facts: no
-  tags: [ never, extra ]
   roles:
     - role: extra
-      tags: [ never, extra ]
+      tags: extra
+      check_mode: "{{ ansible_check_mode or 'extra' not in ansible_run_tags }}"

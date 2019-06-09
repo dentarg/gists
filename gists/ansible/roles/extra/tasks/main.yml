@@ -1,2 +1,5 @@
 ---
 - debug: msg="[extra/tasks/main.yml] task with no tags"
+
+- name: "[extra/tasks/main.yml] command task"
+  command: echo "did it"
