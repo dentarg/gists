@@ -1,0 +1,16 @@
+# frozen_string_literal: true
+
+begin
+  require "rspec/core/rake_task"
+
+  RSpec::Core::RakeTask.new(:spec) do |task|
+    seed      = ENV.fetch("RSPEC_SEED")      { "" }
+    formatter = ENV.fetch("RSPEC_FORMATTER") { "documentation" }
+
+    task.rspec_opts = "--order rand:#{seed} --format #{formatter}"
+  end
+rescue LoadError
+  warn "Could not require RSpec gem"
+end
+
+task default: %i[spec]
