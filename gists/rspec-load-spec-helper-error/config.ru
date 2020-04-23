@@ -1,6 +1,18 @@
 # frozen_string_literal: true
 
-require_relative "lib/app"
-require_relative "lib/foo"
+$stdout.sync = true
+$stderr.sync = true
 
-run lambda { |env| [200, {"Content-Type" => "text/plain"}, [App.new.hello]] }
+require_relative "config/environment"
+
+map "/" do
+  run HomeController
+end
+
+map "/bar" do
+  run BarController
+end
+
+map "/foo" do
+  run FooController
+end
