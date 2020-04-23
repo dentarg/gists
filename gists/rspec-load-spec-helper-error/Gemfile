@@ -9,5 +9,10 @@ gem "sinatra"
 group :test do
   gem "rake"
   gem "rack-test"
-  gem "rspec"
+  # gem "rspec"
+  gem "rspec", "= 3.8.0"
+  gem "rspec-core", "= 3.8.0"
+  gem "rspec-expectations", "= 3.8.2"
+  gem "rspec-mocks", "= 3.8.0"
+  gem "rspec-support", "= 3.8.0"
 end
