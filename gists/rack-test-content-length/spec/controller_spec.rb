@@ -7,7 +7,7 @@ RSpec.describe Controller do
 
   describe "GET /" do
     before do
-      header "Accept-Encoding", "gzip"
+      header "Accept-Encoding", "deflate"
 
       get "/"
     end
