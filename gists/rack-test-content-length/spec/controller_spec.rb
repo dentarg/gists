@@ -5,7 +5,7 @@ RSpec.describe Controller do
     OUTER_APP
   end
 
-  describe "GET /" do
+  describe "GET / (deflate)" do
     before do
       header "Accept-Encoding", "deflate"
 
@@ -13,8 +13,25 @@ RSpec.describe Controller do
     end
 
     it do
-      p last_response.headers
-      expect(last_response.body).to eq("root")
+      aggregate_failures do
+        expect(last_response.headers).to eq({})
+        expect(last_response.body).to eq("root")
+      end
+    end
+  end
+
+  describe "GET / (gzip)" do
+    before do
+      header "Accept-Encoding", "gzip"
+
+      get "/"
+    end
+
+    it do
+      aggregate_failures do
+        expect(last_response.headers).to eq({})
+        expect(last_response.body).to eq("root")
+      end
     end
   end
 end
