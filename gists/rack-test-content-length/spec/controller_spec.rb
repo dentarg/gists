@@ -24,7 +24,7 @@ RSpec.describe Controller do
     before do
       header "Accept-Encoding", "gzip"
 
-      get "/"
+      get "/big"
     end
 
     it do
