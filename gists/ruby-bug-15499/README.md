@@ -19,6 +19,40 @@ Links
   * https://github.com/puma/puma/pull/1741#issuecomment-474128019
   * https://github.com/puma/puma/issues/1730#issuecomment-474678949
 
+## ruby 2.7.1p83 (2020-03-31 revision a0c7c23c9c) [x86_64-darwin18]
+
+    $ ruby test_minimal.rb
+    RUBY_VERSION: 2.7.1
+    bundle exec puma -C config/puma.rb
+    Process started with PID: 29385
+    Process detached
+    Sleeping 3 seconds... (1)
+    [29385] Puma starting in cluster mode...
+    [29385] * Version 3.12.0 (ruby 2.7.1-p83), codename: Llamas in Pajamas
+    [29385] * Min threads: 16, max threads: 16
+    [29385] * Environment: development
+    [29385] * Process workers: 2
+    [29385] * Preloading application
+    [29385] * Listening on tcp://0.0.0.0:3000
+    [29385] Use Ctrl-C to stop
+    [29385] - Worker 0 (pid: 29393) booted, phase: 0
+    [29385] - Worker 1 (pid: 29394) booted, phase: 0
+    Sending TERM signal
+    Sleeping 3 seconds... (2)
+    [29385] - Gracefully shutting down workers...
+    Waiting...
+    ^CTraceback (most recent call last):
+        1: from test_minimal.rb:23:in `<main>'
+    test_minimal.rb:23:in `wait': Interrupt
+
+waited 1m 28s above before pressing `^C`
+
+    $ ps aux | grep -e ruby -e puma
+    dentarg          29385 100.0  0.4  4369596  30856 s001  R    11:36AM   1:50.87 puma 3.12.0 (tcp://0.0.0.0:3000) [ruby-bug-15499]
+    dentarg          29393   0.0  0.0        0      0 s001  Z    11:36AM   0:00.00 (ruby)
+    dentarg          38863   0.0  0.0  4299432    500 s001  R+   11:38AM   0:00.00 grep --color=auto -e ruby -e puma
+    dentarg          29394   0.0  0.0        0      0 s001  Z    11:36AM   0:00.00 (ruby)
+
 ## ruby 2.6.4p104 (2019-08-28 revision 67798) [x86_64-darwin18]
 
     $ ruby test_minimal.rb
@@ -326,6 +360,10 @@ waited 1m 9s above before pressing ^C
     $ ps aux | grep -e ruby -e puma
     dentarg          14766   0.0  0.0  4277236    804 s025  S+    6:09PM   0:00.00 grep --color=auto -e ruby -e puma
 
+<!-- -->
+
+# Works
+
 ## 2.5.6
 
 Still good
@@ -465,6 +503,8 @@ Also good
     dentarg          72038   0.0  0.0  4279196    644 s003  R+   10:47AM   0:00.00 grep --color=auto -e ruby -e puma
 
 ---
+
+# workaround
 
 ## 2.7.0dev (same as above) `Thread.new { sleep }` workaround
 
