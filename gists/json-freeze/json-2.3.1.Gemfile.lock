@@ -1,0 +1,17 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    benchmark-memory (0.1.2)
+      memory_profiler (~> 0.9)
+    json (2.3.1)
+    memory_profiler (0.9.14)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  benchmark-memory
+  json (= 2.3.1)
+
+BUNDLED WITH
+   2.1.4

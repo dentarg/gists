@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -x
+
+BUNDLE_GEMFILE=json-2.3.1.Gemfile bundle
+BUNDLE_GEMFILE=json-2.3.1.Gemfile bundle exec ruby benchmark.rb
+
+BUNDLE_GEMFILE=json-2.4.0.Gemfile bundle
+BUNDLE_GEMFILE=json-2.4.0.Gemfile bundle exec ruby benchmark.rb
+
