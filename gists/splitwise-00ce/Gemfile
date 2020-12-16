@@ -1,0 +1,14 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+
+def production?; ENV["APP_ENV"] == "production"; end
+
+gem "splitwise", github: "dentarg/splitwise-ruby" if production?
+gem "splitwise", path: "~/src/splitwise-ruby" unless production?
+
+group :development do
+  gem "pry", require: false
+end
