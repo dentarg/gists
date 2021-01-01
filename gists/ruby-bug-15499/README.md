@@ -437,6 +437,40 @@ waited 1m 9s above before pressing ^C
 
 # Works
 
+## 2.5.8
+
+Still good
+
+    $ ps aux | grep -e ruby -e puma
+    dentarg          98277   0.0  0.0  4408268    856 s052  S+    3:58PM   0:00.00 grep --color=auto -e ruby -e puma
+
+    $ ruby test_minimal.rb
+    RUBY_VERSION: 2.5.8
+    bundle exec puma -C config/puma.rb
+    Process started with PID: 98407
+    Process detached
+    Sleeping 3 seconds... (1)
+    [98407] Puma starting in cluster mode...
+    [98407] * Version 3.12.0 (ruby 2.5.8-p224), codename: Llamas in Pajamas
+    [98407] * Min threads: 16, max threads: 16
+    [98407] * Environment: development
+    [98407] * Process workers: 2
+    [98407] * Preloading application
+    [98407] * Listening on tcp://0.0.0.0:3000
+    [98407] Use Ctrl-C to stop
+    [98407] - Worker 0 (pid: 98408) booted, phase: 0
+    [98407] - Worker 1 (pid: 98409) booted, phase: 0
+    Sending TERM signal
+    Sleeping 3 seconds... (2)
+    [98407] - Gracefully shutting down workers...
+    Waiting...
+    Traceback (most recent call last):
+        1: from test_minimal.rb:23:in `<main>'
+    test_minimal.rb:23:in `wait': No child processes (Errno::ECHILD)
+
+    $ ps aux | grep -e ruby -e puma
+    dentarg          98577   0.0  0.0  4408268    864 s052  S+    3:58PM   0:00.00 grep --color=auto -e ruby -e puma
+
 ## 2.5.6
 
 Still good
