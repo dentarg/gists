@@ -7,6 +7,10 @@ Links
     * Last comment links to https://bugs.ruby-lang.org/issues/14968
 * Related(?) ruby bug https://bugs.ruby-lang.org/issues/15499
   * my comments from https://bugs.ruby-lang.org/issues/15499#note-9
+* childprocess issues / pull requests
+  * https://github.com/enkessler/childprocess/issues/151
+  * https://github.com/enkessler/childprocess/pull/152
+  * https://github.com/enkessler/childprocess/pull/154
 * Puma issues / pull requests
   * https://github.com/puma/puma/issues/1674 "Puma hangs on shutting down workers when received SIGINT"
   * https://github.com/puma/puma/issues/1703 "Travis - Ruby head/trunk test failures"
