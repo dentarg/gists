@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require "base64"
+require "cgi"
+
+# cookie created after log in with guest:guest
+# m=2258:Z3Vlc3Q6Z3Vlc3Q%253D
+#
+# m      - the cookie name
+# 2258   - key "auth" inside the cookie (see short_key() in prefs.js in RabbitMQ)
+# :      - delimiter
+# <rest> - username:password - escaped (twice sometimes?) and Base64 encoded
+#
+
+cookie_value = ARGV.first.chomp
+auth = cookie_value.split(":").last
+auth = CGI.unescape(auth)
+auth = CGI.unescape(auth)
+auth = Base64.decode64(auth)
+
+puts auth
