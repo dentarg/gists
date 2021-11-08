@@ -1,0 +1,5 @@
+---
+- hosts: default
+  gather_facts: false
+  tasks:
+  - raw: uptime

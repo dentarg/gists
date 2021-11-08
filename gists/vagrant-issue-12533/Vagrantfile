@@ -1,0 +1,25 @@
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "twingly/openbsd-7.0-amd64"
+  config.vm.box_version = "1.0.0"
+
+  # Disable dynamic SSH key generation by Vagrant
+  config.ssh.insert_key = false
+
+  # Disabled shared folders
+  config.vm.synced_folder "./", "/vagrant", disabled: true
+
+  # Wait less, default this is 300 seconds
+  config.vm.boot_timeout = 45
+
+  # Disable checking for guest additions
+  config.vm.provider "virtualbox" do |vbox|
+    vbox.check_guest_additions = false
+  end
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "bootstrap.yml"
+    ansible.compatibility_mode = "2.0"
+  end
+end
