@@ -31,6 +31,7 @@ connect_opts = {
   port: 2222,
   verbose: :debug,
   keys: "/Users/dentarg/.vagrant.d/insecure_private_key",
+  keys_only: true,
   auth_methods: ["publickey"]
 }
 
