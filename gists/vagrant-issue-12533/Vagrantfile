@@ -18,8 +18,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vbox.check_guest_additions = false
   end
 
-  config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "bootstrap.yml"
-    ansible.compatibility_mode = "2.0"
-  end
+  # config.vm.provision "ansible" do |ansible|
+  #   ansible.playbook = "bootstrap.yml"
+  #   ansible.compatibility_mode = "2.0"
+  # end
+
+  config.vm.provision :shell, inline: "echo hi"
 end
