@@ -9,17 +9,19 @@ end
 
 class Vagrant
   class << self
-    def method_missing(*)
-      self
+    def global_logger
+      self.new
     end
   end
 
-  def method_missing(*)
-    self
+  def method_missing(symbol, *args)
+    puts "Vagrant.global_logger #{symbol.upcase} #{args}"
   end
 end
 
-require "/opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/lib/vagrant/patches/net-ssh.rb"
+# require "/opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/lib/vagrant/patches/net-ssh.rb"
+# require_relative "patches/net-ssh.backup"
+require_relative "patches/net-ssh"
 
 require "net/ssh"
 
