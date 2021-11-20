@@ -1,8 +1,10 @@
 require "bundler/inline"
 
+NET_SSH_VERSION = ARGV.empty? ? "6.1.0" : ARGV.shift
+
 gemfile do
   source "https://rubygems.org"
-  gem "net-ssh", "6.1.0"
+  gem "net-ssh", NET_SSH_VERSION
   gem "ed25519"
   gem "bcrypt_pbkdf"
 end
@@ -21,7 +23,7 @@ end
 
 # require "/opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/lib/vagrant/patches/net-ssh.rb"
 # require_relative "patches/net-ssh.backup"
-require_relative "patches/net-ssh"
+# require_relative "patches/net-ssh"
 
 require "net/ssh"
 
