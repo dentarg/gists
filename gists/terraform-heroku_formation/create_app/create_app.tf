@@ -12,6 +12,7 @@ variable "buildpacks" {}
 variable "formation" {}
 variable "stack" {}
 variable "app_name" {}
+variable "src_path" {}
 
 resource "heroku_app" "app" {
   name       = var.app_name
@@ -24,7 +25,7 @@ resource "heroku_build" "build" {
   app_id = heroku_app.app.id
 
   source {
-    path = "src"
+    path = var.src_path
   }
 }
 
