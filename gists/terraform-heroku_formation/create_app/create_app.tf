@@ -13,12 +13,14 @@ variable "formation" {}
 variable "stack" {}
 variable "app_name" {}
 variable "src_path" {}
+variable "config_vars" {}
 
 resource "heroku_app" "app" {
-  name       = var.app_name
-  region     = "eu"
-  stack      = var.stack
-  buildpacks = var.buildpacks
+  name        = var.app_name
+  region      = "eu"
+  stack       = var.stack
+  buildpacks  = var.buildpacks
+  config_vars = var.config_vars
 }
 
 resource "heroku_build" "build" {
