@@ -1,28 +1,34 @@
-locals {
-  apps = [
+module "app0" {
+  source = "./create_app"
+
+  app_name = "terraform-issue-repro-app0"
+  stack = "heroku-20"
+  buildpacks = [
+    "heroku/ruby",
+  ]
+  formation = [
     {
-      app    = "terraform-issue-repro-tut"
-      stack  = "heroku-20"
-      formation = [
-        {
-          quantity = 1
-          size = "standard-2x"
-          type = "worker"
-        },
-      ]
-      buildpacks = [
-        "heroku/ruby",
-      ]
-    }
+      quantity = 1
+      size = "Basic"
+      type = "worker"
+    },
   ]
 }
 
-module "apps" {
-  for_each   = {for i, v in local.apps:  i => v}
-  source     = "./create_app"
+module "app1" {
+  source = "./create_app"
+  depends_on = [module.app0]
 
-  app_name   = each.value.app
-  buildpacks = each.value.buildpacks
-  formation  = each.value.formation
-  stack      = each.value.stack
+  app_name = "terraform-issue-repro-app1"
+  stack = "heroku-20"
+  buildpacks = [
+    "heroku/ruby",
+  ]
+  formation = [
+    {
+      quantity = 1
+      size = "standard-2x"
+      type = "worker"
+    },
+  ]
 }
