@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+gem "puma", path: "/Users/dentarg/src/puma"
+gem "sinatra", "~> 3.0"
+gem "puma_worker_killer"
