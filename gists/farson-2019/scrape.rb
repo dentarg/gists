@@ -10,6 +10,7 @@ require "terminal-table"
 require "bigdecimal"
 require "fileutils"
 require "tmpdir"
+require "json"
 
 URLS = {
   "2018" => {
@@ -20,10 +21,15 @@ URLS = {
   "2019" => {
     url:   "http://www.barsebackresort.se/git/competition/?guid=1765905&fwid=0",
     table: "sgf-git-templates-competition-info-entrylist-content",
+  },
+
+  "2023" => {
+    url:   "https://www.karlshamnsgk.com/git/competition/?guid=3766681",
+    table: "sgf-git-templates-competition-info-entrylist-content",
   }
 }
 
-YEAR  = ENV.fetch("YEAR", "2019")
+YEAR  = ENV.fetch("YEAR", "2023")
 URL   = URLS[YEAR][:url]
 TABLE = URLS[YEAR][:table]
 root  = ENV.fetch("TMP", false) ? Dir.mktmpdir("farson-2019") : __dir__
@@ -62,6 +68,7 @@ class Player
   attr_reader :nr, :team_name, :full_name, :last_name, :club, :hcp
 
   def initialize(player_hash)
+    # puts "player_hash=#{player_hash.inspect}"
     @player_hash = player_hash
     @nr          = player_hash.fetch("Nr.")
     @team_name   = player_hash.fetch("Namn").split(" - ").first
@@ -127,6 +134,8 @@ RSpec.describe do
     proxy.stub(URL)
     visit(URL)
 
+    anon_players = []
+
     doc     = Nokogiri::HTML(page.body)
     table   = doc.css(".#{TABLE}").first
     rows    = table.css("tr")
@@ -136,8 +145,12 @@ RSpec.describe do
                 .reject(&:empty?)
                 .map { |row| columns.zip(row).to_h }
     players = player_hashes.map do |player_hash|
+      if player_hash.fetch("Namn") == "Anonym"
+        anon_players << player_hash
+        next
+      end
       Player.new(player_hash)
-    end
+    end.compact
 
     teams = []
 
@@ -161,5 +174,8 @@ RSpec.describe do
     end
 
     puts Terminal::Table.new(headings: headers, rows: tt_rows)
+
+    puts "Total of 'Anonym' players: #{anon_players.count}"
+    puts JSON.pretty_generate(anon_players)
   end
 end
