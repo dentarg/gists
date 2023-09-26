@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+$stdout.sync = true
+$stderr.sync = true
+
+if %w(-h --help).include?(ARGV.first) || ARGV.empty?
+  puts "Usage: #{__FILE__} <URL|HOST>"
+  exit
+end
+
+require "bundler/inline"
+
+# This installs and requires these gems
+gemfile do
+  source "https://rubygems.org"
+  gem "bunny"
+end
+
+cloudamqp_url = ARGV.first
+unless cloudamqp_url.start_with?("amqps://") || cloudamqp_url.start_with?("amqp://")
+  cloudamqp_url = "amqps://#{cloudamqp_url}"
+end
+puts "Connecting to: #{cloudamqp_url}"
+connection = Bunny.new(cloudamqp_url, verify_peer: true)
+connection.start # Start a connection with the CloudAMQP server
+connection.close # Finally, close the connection
+puts "Connection closed"

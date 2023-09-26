@@ -1,0 +1,102 @@
+#!/usr/bin/env ruby
+
+$stdout.sync = true
+$stderr.sync = true
+
+if %w(-h --help).include?(ARGV.first)
+  puts "Usage: #{__FILE__} <URL> [MESSAGE] [CONSUME]"
+  exit
+end
+
+$shutdown = false
+
+Signal.trap("INT") do
+  $shutdown = true
+  puts "Exiting..."
+end
+
+begin
+  require "bunny"
+rescue LoadError
+  require "bundler/inline"
+  # This installs and requires these gems
+  gemfile do
+    source "https://rubygems.org"
+    gem "bunny"
+  end
+end
+
+VERIFY_PEER   = [true, "true", "1"].include?(ENV.fetch("VERIFY_PEER", true))
+# 1 = inf, 0 = no loop, X = loop X times without sleep
+num_loop      = ENV.fetch("LOOP", 0).to_i
+queue         = ENV.fetch("Q", "amqptestmsg_queue")
+cloudamqp_url = ARGV.shift
+message       = ARGV.shift || "Hello World"
+consume       = ARGV.shift
+
+options = {
+  verify_peer: VERIFY_PEER,
+}
+
+if ENV.key?("CA")
+  options.merge!(tls_ca_certificates: ENV["CA"])
+end
+
+puts "Connecting to: #{cloudamqp_url} (options: #{options.inspect})"
+
+$connection = Bunny.new(cloudamqp_url, options)
+$connection.start
+$channel  = $connection.create_channel
+$queue    = $channel.queue(queue, durable: true)
+$exchange = $channel.exchange("") # Declare a default direct exchange which is bound to all queues
+
+$publish_count = 0
+
+# Publish a message to the exchange which then gets routed to the queue
+def publish(message)
+  full_message = %(time="#{Time.now}" message="#{message}")
+  $exchange.publish(full_message, :key => $queue.name)
+
+  $publish_count += 1
+
+  full_message
+end
+
+if num_loop == 1
+  loop do
+    break if $shutdown
+    sleep 1
+    full_message = publish(message)
+    puts "Published: #{full_message}"
+  rescue => e
+    $stderr.puts "[ERROR] #{e.inspect}"
+    sleep 1
+    retry
+  end
+elsif num_loop > 1
+  num_loop.times do |idx|
+    full_message = publish(message)
+    if num_loop < 15
+      # Width Specifier (format / sprintf)
+      puts "#{format("%4d", idx)} Published: #{full_message}"
+    end
+  end
+else
+  full_message = publish(message)
+  puts "Message published to queue: #{$queue.name}"
+  puts "---"
+  puts full_message
+  puts "---"
+end
+
+puts "Published #{$publish_count} messages"
+
+if consume
+  puts "Consuming messages"
+  $queue.subscribe(block: false) do |_delivery_info, _properties, body|
+    puts "Consumed message: #{body}"
+  end
+end
+
+$connection.close # Finally, close the connection
+puts "Connection closed"
