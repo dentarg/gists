@@ -21,6 +21,7 @@ def create_and_migrate(database_name:, table_name:)
       db.loggers << ::Logger.new($stdout)
       Sequel::Migrator.run(db, migrations_dir)
     end
+    Sequel::Model.db = nil
     database = Sequel.connect(url)
     yield
     database.disconnect
