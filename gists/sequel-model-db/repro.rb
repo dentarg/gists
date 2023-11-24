@@ -21,9 +21,8 @@ def create_and_migrate(database_name:, table_name:)
       db.loggers << ::Logger.new($stdout)
       Sequel::Migrator.run(db, migrations_dir)
     end
-    Sequel::Model.db = nil
     database = Sequel.connect(url)
-    yield
+    yield database
     database.disconnect
     Sequel::DATABASES.each(&:disconnect)
 
@@ -35,14 +34,17 @@ prefix = "sequel_database"
 
 table_name = "cars"
 database_name = "#{prefix}_#{table_name}"
-create_and_migrate(database_name:, table_name:) do
+create_and_migrate(database_name:, table_name:) do |db|
+  Sequel::Model.db = db
   class Car < Sequel::Model; end
   puts Car.db.inspect
 end
 
 table_name = "bikes"
 database_name = "#{prefix}_#{table_name}"
-create_and_migrate(database_name:, table_name:) do
+create_and_migrate(database_name:, table_name:) do |db|
+  puts ["", "before assign Sequel::Model.db", "Sequel::Model.db=#{Sequel::Model.db.inspect}", ""]
+  Sequel::Model.db = db
   puts ["", "before defining Bike", "Sequel::Model.db=#{Sequel::Model.db.inspect}", ""]
   class Bike < Sequel::Model; end
   puts Bike.db.inspect
