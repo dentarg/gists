@@ -1,0 +1,129 @@
+#!/usr/bin/env ruby
+
+# strings to test with
+#
+# secret for encrypted
+# SESSION_SECRET=3b6729f943db2acbc339d3d2d8a41080fd89631c3c9db1354d5cf7255e644299
+#
+# rack 2 (only HMAC)
+# BAh7B0kiD3Nlc3Npb25faWQGOgZFVG86HVJhY2s6OlNlc3Npb246OlNlc3Npb25JZAY6D0BwdWJsaWNfaWRJIkUzZjUxYjVhOTgwNWJiYTdlZGFkM2E1OTM1ZmFhMjY1OWQyMzUwNmUyNmY2OWQ3OWY5MWExZGZhY2Q2YzZmYzk5BjsARkkiCGZvbwY7AFRJIghiYXIGOwBU--77cba9f77e635450a5c34eb8d442f9ac5cd3f84c
+#
+# rack 2 (rack-protection >= 3.0.0) (encrypted)
+# AaI4P1WOpfeFZgkaD%2BlscAeL0b0g9hQS3iK%2BTfox7%2FjpruiZq1KjOa3lru97K%2FXxzwfUe1v%2BgTLnbVZXua5eet5UUhuJUB5fAsUgwonTAbKaQsNI3h9GUxRdEEzIU9fkqfSjEeJk3DU7Q11k96Ev4L8f1Hd%2BJvBTYWZDEk7WEDWHd4ly0cwwEUrjq2PqmiBONgYp3GEuPkB3R%2FFALHTGj7r8JVIwAHw5vDuemYZB3zWamgEQsoangVui%2BuD%2FMabvsh8E%2F4%2Fmc6S%2FaF%2BKcB3%2FubS0x4Fobzj7zznUWRllRAXXag%3D%3D--bgnU0Sm3iosvb3eb--AoQtXGVLTZfJCkKHpyvVYQ%3D%3D
+#
+# rack 3 (rack-session >= 2.0.0) (encrypted)
+# AbeMnOJBBiHeTrTyH-2Tl1JnsYR-8t_v3cy5O_b9JBJehPWrQtD0o8D6ehhmGRDOMaXy9nVhcAlRRAHz5AM2I6QQcIne_6fqYnwH_16rfLZhFpwWgUeT0YMOt2Nxewl6bibLwEfkTVYCkrVBb20BXCArM0Wc2JDuysnOiJx7JgWJGocPqvISN6efqvQBXUK9z8ZxL4ZHctNF2dJGSGugb4AqJ18oezCaxmA8YXV182gnKz2DwLV7W320H5Lv7ttQapY9isXUq_9S9SHVooDK67mEmLMBFv5JZqRXWLT36Dr8XHTX-lAb16wBbxTgNsgupA%3D%3D
+
+RACK_3 = ENV.key?("R")
+
+warn "Loading gems..."
+require "bundler/inline"
+
+gemfile do
+  source "https://rubygems.org"
+  gem "base64"
+  gem "json"
+  gem "uri"
+  if RACK_3
+    gem "rack-session", ">= 2", require: "rack/session/cookie"
+  else
+    gem "rack", "< 3", require: "rack/session/abstract/id"
+    gem "rack-protection", "< 4"
+  end
+end
+
+def warn_errors(*errors)
+  warn "\nErrors reported"
+  errors.each_with_index do |error, idx|
+    warn "Error #{idx}"
+    warn error.full_message
+    warn
+  end
+end
+
+def print_decoded_cookie(cookie_value)
+  return if cookie_value.nil?
+  warn
+  puts decode_cookie(cookie_value).to_json
+  warn
+  warn "Cookie was decoded successfully"
+rescue StandardError => decode_error
+  if session_secret.nil?
+    warn "\e[33m\e[1mSet environment variables S or SESSION_SECRET to try to decrypt cookie\e[0m"
+    warn_errors(decode_error)
+    return
+  end
+  warn "Failed to decode, trying to decrypt cookie..."
+  warn
+  begin
+    if decrypted_cookie = decrypt_cookie(cookie_value)
+      warn "\e[32m\e[1mCookie was decrypted successfully!\e[0m"
+      warn ""
+      puts decrypted_cookie.to_json
+    else
+      warn "\e[33m\e[1mRun with R=1 to decrypt Rack 3 cookies\e[0m"
+      warn_errors(decode_error)
+      return
+    end
+  rescue => decrypt_error
+    warn_errors(decode_error, decrypt_error)
+  end
+end
+
+def decode_cookie(cookie_value)
+  Marshal.load(Base64.decode64(URI.decode_uri_component(cookie_value)))
+end
+
+def decrypt_cookie(data)
+  return handle_rack_session_cookie(data) if ENV.key?("R")
+
+  handle_rack_protection_cookie(data)
+end
+
+# Rack::Protection::EncryptedCookie (rack-protection >= 3.0.0)
+#   encode, encrypt
+#   decrypt, decode
+def handle_rack_protection_cookie(cookie_value)
+  hex_secret      = session_secret
+  secret          = [hex_secret].pack("H*") # raw byte string
+  coder           = Rack::Protection::EncryptedCookie::Marshal.new
+  encrypted_data  = URI.decode_uri_component(cookie_value)
+  decrypted_value = Rack::Protection::Encryptor.decrypt_message(encrypted_data, secret)
+
+  coder.decode(decrypted_value)
+end
+
+# Rack::Session::Cookie (rack-session >= 2.0.0)
+#   encrypt
+#   decrypt
+def handle_rack_session_cookie(cookie_value)
+  encryptor      = Rack::Session::Encryptor.new(session_secret)
+  encrypted_data = URI.decode_uri_component(cookie_value)
+
+  encryptor.decrypt(encrypted_data)
+end
+
+def session_secret
+  ENV["S"] || ENV["SESSION_SECRET"]
+end
+
+warn "All gems loaded. Exit with Ctrl-C (^C)"
+warn
+
+if $stdin.stat.pipe?
+  print_decoded_cookie(STDIN.read.chomp)
+  exit
+elsif ARGV.any?
+  print_decoded_cookie(ARGV.first)
+  exit
+end
+
+begin
+  loop do
+    puts "Paste the cookie value and press Enter:"
+    print_decoded_cookie($stdin.gets)
+    puts
+  end
+rescue Interrupt
+  exit
+end
