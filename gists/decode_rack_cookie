@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# frozen_string_literal: true
+
 # strings to test with
 #
 # secret for encrypted
@@ -13,6 +15,13 @@
 #
 # rack 3 (rack-session >= 2.0.0) (encrypted)
 # AbeMnOJBBiHeTrTyH-2Tl1JnsYR-8t_v3cy5O_b9JBJehPWrQtD0o8D6ehhmGRDOMaXy9nVhcAlRRAHz5AM2I6QQcIne_6fqYnwH_16rfLZhFpwWgUeT0YMOt2Nxewl6bibLwEfkTVYCkrVBb20BXCArM0Wc2JDuysnOiJx7JgWJGocPqvISN6efqvQBXUK9z8ZxL4ZHctNF2dJGSGugb4AqJ18oezCaxmA8YXV182gnKz2DwLV7W320H5Lv7ttQapY9isXUq_9S9SHVooDK67mEmLMBFv5JZqRXWLT36Dr8XHTX-lAb16wBbxTgNsgupA%3D%3D
+
+# all outputs goes to stderr except the cookie hash so we can pipe to jq if we want
+#
+# pbpaste | decode_rack_cookie | jq
+
+$stdout.sync = true
+$stderr.sync = true
 
 RACK_3 = ENV.key?("R")
 
@@ -41,15 +50,23 @@ def warn_errors(*errors)
   end
 end
 
+def bold_yellow(str)
+  "\e[33m\e[1m#{str}\e[0m"
+end
+
+def bold_green(str)
+  "\e[32m\e[1m#{str}\e[0m"
+end
+
 def print_decoded_cookie(cookie_value)
   return if cookie_value.nil?
   warn
   puts decode_cookie(cookie_value).to_json
   warn
-  warn "Cookie was decoded successfully"
-rescue StandardError => decode_error
+  warn bold_green("Cookie was decoded successfully!")
+rescue StandardError => decode_error # rubocop:disable Naming/RescuedExceptionsVariableName
   if session_secret.nil?
-    warn "\e[33m\e[1mSet environment variables S or SESSION_SECRET to try to decrypt cookie\e[0m"
+    warn bold_yellow("Set environment variables S or SESSION_SECRET to try to decrypt cookie")
     warn_errors(decode_error)
     return
   end
@@ -57,13 +74,12 @@ rescue StandardError => decode_error
   warn
   begin
     if decrypted_cookie = decrypt_cookie(cookie_value)
-      warn "\e[32m\e[1mCookie was decrypted successfully!\e[0m"
+      warn bold_green("Cookie was decrypted successfully!")
       warn ""
       puts decrypted_cookie.to_json
     else
-      warn "\e[33m\e[1mRun with R=1 to decrypt Rack 3 cookies\e[0m"
+      warn bold_yellow("Run with R=1 to decrypt Rack 3 cookies")
       warn_errors(decode_error)
-      return
     end
   rescue => decrypt_error
     warn_errors(decode_error, decrypt_error)
@@ -71,7 +87,7 @@ rescue StandardError => decode_error
 end
 
 def decode_cookie(cookie_value)
-  Marshal.load(Base64.decode64(URI.decode_uri_component(cookie_value)))
+  Marshal.load(Base64.decode64(URI.decode_uri_component(cookie_value))) # rubocop:disable Security/MarshalLoad
 end
 
 def decrypt_cookie(data)
@@ -111,7 +127,7 @@ warn "All gems loaded. Exit with Ctrl-C (^C)"
 warn
 
 if $stdin.stat.pipe?
-  print_decoded_cookie(STDIN.read.chomp)
+  print_decoded_cookie($stdin.read.chomp)
   exit
 elsif ARGV.any?
   print_decoded_cookie(ARGV.first)
