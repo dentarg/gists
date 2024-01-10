@@ -13,8 +13,11 @@
 # rack 2 (rack-protection >= 3.0.0) (encrypted)
 # AaI4P1WOpfeFZgkaD%2BlscAeL0b0g9hQS3iK%2BTfox7%2FjpruiZq1KjOa3lru97K%2FXxzwfUe1v%2BgTLnbVZXua5eet5UUhuJUB5fAsUgwonTAbKaQsNI3h9GUxRdEEzIU9fkqfSjEeJk3DU7Q11k96Ev4L8f1Hd%2BJvBTYWZDEk7WEDWHd4ly0cwwEUrjq2PqmiBONgYp3GEuPkB3R%2FFALHTGj7r8JVIwAHw5vDuemYZB3zWamgEQsoangVui%2BuD%2FMabvsh8E%2F4%2Fmc6S%2FaF%2BKcB3%2FubS0x4Fobzj7zznUWRllRAXXag%3D%3D--bgnU0Sm3iosvb3eb--AoQtXGVLTZfJCkKHpyvVYQ%3D%3D
 #
-# rack 3 (rack-session >= 2.0.0) (encrypted)
+# rack 3 (rack-session == 2.0.0) (encrypted)
 # AbeMnOJBBiHeTrTyH-2Tl1JnsYR-8t_v3cy5O_b9JBJehPWrQtD0o8D6ehhmGRDOMaXy9nVhcAlRRAHz5AM2I6QQcIne_6fqYnwH_16rfLZhFpwWgUeT0YMOt2Nxewl6bibLwEfkTVYCkrVBb20BXCArM0Wc2JDuysnOiJx7JgWJGocPqvISN6efqvQBXUK9z8ZxL4ZHctNF2dJGSGugb4AqJ18oezCaxmA8YXV182gnKz2DwLV7W320H5Lv7ttQapY9isXUq_9S9SHVooDK67mEmLMBFv5JZqRXWLT36Dr8XHTX-lAb16wBbxTgNsgupA%3D%3D
+#
+# rack 3 (rack-session > 2.0.0) (AEAD (V2) encrypted)
+# Asfm1NH6St8zwT%2B3SnHsxofmYtSDmpdWiXfbPyPqiIC6AjmLLwxnnGaqJBy9v93qNpQnKGvDU9rjIgFWd%2Bjska7qrovLD5zgGn0y0acXatJ07PWAiZWesZa%2Fqg2gmA%2Fw7w9qjPHhsjMk7Msc38aBN3bHK75JmPLD%2Buy4OxDN59guH6T2Nh7Yis8QF%2BICfOfkV7jxDQ0dKTW6Yf3fZQ%3D%3D
 
 # all outputs goes to stderr except the cookie hash so we can pipe to jq if we want
 #
@@ -23,21 +26,26 @@
 $stdout.sync = true
 $stderr.sync = true
 
-RACK_3 = ENV.key?("R")
+DEBUG = ENV.key?("DEBUG") # wont work with pipe to jq
+RACK_SESSION = ENV.fetch("RACK_SESSION", "0")
 
 warn "Loading gems..."
 require "bundler/inline"
 
-gemfile do
+gemfile(DEBUG) do
   source "https://rubygems.org"
   gem "base64"
   gem "json"
   gem "uri"
-  if RACK_3
-    gem "rack-session", ">= 2", require: "rack/session/cookie"
-  else
+  case RACK_SESSION
+  when "0", "1"
     gem "rack", "< 3", require: "rack/session/abstract/id"
     gem "rack-protection", "< 4"
+  when "2"
+    # works with rack-session main too (Rack::Session::Encryptor::V1)
+    gem "rack-session", ">= 2", require: "rack/session/cookie"
+  when "head", "main"
+    gem "rack-session", github: "rack/rack-session", require: "rack/session/cookie"
   end
 end
 
@@ -78,7 +86,10 @@ rescue StandardError => decode_error # rubocop:disable Naming/RescuedExceptionsV
       warn ""
       puts decrypted_cookie.to_json
     else
-      warn bold_yellow("Run with R=1 to decrypt Rack 3 cookies")
+      warn bold_yellow("Run with RACK_SESSION={1,2,main} to decrypt cookies")
+      warn bold_yellow("  * 1    - encrypted by rack-protection (sinatra) >=3.0.0")
+      warn bold_yellow("  * 2    - encrypted by rack-session 2.0.0")
+      warn bold_yellow("  * main - encrypted by rack-session main branch")
       warn_errors(decode_error)
     end
   rescue => decrypt_error
@@ -91,9 +102,12 @@ def decode_cookie(cookie_value)
 end
 
 def decrypt_cookie(data)
-  return handle_rack_session_cookie(data) if ENV.key?("R")
-
-  handle_rack_protection_cookie(data)
+  case RACK_SESSION
+  when "0", "1"
+    handle_rack_protection_cookie(data)
+  else
+    handle_rack_session_cookie(data)
+  end
 end
 
 # Rack::Protection::EncryptedCookie (rack-protection >= 3.0.0)
@@ -109,7 +123,8 @@ def handle_rack_protection_cookie(cookie_value)
   coder.decode(decrypted_value)
 end
 
-# Rack::Session::Cookie (rack-session >= 2.0.0)
+# Rack::Session::Cookie (rack-session == 2.0.0)
+# Rack::Session::Cookie (rack-session > 2.0.0, https://github.com/rack/rack-session/pull/23)
 #   encrypt
 #   decrypt
 def handle_rack_session_cookie(cookie_value)
@@ -126,11 +141,11 @@ end
 warn "All gems loaded. Exit with Ctrl-C (^C)"
 warn
 
-if $stdin.stat.pipe?
-  print_decoded_cookie($stdin.read.chomp)
-  exit
-elsif ARGV.any?
+if ARGV.any?
   print_decoded_cookie(ARGV.first)
+  exit
+elsif $stdin.stat.pipe?
+  print_decoded_cookie($stdin.read.chomp)
   exit
 end
 
