@@ -1,6 +1,14 @@
 # ruby (+ puma) bug
 
-Links
+Links (from 2024)
+
+* https://github.com/puma/puma/issues/3313
+  * https://github.com/puma/puma/pull/3314 (fix)
+  * https://github.com/puma/puma/pull/3255 (causes?)
+  * https://github.com/puma/puma/issues/3313#issuecomment-1887745626
+    * https://github.com/ruby/ruby/commit/054a412d540e7ed2de63d68da753f585ea6616c3 (ruby 2.6 commit)
+
+Links (from 2019)
 
 * From https://github.com/jruby/jruby/issues/5576
   * > rb_waitpid reimplemented on Unix-like platforms to maintain compatibility with processes created for JIT [Bug #14867](https://bugs.ruby-lang.org/issues/14867)
