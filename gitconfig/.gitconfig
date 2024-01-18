@@ -3,8 +3,11 @@
     colorMovedWS = allow-indentation-change
     wsErrorHighlight = old
 
+# https://stackoverflow.com/questions/5480069/autosetuprebase-vs-autosetupmerge
 [branch]
+    # for "git branch" tracking
     autoSetupMerge = true # this is the default
+    # for "git pull" rebase
     autoSetupRebase = always
 
 [color]
@@ -42,6 +45,7 @@
     p  = pull
     st = status
     ci = commit -v
+    ce = commit --allow-empty
     br = branch
     co = checkout
     df = diff
@@ -54,6 +58,13 @@
     g   = log --graph --pretty=custom               # Show custom graph
     l   = log --pretty=custom                       # Show custom log
     lc  = shortlog --summary --numbered             # List contributors
+    showtagslong = "!f() { git tag --sort=creatordate --format='%(creatordate:short) %(objectname:short) %(refname:strip=2)' --contains "$1"; }; f"
+    showtags = "!f() { git tag --sort=creatordate --contains "$1" | tr '\n' ' '; }; f"
+
+    # https://stackoverflow.com/a/14959746/525616
+    # $ git add .          # Stage changes to correct the bad commit
+    # $ git fixup HEAD^    # HEAD^ can be replaced by the SHA of the bad commit
+    fixup = !sh -c 'REV=$(git rev-parse $1) && git commit --fixup $@ && git rebase -i --autosquash $REV^' -
 
     # print tags with commit, from https://stackoverflow.com/a/25777221/525616
     tags  = log --no-walk --tags --pretty=custom --decorate=full
@@ -67,6 +78,16 @@
     # List tags sorted, from https://stackoverflow.com/a/36636526/525616
     sorted-tags = "!f() { \
         git tag --sort=-creatordate --list --format='%(creatordate:short) %(objectname:short) %(refname:strip=2)'; \
+    }; f"
+
+    # with authorname
+    sorted-tags-with-author = "!f() { \
+        git tag --sort=-creatordate --list --format='%(creatordate:short) %(objectname:short) %(refname:strip=2) (%(*authorname)) [%(authorname)]'; \
+    }; f"
+
+    # with tag subject and body
+    sorted-tags-with-body = "!f() { \
+        git tag --sort=-creatordate --list --format='%(color:yellow)%(creatordate:short) %(objectname:short) %(refname:strip=2) (%(*authorname)) [%(authorname)]%0a%(contents:lines=9999)%0a'; \
     }; f"
 
 [push]
@@ -86,18 +107,15 @@
 
 # from https://github.com/alrra/dotfiles/blob/e5977d47b68b69d155142c94b531a086d35406e6/git/gitconfig
 [pretty]
-    custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
+    custom = "%C(magenta)%h%C(red)%d %C(yellow)%ai %C(green)%s %C(yellow)(%an)"
     #                     │        │            │            │             └─ author name
     #                     │        │            │            └─ message
-    #                     │        │            └─ date (relative)
+    #                     │        │            └─ date (ISO 8601-like format)
     #                     │        └─ decorations (branch, heads or tags)
     #                     └─ hash (abbreviated)
-
 [fetch]
     prune = true
-
 [commit]
     cleanup = scissors
-
 [init]
     defaultBranch = main
