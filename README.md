@@ -9,3 +9,4 @@ Favorites:
 * [`ssl`](https://github.com/dentarg/gists/blob/master/gists/ssl/ssl)
 * [sublime-text](https://github.com/dentarg/gists/tree/master/gists/sublime-text)
 * [update scripts](https://github.com/dentarg/gists/tree/master/gists/update)
+* [`vagrant-playground/`](https://github.com/dentarg/gists/tree/master/gists/vagrant-playground/)

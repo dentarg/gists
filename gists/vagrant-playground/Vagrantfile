@@ -1,0 +1,36 @@
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  # Disable dynamic SSH key generation by Vagrant
+  config.ssh.insert_key = false
+
+  # https://app.vagrantup.com/ubuntu, https://app.vagrantup.com/debian
+  # has no vmware_desktop boxes
+  # use https://app.vagrantup.com/bento, https://github.com/chef/bento
+
+  config.vm.define "debian" do |ubuntu|
+    # https://app.vagrantup.com/bento/boxes/debian-12.5-arm64
+    ubuntu.vm.box = "bento/debian-12.5-arm64"
+
+    # Shared folders
+    ubuntu.vm.synced_folder "./", "/vagrant", disabled: false
+
+    # Wait less, default this is 300 seconds
+    ubuntu.vm.boot_timeout = 45
+
+    # Prefer VMware Fusion (VirtualBox not available for arm64)
+    ubuntu.vm.provider "vmware_desktop"
+
+    # How to do port forwarding to the host
+    # config.vm.network :forwarded_port, host: 8080, guest: 80
+
+    # How to run ansible playbook on "vagrant up"
+    # config.vm.provision "ansible" do |ansible|
+    #   ansible.playbook = "bootstrap.yml"
+    #   ansible.compatibility_mode = "2.0"
+    # end
+
+    # How to run shell commands on "vagrant up"
+    ubuntu.vm.provision :shell, inline: "echo hi"
+  end
+end
