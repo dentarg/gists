@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+
+require "openssl"
+
+BEGIN_CERT = "-----BEGIN CERTIFICATE-----"
+END_CERT   = "-----END CERTIFICATE-----"
+
+def debug(str)
+  return unless ENV.key?("DEBUG")
+  puts "[DEBUG] #{str}"
+end
+
+def fingerprint(cert)
+  alg = "SHA256"
+  Digest(alg.to_sym).hexdigest(cert.to_der).upcase.scan(/../).join(":")
+end
+
+abort "No filename given" if ARGV.empty?
+
+input_file = ARGV.shift
+input_lines = File.readlines(input_file).map(&:chomp)
+
+certs = []
+cert_lines = []
+
+input_lines.each_with_index do |line, idx|
+  debug line
+
+  if line == BEGIN_CERT
+    cert_lines = []
+    cert_lines << line
+  elsif line == END_CERT
+    cert_lines << line
+    certs << cert_lines
+  else
+    cert_lines << line
+  end
+end
+
+raw_certs = certs.map { |cert_lines| cert_lines.join("\n") }
+openssl_certs = raw_certs.map { |cert_data| OpenSSL::X509::Certificate.new(cert_data) }
+txt_certs = openssl_certs.map { |openssl_cert| openssl_cert.to_text }
+
+puts txt_certs.join("\n\n===\n\n")
+puts "\n\nFingerprints\n\n"
+openssl_certs.each { |cert| puts "https://crt.sh/?q=#{fingerprint(cert)}" }
