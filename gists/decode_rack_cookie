@@ -99,6 +99,7 @@ rescue StandardError => decode_error # rubocop:disable Naming/RescuedExceptionsV
     end
   rescue => decrypt_error
     warn_errors(decode_error, decrypt_error)
+    warn bold_yellow("Try this (https://github.com/rack/rack-session/issues/35)\n\n\texport KEY=nil") if ENV["KEY"].to_s == ""
   end
 end
 
