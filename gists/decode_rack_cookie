@@ -13,7 +13,7 @@
 # rack 2 (rack-protection >= 3.0.0) (encrypted)
 # AaI4P1WOpfeFZgkaD%2BlscAeL0b0g9hQS3iK%2BTfox7%2FjpruiZq1KjOa3lru97K%2FXxzwfUe1v%2BgTLnbVZXua5eet5UUhuJUB5fAsUgwonTAbKaQsNI3h9GUxRdEEzIU9fkqfSjEeJk3DU7Q11k96Ev4L8f1Hd%2BJvBTYWZDEk7WEDWHd4ly0cwwEUrjq2PqmiBONgYp3GEuPkB3R%2FFALHTGj7r8JVIwAHw5vDuemYZB3zWamgEQsoangVui%2BuD%2FMabvsh8E%2F4%2Fmc6S%2FaF%2BKcB3%2FubS0x4Fobzj7zznUWRllRAXXag%3D%3D--bgnU0Sm3iosvb3eb--AoQtXGVLTZfJCkKHpyvVYQ%3D%3D
 #
-# rack 3 (rack-session == 2.0.0) (encrypted)
+# rack 3 (rack-session >= 2.0.0) (encrypted) (run with KEY=nil)
 # AbeMnOJBBiHeTrTyH-2Tl1JnsYR-8t_v3cy5O_b9JBJehPWrQtD0o8D6ehhmGRDOMaXy9nVhcAlRRAHz5AM2I6QQcIne_6fqYnwH_16rfLZhFpwWgUeT0YMOt2Nxewl6bibLwEfkTVYCkrVBb20BXCArM0Wc2JDuysnOiJx7JgWJGocPqvISN6efqvQBXUK9z8ZxL4ZHctNF2dJGSGugb4AqJ18oezCaxmA8YXV182gnKz2DwLV7W320H5Lv7ttQapY9isXUq_9S9SHVooDK67mEmLMBFv5JZqRXWLT36Dr8XHTX-lAb16wBbxTgNsgupA%3D%3D
 #
 # rack 3 (rack-session > 2.0.0) (AEAD (V2) encrypted)
@@ -23,11 +23,16 @@
 #
 # pbpaste | decode_rack_cookie | jq
 
+# this also works
+#
+# export S=3b6729f943db2acbc339d3d2d8a41080fd89631c3c9db1354d5cf7255e644299
+# decode_rack_cookie --encrypt foo
+
 $stdout.sync = true
 $stderr.sync = true
 
 DEBUG = ENV.key?("DEBUG") # wont work with pipe to jq
-RACK_SESSION = ENV.fetch("RACK_SESSION", "0")
+RACK_SESSION = ENV.fetch("RACK_SESSION", ARGV.first == "--encrypt" ? "2" : "0")
 
 warn "Loading gems..."
 require "bundler/inline"
@@ -128,10 +133,22 @@ end
 #   encrypt
 #   decrypt
 def handle_rack_session_cookie(cookie_value)
-  encryptor      = Rack::Session::Encryptor.new(session_secret)
+  encryptor      = Rack::Session::Encryptor.new(session_secret, purpose:)
   encrypted_data = URI.decode_uri_component(cookie_value)
 
   encryptor.decrypt(encrypted_data)
+end
+
+def encrypted_cookie(value)
+  encryptor = Rack::Session::Encryptor.new(session_secret, purpose:)
+
+  encryptor.encrypt(value)
+end
+
+def purpose
+  return if ENV["KEY"] == "nil"
+
+  "rack.session"
 end
 
 def session_secret
@@ -142,7 +159,14 @@ warn "All gems loaded. Exit with Ctrl-C (^C)"
 warn
 
 if ARGV.any?
-  print_decoded_cookie(ARGV.first)
+  first_arg = ARGV.shift
+  if first_arg == "--encrypt"
+    payload = ARGV.shift
+
+    puts encrypted_cookie(payload)
+  else
+    print_decoded_cookie(first_arg)
+  end
   exit
 elsif $stdin.stat.pipe?
   print_decoded_cookie($stdin.read.chomp)
