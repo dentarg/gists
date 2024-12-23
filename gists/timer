@@ -1,0 +1,22 @@
+#!/bin/sh
+
+base_min=${TIMER_MIN:-7}
+base=$(($base_min * 60))
+rand1=$((RANDOM%100))
+rand2=$((RANDOM%150))
+total=$(($base + $rand1 + $rand2))
+
+min=$(($total / 60))
+sec=$(($total % 60))
+
+[[ $1 == "-v" ]] && echo "DEBUG: $total seconds (${min}m ${sec}s)" && exit
+
+while [ "$total" -gt 0 ]
+do
+  printf "."
+  let "total -= 1"
+  sleep 1
+done
+
+say -v "Bad News" "${min} minutes and ${sec} seconds have passed."
+say -v "Bad News" "Time to stop the game!"
