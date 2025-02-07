@@ -99,7 +99,10 @@ rescue StandardError => decode_error # rubocop:disable Naming/RescuedExceptionsV
     end
   rescue => decrypt_error
     warn_errors(decode_error, decrypt_error)
-    warn bold_yellow("Try this (https://github.com/rack/rack-session/issues/35)\n\n\texport KEY=nil") if ENV["KEY"].to_s == ""
+    if ENV["KEY"].to_s == ""
+      warn bold_yellow \
+        "Try this (https://github.com/rack/rack-session/issues/35)\n\n\texport KEY=nil"
+    end
   end
 end
 
@@ -149,7 +152,7 @@ end
 def purpose
   return if ENV["KEY"] == "nil"
 
-  "rack.session"
+  ENV.fetch("KEY", "rack.session")
 end
 
 def session_secret
