@@ -1,3 +1,224 @@
+# more `puts` debug
+
+tl;dr
+
+```ruby
+# RabbitMQ
+1 run_once frame.method_class=AMQ::Protocol::Confirm::SelectOk
+1 run_once frame.method_class=AMQ::Protocol::Basic::Deliver
+1 run_once frame.method_class=AMQ::Protocol::Basic::Ack
+
+# LavinMQ
+1 run_once frame.method_class=AMQ::Protocol::Confirm::SelectOk
+1 run_once frame.method_class=AMQ::Protocol::Basic::Ack
+1 run_once frame.method_class=AMQ::Protocol::Basic::Deliver
+```
+
+full logs:
+
+
+```ruby
+# RabbitMQ
+$ AMQP_MGMT_PORT=15673 AMQP_PORT=5673 ruby pubsub.rb
+Fetching gem metadata from https://rubygems.org/..
+Resolving dependencies...
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x000000012991edd8 @payload="\u0000\u0014\u0000\v\u0000\u0000\u0000\u0000", @channel=1>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Channel::OpenOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x000000012991d280 @payload="\u0000<\u0000\v", @channel=1>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Basic::QosOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x000000012991bd18 @payload="\u0000U\u0000\v", @channel=1>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Confirm::SelectOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x000000012991a5f8 @payload="\u00002\u0000\v\u000Ftest_queue_name\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000", @channel=1>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Queue::DeclareOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x0000000129919518 @payload="\u00002\u0000\u0015", @channel=1>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Queue::BindOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x0000000129918848 @payload="\u00002\u0000\u0015", @channel=1>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Queue::BindOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x00000001299171c8 @payload="\u0000<\u0000\u0015 bunny-1748968762000-820136351586", @channel=1>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Basic::ConsumeOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x0000000129915e68 @payload="\u0000\u0014\u0000\v\u0000\u0000\u0000\u0000", @channel=2>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Channel::OpenOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x00000001299153c8 @payload="\u0000<\u0000\v", @channel=2>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Basic::QosOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x00000001299149a0 @payload="\u0000U\u0000\v", @channel=2>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Confirm::SelectOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+=> test_routing_key this is the data
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x0000000129912c18 @payload="\u0000<\u0000< bunny-1748968762000-820136351586\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\tamq.topic\u0010test_routing_key", @channel=1>
+1 run_once frame.final?=false
+1 run_once frame.method_class=AMQ::Protocol::Basic::Deliver
+1 run_once frame.method_class.has_content?=true
+0 handle_frameset
+0 run_once
+<= test_routing_key test_queue_name "this is the data"
+subscribe data=String
+subscribe data="\"this is the data\""
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x0000000129910580 @payload="\u0000<\u0000P\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000", @channel=2>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Basic::Ack
+1 run_once frame.method_class.has_content?=false
+0 run_once
+published message: this is the data
+"received"
+"\"this is the data\""
+{content_type: "application/json", delivery_mode: 2, priority: 0}
+"test_routing_key"
+closing AMQP connection
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x00000001298deeb8 @payload="\u0000\u0014\u0000)", @channel=1>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Channel::CloseOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x00000001298ddf18 @payload="\u0000\u0014\u0000)", @channel=2>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Channel::CloseOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x00000001298dd388 @payload="\u0000\n\u00003", @channel=0>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Connection::CloseOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+```
+
+```ruby
+# LavinMQ
+$ AMQP_MGMT_PORT=15674 AMQP_PORT=5674 ruby pubsub.rb
+Fetching gem metadata from https://rubygems.org/..
+Resolving dependencies...
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x00000001290cfd30 @payload="\u0000\u0014\u0000\v\u0000\u0000\u0000\u0000", @channel=1>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Channel::OpenOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x00000001290ce1d8 @payload="\u0000<\u0000\v", @channel=1>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Basic::QosOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x00000001290ccbf8 @payload="\u0000U\u0000\v", @channel=1>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Confirm::SelectOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x00000001290cb500 @payload="\u00002\u0000\v\u000Ftest_queue_name\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000", @channel=1>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Queue::DeclareOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x00000001290ca3f8 @payload="\u00002\u0000\u0015", @channel=1>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Queue::BindOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x00000001290c9778 @payload="\u00002\u0000\u0015", @channel=1>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Queue::BindOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x00000001290c80a8 @payload="\u0000<\u0000\u0015\u001Fbunny-1748968769000-79427470050", @channel=1>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Basic::ConsumeOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x00000001290c6d70 @payload="\u0000\u0014\u0000\v\u0000\u0000\u0000\u0000", @channel=2>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Channel::OpenOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x00000001290c6348 @payload="\u0000<\u0000\v", @channel=2>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Basic::QosOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x00000001290c5880 @payload="\u0000U\u0000\v", @channel=2>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Confirm::SelectOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+=> test_routing_key this is the data
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x00000001290c3af8 @payload="\u0000<\u0000P\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000", @channel=2>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Basic::Ack
+1 run_once frame.method_class.has_content?=false
+0 run_once
+published message: this is the data
+"received"
+nil
+nil
+nil
+closing AMQP connection
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x00000001290c2450 @payload="\u0000<\u0000<\u001Fbunny-1748968769000-79427470050\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\tamq.topic\u0010test_routing_key", @channel=1>
+1 run_once frame.final?=false
+1 run_once frame.method_class=AMQ::Protocol::Basic::Deliver
+1 run_once frame.method_class.has_content?=true
+0 handle_frameset
+0 run_once
+<= test_routing_key test_queue_name "this is the data"
+subscribe data=String
+subscribe data="\"this is the data\""
+/Users/dentarg/src/bunny/lib/bunny/session.rb:1128:in 'Bunny::Session#send_frame': Trying to send frame through a closed connection. Frame is #<AMQ::Protocol::MethodFrame:0x00000001290c02e0 @payload="\x00<\x00P\x00\x00\x00\x00\x00\x00\x00\x01\x00", @channel=1>, method class is AMQ::Protocol::Basic::Ack (Bunny::ConnectionClosedError)
+  from /Users/dentarg/src/bunny/lib/bunny/channel.rb:842:in 'block in Bunny::Channel#basic_ack'
+  from /Users/dentarg/src/bunny/lib/bunny/channel.rb:2122:in 'Bunny::Channel#guarding_against_stale_delivery_tags'
+  from /Users/dentarg/src/bunny/lib/bunny/channel.rb:840:in 'Bunny::Channel#basic_ack'
+  from /Users/dentarg/src/bunny/lib/bunny/channel.rb:554:in 'Bunny::Channel#ack'
+  from pubsub.rb:89:in 'block in Amqp::Group#subscribe'
+  from /Users/dentarg/src/bunny/lib/bunny/consumer.rb:56:in 'Bunny::Consumer#call'
+  from /Users/dentarg/src/bunny/lib/bunny/channel.rb:1844:in 'block in Bunny::Channel#handle_frameset'
+  from /Users/dentarg/src/bunny/lib/bunny/consumer_work_pool.rb:108:in 'block (2 levels) in Bunny::ConsumerWorkPool#run_loop'
+  from <internal:kernel>:168:in 'Kernel#loop'
+  from /Users/dentarg/src/bunny/lib/bunny/consumer_work_pool.rb:103:in 'block in Bunny::ConsumerWorkPool#run_loop'
+  from /Users/dentarg/src/bunny/lib/bunny/consumer_work_pool.rb:102:in 'Kernel#catch'
+  from /Users/dentarg/src/bunny/lib/bunny/consumer_work_pool.rb:102:in 'Bunny::ConsumerWorkPool#run_loop'
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x000000012908f960 @payload="\u0000\u0014\u0000)", @channel=1>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Channel::CloseOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x000000012908e998 @payload="\u0000\u0014\u0000)", @channel=2>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Channel::CloseOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+1 run_once frame=#<AMQ::Protocol::MethodFrame:0x000000012908de08 @payload="\u0000\n\u00003", @channel=0>
+1 run_once frame.final?=true
+1 run_once frame.method_class=AMQ::Protocol::Connection::CloseOk
+1 run_once frame.method_class.has_content?=false
+0 run_once
+```
+
+
 # bunny debug logs
 
 ## LavinMQ
