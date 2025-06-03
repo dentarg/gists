@@ -2,7 +2,8 @@ require "bundler/inline"
 
 gemfile(true) do
   source "https://rubygems.org"
-  gem "bunny", "2.24.0"
+  # gem "bunny", "2.23.0"
+  gem "bunny", path: "/Users/dentarg/src/bunny"
   gem "excon"
   gem "json"
   gem "set"
@@ -24,7 +25,7 @@ def with_amqp_connection
   password = "guest"
 
   Excon.put(mgmt_url, path:, user:, password:)
-  bunny = Bunny.new(amqp_url)
+  bunny = Bunny.new(amqp_url, log_level: :debug, heartbeat: 60)
   bunny.start
 
   yield bunny
