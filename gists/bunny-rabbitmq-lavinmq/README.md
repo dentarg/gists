@@ -1,4 +1,134 @@
-# Debugging
+# bunny debug logs
+
+## LavinMQ
+
+```shell
+$ AMQP_MGMT_PORT=15674 AMQP_PORT=5674 ruby pubsub.rb
+Fetching gem metadata from https://rubygems.org/..
+Resolving dependencies...
+D, [2025-06-03T18:11:28.993874 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Sent protocol preamble
+D, [2025-06-03T18:11:28.994573 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Sent connection.start-ok
+D, [2025-06-03T18:11:28.994926 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Heartbeat interval negotiation: client = server, server = 300, result = 300
+I, [2025-06-03T18:11:28.994933 #84973]  INFO -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Heartbeat interval used (in seconds): 300
+D, [2025-06-03T18:11:28.994940 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Will use socket read timeout of 660 seconds
+D, [2025-06-03T18:11:28.994957 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Initializing channel ID allocator with channel_max = 2048
+D, [2025-06-03T18:11:28.994986 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Sent connection.tune-ok with heartbeat interval = 300, frame_max = 131072, channel_max = 2048
+D, [2025-06-03T18:11:28.994999 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Sent connection.open with vhost = test_b8c9d858
+D, [2025-06-03T18:11:28.995274 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Initializing heartbeat sender...
+D, [2025-06-03T18:11:28.995348 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Allocated channel id: 1
+D, [2025-06-03T18:11:28.995719 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Session#handle_frame on 1: #<AMQ::Protocol::Channel::OpenOk:0x0000000126664118 @channel_id="">
+D, [2025-06-03T18:11:28.996027 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Session#handle_frame on 1: #<AMQ::Protocol::Basic::QosOk:0x00000001266625c0>
+D, [2025-06-03T18:11:28.996040 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Channel#handle_frame on channel 1: #<AMQ::Protocol::Basic::QosOk:0x00000001266625c0>
+D, [2025-06-03T18:11:28.996340 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Session#handle_frame on 1: #<AMQ::Protocol::Confirm::SelectOk:0x00000001266609c8>
+D, [2025-06-03T18:11:28.996346 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Channel#handle_frame on channel 1: #<AMQ::Protocol::Confirm::SelectOk:0x00000001266609c8>
+D, [2025-06-03T18:11:29.000249 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Session#handle_frame on 1: #<AMQ::Protocol::Queue::DeclareOk:0x0000000126229d50 @queue="test_queue_name", @message_count=0, @consumer_count=0>
+D, [2025-06-03T18:11:29.000258 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Channel#handle_frame on channel 1: #<AMQ::Protocol::Queue::DeclareOk:0x0000000126229d50 @queue="test_queue_name", @message_count=0, @consumer_count=0>
+D, [2025-06-03T18:11:29.001572 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Session#handle_frame on 1: #<AMQ::Protocol::Queue::BindOk:0x0000000126228e00>
+D, [2025-06-03T18:11:29.001578 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Channel#handle_frame on channel 1: #<AMQ::Protocol::Queue::BindOk:0x0000000126228e00>
+D, [2025-06-03T18:11:29.002605 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Session#handle_frame on 1: #<AMQ::Protocol::Queue::BindOk:0x0000000126102878>
+D, [2025-06-03T18:11:29.002613 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Channel#handle_frame on channel 1: #<AMQ::Protocol::Queue::BindOk:0x0000000126102878>
+D, [2025-06-03T18:11:29.003118 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Session#handle_frame on 1: #<AMQ::Protocol::Basic::ConsumeOk:0x0000000125088d80 @consumer_tag="bunny-1748967089000-609909501470">
+D, [2025-06-03T18:11:29.003127 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Channel#handle_frame on channel 1: #<AMQ::Protocol::Basic::ConsumeOk:0x0000000125088d80 @consumer_tag="bunny-1748967089000-609909501470">
+D, [2025-06-03T18:11:29.003156 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Allocated channel id: 2
+D, [2025-06-03T18:11:29.003507 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Session#handle_frame on 2: #<AMQ::Protocol::Channel::OpenOk:0x00000001248ca508 @channel_id="">
+D, [2025-06-03T18:11:29.003690 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Session#handle_frame on 2: #<AMQ::Protocol::Basic::QosOk:0x00000001247898d8>
+D, [2025-06-03T18:11:29.003697 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Channel#handle_frame on channel 2: #<AMQ::Protocol::Basic::QosOk:0x00000001247898d8>
+D, [2025-06-03T18:11:29.003871 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Session#handle_frame on 2: #<AMQ::Protocol::Confirm::SelectOk:0x0000000124788a50>
+D, [2025-06-03T18:11:29.003878 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Channel#handle_frame on channel 2: #<AMQ::Protocol::Confirm::SelectOk:0x0000000124788a50>
+=> test_routing_key this is the data
+D, [2025-06-03T18:11:29.004171 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Session#handle_frame on 2: #<AMQ::Protocol::Basic::Ack:0x00000001247856e8 @delivery_tag=1, @multiple=false>
+D, [2025-06-03T18:11:29.004180 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Channel#handle_frame on channel 2: #<AMQ::Protocol::Basic::Ack:0x00000001247856e8 @delivery_tag=1, @multiple=false>
+published message: this is the data
+"received"
+nil
+nil
+nil
+closing AMQP connection
+D, [2025-06-03T18:11:29.004222 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Transport is still open...
+<= test_routing_key test_queue_name "this is the data"
+subscribe data=String
+subscribe data="\"this is the data\""
+/Users/dentarg/src/bunny/lib/bunny/session.rb:1128:in 'Bunny::Session#send_frame': Trying to send frame through a closed connection. Frame is #<AMQ::Protocol::MethodFrame:0x0000000120888a58 @payload="\x00<\x00P\x00\x00\x00\x00\x00\x00\x00\x01\x00", @channel=1>, method class is AMQ::Protocol::Basic::Ack (Bunny::ConnectionClosedError)
+  from /Users/dentarg/src/bunny/lib/bunny/channel.rb:842:in 'block in Bunny::Channel#basic_ack'
+  from /Users/dentarg/src/bunny/lib/bunny/channel.rb:2121:in 'Bunny::Channel#guarding_against_stale_delivery_tags'
+  from /Users/dentarg/src/bunny/lib/bunny/channel.rb:840:in 'Bunny::Channel#basic_ack'
+  from /Users/dentarg/src/bunny/lib/bunny/channel.rb:554:in 'Bunny::Channel#ack'
+  from pubsub.rb:87:in 'block in Amqp::Group#subscribe'
+  from /Users/dentarg/src/bunny/lib/bunny/consumer.rb:56:in 'Bunny::Consumer#call'
+  from /Users/dentarg/src/bunny/lib/bunny/channel.rb:1843:in 'block in Bunny::Channel#handle_frameset'
+  from /Users/dentarg/src/bunny/lib/bunny/consumer_work_pool.rb:108:in 'block (2 levels) in Bunny::ConsumerWorkPool#run_loop'
+  from <internal:kernel>:168:in 'Kernel#loop'
+  from /Users/dentarg/src/bunny/lib/bunny/consumer_work_pool.rb:103:in 'block in Bunny::ConsumerWorkPool#run_loop'
+  from /Users/dentarg/src/bunny/lib/bunny/consumer_work_pool.rb:102:in 'Kernel#catch'
+  from /Users/dentarg/src/bunny/lib/bunny/consumer_work_pool.rb:102:in 'Bunny::ConsumerWorkPool#run_loop'
+D, [2025-06-03T18:11:29.004920 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Session#handle_frame on 1: #<AMQ::Protocol::Channel::CloseOk:0x0000000120886050>
+D, [2025-06-03T18:11:29.005230 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Session#handle_frame on 2: #<AMQ::Protocol::Channel::CloseOk:0x0000000120882b08>
+D, [2025-06-03T18:11:29.005257 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Will close all channels....
+D, [2025-06-03T18:11:29.005264 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Transport is still open
+D, [2025-06-03T18:11:29.005282 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Waiting for a connection.close-ok...
+D, [2025-06-03T18:11:29.005567 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Session#handle_frame on 0: #<AMQ::Protocol::Connection::CloseOk:0x000000012704fc90>
+D, [2025-06-03T18:11:29.005655 #84973] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5674, vhost=test_b8c9d858, addresses=[localhost:5674]>: Connection is closed
+```
+
+## RabbitMQ
+
+```shell
+$ AMQP_MGMT_PORT=15673 AMQP_PORT=5673 ruby pubsub.rb
+Fetching gem metadata from https://rubygems.org/..
+Resolving dependencies...
+D, [2025-06-03T18:11:33.370989 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Sent protocol preamble
+D, [2025-06-03T18:11:33.372227 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Sent connection.start-ok
+D, [2025-06-03T18:11:33.372507 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Heartbeat interval negotiation: client = server, server = 60, result = 60
+I, [2025-06-03T18:11:33.372515 #85045]  INFO -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Heartbeat interval used (in seconds): 60
+D, [2025-06-03T18:11:33.372521 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Will use socket read timeout of 132 seconds
+D, [2025-06-03T18:11:33.372525 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Initializing channel ID allocator with channel_max = 2047
+D, [2025-06-03T18:11:33.372549 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Sent connection.tune-ok with heartbeat interval = 60, frame_max = 131072, channel_max = 2047
+D, [2025-06-03T18:11:33.372562 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Sent connection.open with vhost = test_09a0aaaa
+D, [2025-06-03T18:11:33.372754 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Initializing heartbeat sender...
+D, [2025-06-03T18:11:33.372833 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Allocated channel id: 1
+D, [2025-06-03T18:11:33.373241 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Session#handle_frame on 1: #<AMQ::Protocol::Channel::OpenOk:0x000000014897e0c0 @channel_id="">
+D, [2025-06-03T18:11:33.373449 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Session#handle_frame on 1: #<AMQ::Protocol::Basic::QosOk:0x000000014897c7e8>
+D, [2025-06-03T18:11:33.373460 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Channel#handle_frame on channel 1: #<AMQ::Protocol::Basic::QosOk:0x000000014897c7e8>
+D, [2025-06-03T18:11:33.373639 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Session#handle_frame on 1: #<AMQ::Protocol::Confirm::SelectOk:0x000000014897b1b8>
+D, [2025-06-03T18:11:33.373645 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Channel#handle_frame on channel 1: #<AMQ::Protocol::Confirm::SelectOk:0x000000014897b1b8>
+D, [2025-06-03T18:11:33.375175 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Session#handle_frame on 1: #<AMQ::Protocol::Queue::DeclareOk:0x0000000148979868 @queue="test_queue_name", @message_count=0, @consumer_count=0>
+D, [2025-06-03T18:11:33.375188 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Channel#handle_frame on channel 1: #<AMQ::Protocol::Queue::DeclareOk:0x0000000148979868 @queue="test_queue_name", @message_count=0, @consumer_count=0>
+D, [2025-06-03T18:11:33.376705 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Session#handle_frame on 1: #<AMQ::Protocol::Queue::BindOk:0x00000001489787d8>
+D, [2025-06-03T18:11:33.376726 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Channel#handle_frame on channel 1: #<AMQ::Protocol::Queue::BindOk:0x00000001489787d8>
+D, [2025-06-03T18:11:33.377993 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Session#handle_frame on 1: #<AMQ::Protocol::Queue::BindOk:0x0000000148977b30>
+D, [2025-06-03T18:11:33.378009 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Channel#handle_frame on channel 1: #<AMQ::Protocol::Queue::BindOk:0x0000000148977b30>
+D, [2025-06-03T18:11:33.378374 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Session#handle_frame on 1: #<AMQ::Protocol::Basic::ConsumeOk:0x00000001489762f8 @consumer_tag="bunny-1748967093000-771813566845">
+D, [2025-06-03T18:11:33.378381 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Channel#handle_frame on channel 1: #<AMQ::Protocol::Basic::ConsumeOk:0x00000001489762f8 @consumer_tag="bunny-1748967093000-771813566845">
+D, [2025-06-03T18:11:33.378408 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Allocated channel id: 2
+D, [2025-06-03T18:11:33.378737 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Session#handle_frame on 2: #<AMQ::Protocol::Channel::OpenOk:0x0000000148974f20 @channel_id="">
+D, [2025-06-03T18:11:33.378901 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Session#handle_frame on 2: #<AMQ::Protocol::Basic::QosOk:0x00000001489744f8>
+D, [2025-06-03T18:11:33.378907 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Channel#handle_frame on channel 2: #<AMQ::Protocol::Basic::QosOk:0x00000001489744f8>
+D, [2025-06-03T18:11:33.379059 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Session#handle_frame on 2: #<AMQ::Protocol::Confirm::SelectOk:0x0000000148973a80>
+D, [2025-06-03T18:11:33.379065 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Channel#handle_frame on channel 2: #<AMQ::Protocol::Confirm::SelectOk:0x0000000148973a80>
+=> test_routing_key this is the data
+<= test_routing_key test_queue_name "this is the data"
+subscribe data=String
+subscribe data="\"this is the data\""
+D, [2025-06-03T18:11:33.379752 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Session#handle_frame on 2: #<AMQ::Protocol::Basic::Ack:0x000000014893f320 @delivery_tag=1, @multiple=false>
+D, [2025-06-03T18:11:33.379763 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Channel#handle_frame on channel 2: #<AMQ::Protocol::Basic::Ack:0x000000014893f320 @delivery_tag=1, @multiple=false>
+published message: this is the data
+"received"
+"\"this is the data\""
+{content_type: "application/json", delivery_mode: 2, priority: 0}
+"test_routing_key"
+closing AMQP connection
+D, [2025-06-03T18:11:33.379819 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Transport is still open...
+D, [2025-06-03T18:11:33.380054 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Session#handle_frame on 1: #<AMQ::Protocol::Channel::CloseOk:0x000000014893de58>
+D, [2025-06-03T18:11:33.380301 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Session#handle_frame on 2: #<AMQ::Protocol::Channel::CloseOk:0x000000014893cf58>
+D, [2025-06-03T18:11:33.380320 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Will close all channels....
+D, [2025-06-03T18:11:33.380335 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Transport is still open
+D, [2025-06-03T18:11:33.380351 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Waiting for a connection.close-ok...
+D, [2025-06-03T18:11:33.380533 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Session#handle_frame on 0: #<AMQ::Protocol::Connection::CloseOk:0x000000014893c1c0>
+D, [2025-06-03T18:11:33.380589 #85045] DEBUG -- #<Bunny::Session:0x580 guest@localhost:5673, vhost=test_09a0aaaa, addresses=[localhost:5673]>: Connection is closed
+```
+
+
+# `puts` debugging
 
 Using https://github.com/ruby-amqp/bunny/compare/main...dentarg:bunny:lavinmq-debug we can see that there is a difference with running the `run_once` method https://github.com/ruby-amqp/bunny/blob/2.23.0/lib/bunny/reader_loop.rb#L73-L94
 
