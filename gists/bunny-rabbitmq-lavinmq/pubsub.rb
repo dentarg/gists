@@ -25,7 +25,9 @@ def with_amqp_connection
   password = "guest"
 
   Excon.put(mgmt_url, path:, user:, password:)
-  bunny = Bunny.new(amqp_url, log_level: :debug, heartbeat: 60)
+  options = { heartbeat: 60 }
+  options.merge!(log_level: :debug) if ENV["DEBUG"] == "1"
+  bunny = Bunny.new(amqp_url, options)
   bunny.start
 
   yield bunny
