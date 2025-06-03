@@ -112,6 +112,58 @@ subscribe data="\"this is the data\""
   from /Users/dentarg/.arm64_rubies/3.4.3/lib/ruby/gems/3.4.0/gems/bunny-2.24.0/lib/bunny/consumer_work_pool.rb:104:in 'Bunny::ConsumerWorkPool#run_loop'
 ```
 
+What RabbitMQ is logging with `--debug`
+
+```
+2025-06-03T15:28:16.536267Z  INFO lmq.http.server 192.168.65.1 - GET /api/vhosts?page=1&page_size=100 HTTP/1.1 - 200 (549.21µs)
+2025-06-03T15:28:16.542093Z  INFO lmq.http.server 192.168.65.1 - GET /api/vhosts/%2F/permissions HTTP/1.1 - 200 (236.54µs)
+2025-06-03T15:28:21.354506Z DEBUG lmq.parameter_store[vhost: "test_40b36b31"] 0 items loaded from operator_policies.json
+2025-06-03T15:28:21.354598Z DEBUG lmq.parameter_store[vhost: "test_40b36b31"] 0 items loaded from policies.json
+2025-06-03T15:28:21.354705Z DEBUG lmq.parameter_store[vhost: "test_40b36b31"] 0 items loaded from parameters.json
+2025-06-03T15:28:21.354760Z  INFO lmq.vhost[vhost: "test_40b36b31"] Loading default definitions
+2025-06-03T15:28:21.354836Z  INFO lmq.vhost[vhost: "test_40b36b31"] Compacting definitions
+2025-06-03T15:28:21.357914Z  INFO lmq.vhost_store Created vhost test_40b36b31
+2025-06-03T15:28:21.357959Z DEBUG lmq.user_store Saving users to file
+2025-06-03T15:28:21.359390Z DEBUG lmq.user_store Saving users to file
+2025-06-03T15:28:21.360537Z DEBUG lmq.vhost_store Saving vhosts to file
+2025-06-03T15:28:21.362070Z DEBUG lmq.retainstore restoring index
+2025-06-03T15:28:21.362146Z DEBUG lmq.retainstore restoring index done, msg_count = 0
+2025-06-03T15:28:21.362239Z  INFO lmq.http.server 192.168.65.1 - PUT /api/vhosts/test_40b36b31 HTTP/1.1 - 201 (8.32ms)
+2025-06-03T15:28:21.373803Z  INFO lmq.amqp.client[vhost: "test_40b36b31", address: "192.168.65.1:21507"] Connection established for user=guest
+2025-06-03T15:28:21.378905Z DEBUG lmq.message_store[queue: "test_queue_name", vhost: "test_40b36b31"] Loading 0 ack files
+2025-06-03T15:28:21.378992Z DEBUG lmq.message_store[queue: "test_queue_name", vhost: "test_40b36b31"] Loaded 0 ack files
+2025-06-03T15:28:21.379055Z DEBUG lmq.message_store[queue: "test_queue_name", vhost: "test_40b36b31"] Loading 1 segments
+2025-06-03T15:28:21.379730Z  INFO lmq.message_store[queue: "test_queue_name", vhost: "test_40b36b31"] Loaded 1 segments, 0 messages
+2025-06-03T15:28:21.379867Z DEBUG lmq.vhost[vhost: "test_40b36b31"] Storing definition: AMQ::Protocol::Frame::Queue::Declare(@channel=1, @bytesize=27, @reserved1=0, @queue_name="test_queue_name", @passive=false, @durable=true, @exclusive=false, @auto_delete=false, @no_wait=false, @arguments=AMQ::Protocol::Table())
+2025-06-03T15:28:21.382023Z DEBUG lmq.vhost[vhost: "test_40b36b31"] Storing definition: AMQ::Protocol::Frame::Queue::Bind(@channel=1, @bytesize=54, @reserved1=0, @queue_name="test_queue_name", @exchange_name="amq.topic", @routing_key="test_routing_key", @no_wait=false, @arguments=AMQ::Protocol::Table())
+2025-06-03T15:28:21.383695Z DEBUG lmq.vhost[vhost: "test_40b36b31"] Storing definition: AMQ::Protocol::Frame::Queue::Bind(@channel=1, @bytesize=51, @reserved1=0, @queue_name="test_queue_name", @exchange_name="amq.topic", @routing_key="{block: true}", @no_wait=false, @arguments=AMQ::Protocol::Table())
+2025-06-03T15:28:21.385133Z DEBUG lmq.queue[queue: "test_queue_name", vhost: "test_40b36b31"] Adding consumer (now 1)
+2025-06-03T15:28:21.385222Z DEBUG lmq.amqp.consumer[consumer: "bunny-1748964501000-769829877309", client: "192.168.65.1:21507", channel: 1] The queue isn't a single active consumer queue
+2025-06-03T15:28:21.385281Z DEBUG lmq.amqp.consumer[consumer: "bunny-1748964501000-769829877309", client: "192.168.65.1:21507", channel: 1] Waiting for queue not to be empty
+2025-06-03T15:28:21.386418Z DEBUG lmq.amqp.consumer[consumer: "bunny-1748964501000-769829877309", client: "192.168.65.1:21507", channel: 1] Queue is not empty
+2025-06-03T15:28:21.386481Z DEBUG lmq.queue[queue: "test_queue_name", vhost: "test_40b36b31"] Counting as unacked: 00000000010000000004
+2025-06-03T15:28:21.386546Z DEBUG lmq.amqp.consumer[consumer: "bunny-1748964501000-769829877309", client: "192.168.65.1:21507", channel: 1] Waiting for queue not to be empty
+2025-06-03T15:28:21.386778Z DEBUG lmq.queue[queue: "test_queue_name", vhost: "test_40b36b31"] Removing consumer with 1 unacked messages (0 consumers left)
+2025-06-03T15:28:21.386844Z DEBUG lmq.amqp.channel[client: "192.168.65.1:21507", channel: 1] Requeing unacked msg 00000000010000000004
+2025-06-03T15:28:21.386865Z DEBUG lmq.queue[queue: "test_queue_name", vhost: "test_40b36b31"] Rejecting 00000000010000000004, requeue: true
+2025-06-03T15:28:21.386902Z DEBUG lmq.amqp.channel[client: "192.168.65.1:21507", channel: 1] Closed
+2025-06-03T15:28:21.386987Z DEBUG lmq.queue[queue: "test_queue_name", vhost: "test_40b36b31"] Checking if message LavinMQ::BytesMessage(@timestamp=1748964501300, @exchange_name="amq.topic", @routing_key="test_routing_key", @properties=AMQ::Protocol::Properties(@timestamp_raw=nil, @content_type="application/json", @content_encoding=nil, @headers=nil, @delivery_mode=2, @priority=0, @correlation_id=nil, @reply_to=nil, @expiration=nil, @message_id=nil, @type=nil, @user_id=nil, @app_id=nil, @reserved1=nil), @bodysize=18, @body=Bytes[34, 116, 104, 105, 115, 32, 105, 115, 32, 116, 104, 101, 32, 100, 97, 116, 97, 34]) has to be expired
+2025-06-03T15:28:21.387039Z DEBUG lmq.amqp.consumer[consumer: "bunny-1748964501000-769829877309", client: "192.168.65.1:21507", channel: 1] deliver loop exiting: #<Channel::ClosedError:Channel is closed>
+2025-06-03T15:28:21.387250Z DEBUG lmq.amqp.channel[client: "192.168.65.1:21507", channel: 2] Closed
+2025-06-03T15:28:21.387522Z DEBUG lmq.amqp.client[vhost: "test_40b36b31", address: "192.168.65.1:21507"] Client disconnected: Goodbye
+2025-06-03T15:28:21.387921Z  INFO lmq.amqp.client[vhost: "test_40b36b31", address: "192.168.65.1:21507"] Connection disconnected for user=guest
+2025-06-03T15:28:21.389226Z DEBUG lmq.user_store Saving users to file
+2025-06-03T15:28:21.390837Z  INFO lmq.vhost[vhost: "test_40b36b31"] Closing connections
+2025-06-03T15:28:21.390880Z DEBUG lmq.vhost[vhost: "test_40b36b31"] Close sent to all connections
+2025-06-03T15:28:21.390917Z  INFO lmq.vhost[vhost: "test_40b36b31"] All connections closed gracefully
+2025-06-03T15:28:21.392896Z DEBUG lmq.queue[queue: "test_queue_name", vhost: "test_40b36b31"] Closed
+2025-06-03T15:28:21.395057Z  INFO lmq.vhost_store Deleted vhost test_40b36b31
+2025-06-03T15:28:21.395075Z DEBUG lmq.vhost_store Saving vhosts to file
+2025-06-03T15:28:21.396011Z  INFO lmq.http.server 192.168.65.1 - DELETE /api/vhosts/test_40b36b31 HTTP/1.1 - 204 (6.85ms)
+```
+
+
+
 
 # RabbitMQ
 
