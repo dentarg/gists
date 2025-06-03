@@ -1,3 +1,150 @@
+# Debugging
+
+Using https://github.com/ruby-amqp/bunny/compare/main...dentarg:bunny:lavinmq-debug we can see that there is a difference with running the `run_once` method https://github.com/ruby-amqp/bunny/blob/2.23.0/lib/bunny/reader_loop.rb#L73-L94
+
+logs zoomed in
+
+```shell
+# LavinMQ
+=> test_routing_key this is the data
+1 run_once
+5 run_once
+0 run_once
+published message: this is the data
+"received"
+nil
+
+# RabbitMQ
+=> test_routing_key this is the data
+1 run_once
+2 run_once
+3 run_once
+4 run_once
+0 run_once
+<= test_routing_key test_queue_name "this is the data"
+subscribe data=String
+subscribe data="\"this is the data\""
+1 run_once
+5 run_once
+0 run_once
+published message: this is the data
+"received"
+"\"this is the data\""
+```
+
+logs zoomed out
+
+
+```shell
+# LavinMQ
+6 basic_consume_with @last_basic_consume_ok=#<AMQ::Protocol::Basic::ConsumeOk:0x0000000150e14a50 @consumer_tag="bunny-1748965775000-159566659896">
+1 run_once
+5 run_once
+0 run_once
+0 wait_on_continuations
+1 wait_on_continuations
+2 wait_on_continuations
+1 run_once
+5 run_once
+0 run_once
+0 wait_on_continuations
+1 wait_on_continuations
+2 wait_on_continuations
+1 run_once
+5 run_once
+0 run_once
+=> test_routing_key this is the data
+1 run_once
+5 run_once
+0 run_once
+published message: this is the data
+"received"
+nil
+nil
+nil
+closing AMQP connection
+1 run_once
+2 run_once
+3 run_once
+4 run_once
+0 run_once
+<= test_routing_key test_queue_name "this is the data"
+subscribe data=String
+subscribe data="\"this is the data\""
+/Users/dentarg/src/bunny/lib/bunny/session.rb:1128:in 'Bunny::Session#send_frame': Trying to send frame through a closed connection. Frame is #<AMQ::Protocol::MethodFrame:0x0000000150e3e4b8 @payload="\x00<\x00P\x00\x00\x00\x00\x00\x00\x00\x01\x00", @channel=1>, method class is AMQ::Protocol::Basic::Ack (Bunny::ConnectionClosedError)
+  from /Users/dentarg/src/bunny/lib/bunny/channel.rb:842:in 'block in Bunny::Channel#basic_ack'
+  from /Users/dentarg/src/bunny/lib/bunny/channel.rb:2133:in 'Bunny::Channel#guarding_against_stale_delivery_tags'
+  from /Users/dentarg/src/bunny/lib/bunny/channel.rb:840:in 'Bunny::Channel#basic_ack'
+  from /Users/dentarg/src/bunny/lib/bunny/channel.rb:554:in 'Bunny::Channel#ack'
+  from pubsub.rb:87:in 'block in Amqp::Group#subscribe'
+  from /Users/dentarg/src/bunny/lib/bunny/consumer.rb:56:in 'Bunny::Consumer#call'
+  from /Users/dentarg/src/bunny/lib/bunny/channel.rb:1851:in 'block in Bunny::Channel#handle_frameset'
+  from /Users/dentarg/src/bunny/lib/bunny/consumer_work_pool.rb:108:in 'block (2 levels) in Bunny::ConsumerWorkPool#run_loop'
+  from <internal:kernel>:168:in 'Kernel#loop'
+  from /Users/dentarg/src/bunny/lib/bunny/consumer_work_pool.rb:103:in 'block in Bunny::ConsumerWorkPool#run_loop'
+  from /Users/dentarg/src/bunny/lib/bunny/consumer_work_pool.rb:102:in 'Kernel#catch'
+  from /Users/dentarg/src/bunny/lib/bunny/consumer_work_pool.rb:102:in 'Bunny::ConsumerWorkPool#run_loop'
+1 run_once
+5 run_once
+0 run_once
+1 run_once
+5 run_once
+0 run_once
+1 run_once
+5 run_once
+0 run_once
+```
+
+```shell
+# RabbitMQ
+6 basic_consume_with @last_basic_consume_ok=#<AMQ::Protocol::Basic::ConsumeOk:0x000000013a0b7170 @consumer_tag="bunny-1748965752000-184280851432">
+1 run_once
+5 run_once
+0 run_once
+0 wait_on_continuations
+1 wait_on_continuations
+2 wait_on_continuations
+1 run_once
+5 run_once
+0 run_once
+0 wait_on_continuations
+1 wait_on_continuations
+2 wait_on_continuations
+1 run_once
+5 run_once
+0 run_once
+=> test_routing_key this is the data
+1 run_once
+2 run_once
+3 run_once
+4 run_once
+0 run_once
+<= test_routing_key test_queue_name "this is the data"
+subscribe data=String
+subscribe data="\"this is the data\""
+1 run_once
+5 run_once
+0 run_once
+published message: this is the data
+"received"
+"\"this is the data\""
+{content_type: "application/json", delivery_mode: 2, priority: 0}
+"test_routing_key"
+closing AMQP connection
+1 run_once
+5 run_once
+0 run_once
+1 run_once
+5 run_once
+0 run_once
+1 run_once
+5 run_once
+0 run_once
+```
+
+
+---
+
 # LavinMQ
 
 Start LavinMQ in Docker
