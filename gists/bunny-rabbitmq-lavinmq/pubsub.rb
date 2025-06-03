@@ -68,7 +68,7 @@ class Amqp
       @t = @ch.topic "amq.topic", durable: true
     end
 
-    def create_channel(prefetch: 1)
+    def create_channel(prefetch: 2)
       ch = @amqp.create_channel(nil, prefetch)
       ch.prefetch prefetch
       ch.confirm_select
@@ -135,6 +135,7 @@ with_amqp_connection do |bunny|
   end
 
   amqp.publish(topic, message)
+
   puts "published message: #{message}"
   puts ["received", consumed_data, consumed_properties, consumed_topic].map(&:inspect)
 end
