@@ -143,7 +143,7 @@ with_amqp_connection do |bunny|
   end
 
   amqp.publish(topic, message)
-  mutex.synchronize { resource.wait(mutex) }
+  mutex.synchronize { resource.wait(mutex, 0.1) }
 
   puts "published message: #{message}"
   puts ["received", consumed_data, consumed_properties, consumed_topic].map(&:inspect)
