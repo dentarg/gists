@@ -130,14 +130,20 @@ with_amqp_connection do |bunny|
 
   puts "subscribe will block" if block
 
+  mutex = Mutex.new
+  resource = ConditionVariable.new
+
   amqp.subscribe(queue_name, routing_key, block:) do |data, properties, topic|
     puts "subscribe data=#{data.class}"
     puts "subscribe data=#{data.inspect}"
 
     consumed_data, consumed_properties, consumed_topic = [data, properties, topic]
+
+    mutex.synchronize { resource.signal }
   end
 
   amqp.publish(topic, message)
+  mutex.synchronize { resource.wait(mutex) }
 
   puts "published message: #{message}"
   puts ["received", consumed_data, consumed_properties, consumed_topic].map(&:inspect)
