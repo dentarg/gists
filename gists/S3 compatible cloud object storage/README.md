@@ -27,9 +27,9 @@ From https://wasabi.com/pricing/faq
 >
 > Wasabi’s free egress policy is designed for use cases where you store your data with Wasabi, you access this data at a reasonable rate, and your use case does not impose an unreasonable burden on our service. To better understand the definition of ‘reasonable rate’ and ‘unreasonable burden’ in this context, please consider these guidelines.
 >
->If your monthly egress data transfer is less than or equal to your active storage volume, then your storage use case is a good fit for Wasabi’s free egress policy
+> - If your monthly egress data transfer is less than or equal to your active storage volume, then your storage use case is a good fit for Wasabi’s free egress policy
 >
->If your monthly egress data transfer is greater than your active storage volume, then your storage use case is not a good fit for Wasabi’s free egress policy
+> - If your monthly egress data transfer is greater than your active storage volume, then your storage use case is not a good fit for Wasabi’s free egress policy
 >
 >For example, if you store 100 TB with Wasabi and download (egress) 100 TB or less within a monthly billing cycle, then your storage use case is a good fit for our policy. If your monthly downloads exceed 100 TB, then your use case is not a good fit.
 >
