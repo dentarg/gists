@@ -14,3 +14,26 @@ From ChatGPT: https://chatgpt.com/share/686bec7a-b64c-8000-9ce3-eccfea9f2dff
 | **AWS S3 (Standard)** | **\$23.00**                     | **\$90.00/TB**                    | Medium–High      | Most mature platform; expensive.                                 |
 | **Google Cloud**      | **\$20.00 – \$23.00**           | **\$90.00/TB**                    | Medium–High      | Slightly cheaper than AWS; same pricing model.                   |
 | **Azure Blob (Hot)**  | **\$20.00 – \$23.00**           | **\$87.00 – \$90.00/TB**          | Medium–High      | Similar to AWS and GCP; tightly integrated with Azure ecosystem. |
+
+---
+
+From https://wasabi.com/pricing/faq
+
+> For customers using the Wasabi Pay as You Go pricing model, Wasabi has a minimum monthly charge associated with 1 TB of active storage (Note – For Wasabi Cloud NAS product, the min monthly charge is associated with 10TB of active storage). If you store less than 1 TB of active storage in your account, you will still be charged for 1 TB of storage based on the pricing associated with the storage region you are using. For further details, please refer to this knowledge base article.
+> 
+> Wasabi has a minimum storage duration policy that means if stored objects are deleted before they have been stored with Wasabi for a certain number of days (90 days when using the Wasabi Pay as You Go pricing model), a Timed Deleted Storage charge equal to the storage charge for the remaining days will apply. This policy is comparable to the minimum storage duration policies that exist with some AWS and other hyperscaler storage services. For more details on this policy, please refer to this knowledge base article.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
