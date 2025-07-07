@@ -23,17 +23,14 @@ From https://wasabi.com/pricing/faq
 > 
 > Wasabi has a minimum storage duration policy that means if stored objects are deleted before they have been stored with Wasabi for a certain number of days (90 days when using the Wasabi Pay as You Go pricing model), a Timed Deleted Storage charge equal to the storage charge for the remaining days will apply. This policy is comparable to the minimum storage duration policies that exist with some AWS and other hyperscaler storage services. For more details on this policy, please refer to this knowledge base article.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+> **How does Wasabi’s free egress policy work?**
+>
+> Wasabi’s free egress policy is designed for use cases where you store your data with Wasabi, you access this data at a reasonable rate, and your use case does not impose an unreasonable burden on our service. To better understand the definition of ‘reasonable rate’ and ‘unreasonable burden’ in this context, please consider these guidelines.
+>
+>If your monthly egress data transfer is less than or equal to your active storage volume, then your storage use case is a good fit for Wasabi’s free egress policy
+>
+>If your monthly egress data transfer is greater than your active storage volume, then your storage use case is not a good fit for Wasabi’s free egress policy
+>
+>For example, if you store 100 TB with Wasabi and download (egress) 100 TB or less within a monthly billing cycle, then your storage use case is a good fit for our policy. If your monthly downloads exceed 100 TB, then your use case is not a good fit.
+>
+>If your use case exceeds the guidelines of our free egress policy on a regular basis, we reserve the right to limit or suspend your service.
