@@ -2,7 +2,7 @@
 
 require "bundler/inline"
 
-gemfile do
+gemfile(install = true) do
   source "https://rubygems.org"
   gem "sequel", "5.96.0"
   gem "sequel_pg", "1.17.2", require: "sequel"
