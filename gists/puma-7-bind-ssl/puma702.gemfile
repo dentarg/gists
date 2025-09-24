@@ -1,0 +1,6 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+gem "puma", "= 7.0.2"
+gem "localhost", require: "localhost/authority"

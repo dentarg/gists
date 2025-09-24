@@ -1,0 +1,18 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    localhost (1.6.0)
+    nio4r (2.7.4)
+    puma (7.0.3)
+      nio4r (~> 2.0)
+
+PLATFORMS
+  arm64-darwin-23
+  ruby
+
+DEPENDENCIES
+  localhost
+  puma (= 7.0.3)
+
+BUNDLED WITH
+   2.6.8
