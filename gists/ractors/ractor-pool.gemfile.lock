@@ -1,0 +1,26 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    atomic-ruby (0.7.2)
+    ractor-pool (0.1.2)
+      atomic-ruby
+      warning
+    ractor-shim (0.1.0)
+    warning (1.5.0)
+
+PLATFORMS
+  arm64-darwin-23
+  ruby
+
+DEPENDENCIES
+  ractor-pool (~> 0.1.2)
+  ractor-shim (~> 0.1.0)
+
+CHECKSUMS
+  atomic-ruby (0.7.2) sha256=bcd9ff45b1eee448df38a48b3fa6995862e5237b22522b3d1ddc955501d824e3
+  ractor-pool (0.1.2) sha256=9ab5ff4427002f2b6bcf7c48eec4c21e0a55b77cf854530bdf7412afe897d32a
+  ractor-shim (0.1.0) sha256=2b0e76009148a5c8e9bbfd73d526285f79920a03a154d08aa38c8f5d70d59d57
+  warning (1.5.0) sha256=0f12c49fea0c06757778eefdcc7771e4fd99308901e3d55c504d87afdd718c53
+
+BUNDLED WITH
+   4.0.0.dev

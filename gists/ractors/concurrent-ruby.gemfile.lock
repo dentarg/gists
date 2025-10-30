@@ -1,0 +1,15 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    concurrent-ruby (1.3.5)
+
+PLATFORMS
+  arm64-darwin-23
+  ruby
+  universal-java-21
+
+DEPENDENCIES
+  concurrent-ruby (~> 1.3)
+
+BUNDLED WITH
+   2.7.2
