@@ -42,6 +42,7 @@ gemfile(DEBUG) do
   gem "base64"
   gem "json"
   gem "uri"
+  gem "sinatra" # sometimes Marshal.load needs this (?!)
   case RACK_SESSION
   when "0", "1"
     gem "rack", "< 3", require: "rack/session/abstract/id"
