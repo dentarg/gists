@@ -1,0 +1,20 @@
+# frozen_string_literal: true
+
+# Rakefile defining a task that simulates what happens when Ruby raises
+# SignalException in response to SIGTERM (Heroku dyno shutdown, etc.)
+# and a task that simulates SystemExit.
+
+desc "Raise SignalException (what Ruby does on SIGTERM)"
+task :sigterm do
+  raise SignalException, "SIGTERM"
+end
+
+desc "Raise SystemExit (what `exit` does)"
+task :system_exit do
+  exit 1
+end
+
+desc "Raise a regular error (control case)"
+task :boom do
+  raise "something actually broke"
+end
