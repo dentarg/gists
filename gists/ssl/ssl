@@ -1,21 +1,32 @@
 #!/bin/sh
 
+# https://serverfault.com/questions/1011294/how-to-view-certificate-chain-using-openssl
+# https://fixyacloud.wordpress.com/2020/01/26/how-to-view-all-ssl-certificates-in-a-bundle/
+# openssl crl2pkcs7 -nocrl -certfile chain.pem | openssl pkcs7 -print_certs -text -noout
+
 set -e
 set -u
 set -o pipefail
 
 if [ $# -eq 0 ]; then
-  echo "Usage: $0 HOSTNAME [PORT]"
+  echo "Usage: $0 HOSTNAME [PORT] [SERVERNAME]"
   exit 1
 fi
 
 HOSTNAME=$1
 PORT=${2:-443}
-COMMAND="openssl s_client -showcerts -servername $HOSTNAME -connect $HOSTNAME:$PORT"
+SERVERNAME=${3:-$HOSTNAME}
+# workaround to remove warnings from OpenSSL, from
+# https://github.com/openssl/openssl/issues/22893#issuecomment-1972175115
+#
+#   Warning: Reading certificate from stdin since no -in or -new option is given
+#
+IN="-in /dev/stdin"
+COMMAND="openssl s_client -showcerts -servername $SERVERNAME -connect $HOSTNAME:$PORT"
 
 set +e
 
-$COMMAND </dev/null 2>/dev/null | openssl x509 -noout -dates -subject -issuer
-$COMMAND </dev/null 2>/dev/null | openssl x509 -noout -text | grep -A1 'Subject Alternative Name'
+$COMMAND </dev/null 2>/dev/null | openssl x509 $IN -noout -dates -subject -issuer -fingerprint -sha256
+$COMMAND </dev/null 2>/dev/null | openssl x509 $IN -noout -text | grep -A1 'Subject Alternative Name'
 
 exit 0
